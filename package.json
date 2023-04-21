@@ -1,17 +1,16 @@
 {
   "name": "redux-starter",
   "version": "1.0.0",
-  "description": "Redux Starter Project",
+  "description": "Redux Practice Project",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js"
   },
   "keywords": [],
-  "author": "Mosh Hamedani",
   "license": "ISC",
-  "devDependencies": {
-    "webpack": "4.41.6",
-    "webpack-cli": "3.3.11",
-    "webpack-dev-server": "3.10.3"
+  "dependencies": {
+    "webpack": "^5.80.0",
+    "webpack-cli": "^5.0.2",
+    "webpack-dev-server": "^4.13.3"
   }
 }

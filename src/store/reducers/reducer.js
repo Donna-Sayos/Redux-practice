@@ -1,8 +1,10 @@
+import { BUG_ADDED, BUG_REMOVED } from "../actions/actions";
+
 let lastId = 0;
 
 export default function reducer(state = [], action) {
   switch (action.type) {
-    case "BUG_ADDED":
+    case BUG_ADDED:
       return [
         ...state, // spread operator to copy the state array
         {
@@ -11,7 +13,7 @@ export default function reducer(state = [], action) {
           resolved: false,
         },
       ];
-    case "BUG_REMOVED":
+    case BUG_REMOVED:
       return state.filter((bug) => bug.id !== action.payload.id); // filter out the bug with the id that matches the payload id
     default: // if the action type is none of these values, return the state
       return state;

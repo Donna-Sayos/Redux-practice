@@ -1,3 +1,5 @@
 import store from "./store";
 
-console.log(`STORE: ${store}`)
+store.dispatch({
+    type:
+})

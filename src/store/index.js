@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { createLogger } from "redux-logger";
-import reducer from "./reducers/reducer";
+import todoReducer from "./reducers/todoReducer";
 
 const middleware = [createLogger({ collapsed: true })];
 
 const store = configureStore({
-  reducer,
+  reducer: {
+    todoReducer,
+  },
   middleware,
 });
 

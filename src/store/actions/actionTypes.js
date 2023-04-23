@@ -1,4 +1,5 @@
 // ACTION TYPES
-export const BUG_CREATED = "BUG_CREATED";
-export const BUG_RESOLVED = "BUG_RESOLVED";
-export const BUG_REMOVED = "BUG_REMOVED";
+export const ADD_TODO = "ADD_TODO";
+export const REMOVE_TODO = "REMOVE_TODO";
+export const TOGGLE_TODO = "TOGGLE_TODO";
+export const UPDATE_TODO = "UPDATE_TODO";

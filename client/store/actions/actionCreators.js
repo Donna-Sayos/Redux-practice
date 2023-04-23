@@ -29,3 +29,5 @@ export const updateTodo = (id, todo) => ({
     todo,
   },
 });
+
+// THUNKS

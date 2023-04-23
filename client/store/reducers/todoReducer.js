@@ -7,7 +7,7 @@ export const todoReducer = (state = [], action) => {
     case actions.ADD_TODO:
       return [
         ...state,
-        { id: ++lastId, todo: action.payload.todo, status: false },
+        { id: ++lastId, todo: action.payload.todo, isCompleted: false },
       ];
 
     case actions.REMOVE_TODO:
@@ -15,7 +15,7 @@ export const todoReducer = (state = [], action) => {
 
     case actions.TOGGLE_TODO:
       return state.map((todo) =>
-        todo.id === action.payload.id ? { ...todo, status: !todo.status } : todo
+        todo.id === action.payload.id ? { ...todo, isCompleted: !todo.isCompleted } : todo
       );
 
     case actions.UPDATE_TODO:

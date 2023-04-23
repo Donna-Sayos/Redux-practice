@@ -1,4 +1,4 @@
-import * as actions from "../actions/actions";
+import * as actions from "../actions/actionTypes";
 
 let lastId = 0;
 

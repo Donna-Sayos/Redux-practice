@@ -3,8 +3,14 @@ import * as actions from "./actionTypes";
 // ACTION CREATORS
 export const bugAdded = (description) => ({
   type: actions.BUG_ADDED,
+  description,
+  resolve: false,
+});
+
+export const bugResolved = (id) => ({
+  type: actions.BUG_RESOLVED,
   payload: {
-    description: description,
+    id,
   },
 });
 

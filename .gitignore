@@ -5,3 +5,4 @@ package.json
 package-lock.json
 server/config/config.env
 server/db/todo.sql
+server/db/queries/todoQueries.js

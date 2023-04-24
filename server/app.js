@@ -1,11 +1,9 @@
-const dotenv = require("dotenv");
+require("dotenv").config({ path: "./config/config.env" });
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const path = require("path");
 const logger = require("./logger/index");
-
-dotenv.config({ path: "./server/config/config.env" });
 
 const app = express();
 
@@ -17,6 +15,7 @@ app.use(logger);
 app.use(express.static(path.join(__dirname, "..", "dist")));
 
 //routes
+
 
 // when the ROOT url path is requested, this sends the index.html file to the client
 app.use("/", (req, res) => {

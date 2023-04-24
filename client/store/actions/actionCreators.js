@@ -4,7 +4,7 @@ import * as actions from "./actionTypes";
 export const addTodo = (todo) => ({
   type: actions.ADD_TODO,
   payload: {
-    todo,
+    description: todo,
   },
 });
 
@@ -26,7 +26,7 @@ export const updateTodo = (id, todo) => ({
   type: actions.UPDATE_TODO,
   payload: {
     id,
-    todo,
+    description: todo,
   },
 });
 

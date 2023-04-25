@@ -8,7 +8,7 @@ const server = app.listen(PORT, () => {
     chalk.cyanBright(
       `Server running in ${chalk.blueBright(
         process.env.NODE_ENV
-      )} mode on PORT: ${chalk.blueBright(PORT)} 🔊🔊🔊`
+      )} mode on PORT: ${chalk.blueBright(PORT)} 🔊🔊🔊...`
     )
   );
 });

@@ -3,6 +3,6 @@ webpack.config.js
 node_modules
 package.json
 package-lock.json
-server/config/config.env
+server/config/.env
 server/db/sql/todo.sql
 server/db/queries/todoQueries.js

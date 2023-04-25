@@ -1,12 +1,12 @@
 const router = require("express").Router();
 const controllers = require("../controllers/todoController");
 
-router.get("/", controllers.getAllTodos);
-router.post("/", controllers.addTodo);
-router.get("/:todoId", controllers.getSingleTodo);
-router.delete("/:todoId", controllers.removeTodo);
-router.put("/:todoId", controllers.updateTodo);
+router.get("/", controllers.getAllTodos).post("/", controllers.addTodo);
+router.delete("/clear", controllers.clearAllTodos);
+router
+  .get("/:todoId", controllers.getSingleTodo)
+  .put("/:todoId", controllers.updateTodo)
+  .delete("/:todoId", controllers.removeTodo);
 router.put("/:todoId/toggle", controllers.toggleTodo);
-router.delete("/", controllers.clearAllTodos);
 
 module.exports = router;

@@ -162,20 +162,12 @@ const toggleTodo = async (req, res, next) => {
 
 const clearAllTodos = async (req, res, next) => {
   try {
-    const todosToBeCleared = await pgPool.query(QUERIES.clearAllTodos_);
-    const todosCleared = todosToBeCleared.rows.length > 0;
+    await pgPool.query(QUERIES.clearAllTodos_);
 
-    if (todosCleared) {
-      return res.status(200).json({
-        success: `true`,
-        message: `All todos cleared`,
-      });
-    } else {
-      return res.status(400).json({
-        success: `false`,
-        message: `TODOs not cleared`,
-      });
-    }
+    return res.status(200).json({
+      success: `true`,
+      message: `All todos cleared`,
+    });
   } catch (err) {
     console.error(`Error in clearAllTodos: ${err}`);
     res.status(500).json({

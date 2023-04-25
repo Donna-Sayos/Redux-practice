@@ -28,7 +28,7 @@ const getAllTodos = async (req, res, next) => {
 
 const getSingleTodo = async (req, res, next) => {
   try {
-    const todoId = parseInt(req.params.todoId);
+    const todoId = req.params.todoId;
     const todo = await pgPool.query(QUERIES.getTodoByID_, [todoId]); // [todoId] is the array of values to be inserted into the query
     const todoNotFound = todo.rows.length === 0;
 
@@ -80,21 +80,13 @@ const addTodo = async (req, res, next) => {
 
 const removeTodo = async (req, res, next) => {
   try {
-    const todoId = parseInt(req.params.todoId);
-    const todoToBeDeleted = await pgPool.query(QUERIES.removeTodo_, [todoId]);
-    const todoDeleted = todoToBeDeleted.rows.length > 0;
+    const todoId = req.params.todoId;
+    await pgPool.query(QUERIES.removeTodo_, [todoId]);
 
-    if (todoDeleted) {
-      return res.status(200).json({
-        success: `true`,
-        data: todoToBeDeleted.rows[0],
-      });
-    } else {
-      return res.status(400).json({
-        success: `false`,
-        message: `TODO with id ${todoId} not deleted`,
-      });
-    }
+    return res.status(200).json({
+      success: `true`,
+      message: `TODO with id ${todoId} removed`,
+    });
   } catch (err) {
     console.error(`Error in removeTodo: ${err}`);
     res.status(500).json({
@@ -106,7 +98,7 @@ const removeTodo = async (req, res, next) => {
 
 const updateTodo = async (req, res, next) => {
   try {
-    const todoId = parseInt(req.params.todoId);
+    const todoId = req.params.todoId;
     const description = req.body.description;
     const todoToBeUpdated = await pgPool.query(QUERIES.updateTodo_, [
       todoId,
@@ -136,7 +128,7 @@ const updateTodo = async (req, res, next) => {
 
 const toggleTodo = async (req, res, next) => {
   try {
-    const todoId = parseInt(req.params.todoId);
+    const todoId = req.params.todoId;
     const todoToBeToggled = await pgPool.query(QUERIES.toggleTodo_, [todoId]);
     const todoToggled = todoToBeToggled.rows.length > 0;
 

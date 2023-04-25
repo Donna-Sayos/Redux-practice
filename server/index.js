@@ -1,3 +1,4 @@
+require("dotenv").config({ path: "./config/.env" });
 const chalk = require("chalk");
 const app = require("./app");
 

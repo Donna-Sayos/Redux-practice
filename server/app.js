@@ -15,7 +15,7 @@ app.use(logger);
 app.use(express.static(path.join(__dirname, "..", "dist")));
 
 //routes
-
+app.use("/api/v1/todos", require("./routers/todoRoute"));
 
 // when the ROOT url path is requested, this sends the index.html file to the client
 app.use("/", (req, res) => {

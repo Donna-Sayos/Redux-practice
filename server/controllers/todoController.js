@@ -101,8 +101,8 @@ const updateTodo = async (req, res, next) => {
     const todoId = req.params.todoId;
     const description = req.body.description;
     const todoToBeUpdated = await pgPool.query(QUERIES.updateTodo_, [
-      todoId,
       description,
+      todoId,
     ]);
     const todoUpdated = todoToBeUpdated.rows.length > 0;
 

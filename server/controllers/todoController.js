@@ -81,13 +81,13 @@ const addTodo = async (req, res, next) => {
 const removeTodo = async (req, res, next) => {
   try {
     const todoId = parseInt(req.params.todoId);
-    const deleteTodo = await pgPool.query(QUERIES.removeTodo_, [todoId]);
-    const todoDeleted = deleteTodo.rows.length > 0;
+    const todoToBeDeleted = await pgPool.query(QUERIES.removeTodo_, [todoId]);
+    const todoDeleted = todoToBeDeleted.rows.length > 0;
 
     if (todoDeleted) {
       return res.status(200).json({
         success: `true`,
-        data: deleteTodo.rows[0],
+        data: todoToBeDeleted.rows[0],
       });
     } else {
       return res.status(400).json({
@@ -104,9 +104,67 @@ const removeTodo = async (req, res, next) => {
   }
 };
 
+const updateTodo = async (req, res, next) => {
+  try {
+    const todoId = parseInt(req.params.todoId);
+    const description = req.body.description;
+    const todoToBeUpdated = await pgPool.query(QUERIES.updateTodo_, [
+      todoId,
+      description,
+    ]);
+    const todoUpdated = todoToBeUpdated.rows.length > 0;
+
+    if (todoUpdated) {
+      return res.status(200).json({
+        success: `true`,
+        data: todoToBeUpdated.rows[0],
+      });
+    } else {
+      return res.status(400).json({
+        success: `false`,
+        message: `TODO with id ${todoId} not updated`,
+      });
+    }
+  } catch (err) {
+    console.error(`Error in updateTodo: ${err}`);
+    res.status(500).json({
+      success: `false`,
+      message: `Internal Server Error at "updateTodo"`,
+    });
+  }
+};
+
+const toggleTodo = async (req, res, next) => {
+  try {
+    const todoId = parseInt(req.params.todoId);
+    const todoToBeToggled = await pgPool.query(QUERIES.toggleTodo_, [todoId]);
+    const todoToggled = todoToBeToggled.rows.length > 0;
+
+    if (todoToggled) {
+      return res.status(200).json({
+        success: `true`,
+        data: todoToBeToggled.rows[0],
+      });
+    } else {
+      return res.status(400).json({
+        success: `false`,
+        message: `TODO with id ${todoId} not toggled`,
+      });
+    }
+  } catch (err) {
+    console.error(`Error in toggleTodo: ${err}`);
+    res.status(500).json({
+      success: `false`,
+      message: `Internal Server Error at "toggleTodo"`,
+    });
+  }
+};
+
 module.exports = {
   getAllTodos,
   getSingleTodo,
   addTodo,
   removeTodo,
+  updateTodo,
+  toggleTodo,
 };

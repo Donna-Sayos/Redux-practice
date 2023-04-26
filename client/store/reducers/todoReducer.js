@@ -2,7 +2,7 @@ import * as actions from "../actions/actionTypes";
 
 let lastId = 0;
 
-export const todoReducer = (state = [], action) => {
+export const todoReducer = (state = [], action) => { // FIXME: needs fixing!!!
   switch (action.type) {
     case actions.ADD_TODO:
       return [

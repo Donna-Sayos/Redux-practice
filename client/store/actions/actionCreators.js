@@ -8,10 +8,17 @@ export const setTodos = (todos) => ({
   },
 });
 
+export const setTodo = (todo) => ({
+  type: actions.SET_TODO,
+  payload: {
+    todo,
+  },
+});
+
 export const addTodo = (todo) => ({
   type: actions.ADD_TODO,
   payload: {
-    description: todo,
+    todo,
   },
 });
 
@@ -33,7 +40,7 @@ export const updateTodo = (id, todo) => ({
   type: actions.UPDATE_TODO,
   payload: {
     id,
-    description: todo,
+    todo,
   },
 });
 

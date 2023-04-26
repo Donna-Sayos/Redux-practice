@@ -1,6 +1,13 @@
 import * as actions from "./actionTypes";
 
 // ACTION CREATORS
+export const setTodos = (todos) => ({
+  type: actions.SET_TODOS,
+  payload: {
+    todos,
+  },
+});
+
 export const addTodo = (todo) => ({
   type: actions.ADD_TODO,
   payload: {
@@ -28,6 +35,10 @@ export const updateTodo = (id, todo) => ({
     id,
     description: todo,
   },
+});
+
+export const clearTodos = () => ({
+  type: actions.CLEAR_TODOS,
 });
 
 // THUNKS

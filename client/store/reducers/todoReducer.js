@@ -1,21 +1,25 @@
 import * as actions from "../actions/actionTypes";
 
-let lastId = 0;
-
-export const todoReducer = (state = [], action) => { // FIXME: needs fixing!!!
+export const todoReducer = (state = [], action) => {
+  // FIXME: needs fixing!!!
   switch (action.type) {
+    case actions.SET_TODOS:
+      return action.payload.todos;
+
+    case actions.SET_TODO:
+      return action.payload.todo;
+
     case actions.ADD_TODO:
-      return [
-        ...state,
-        { id: ++lastId, description: action.payload.description, isCompleted: false },
-      ];
+      return [...state, action.payload.todo];
 
     case actions.REMOVE_TODO:
       return state.filter((todo) => todo.id !== action.payload.id);
 
     case actions.TOGGLE_TODO:
       return state.map((todo) =>
-        todo.id === action.payload.id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+        todo.id === action.payload.id
+          ? { ...todo, isCompleted: !todo.isCompleted }
+          : todo
       );
 
     case actions.UPDATE_TODO:
@@ -24,6 +28,9 @@ export const todoReducer = (state = [], action) => { // FIXME: needs fixing!!!
           ? { ...todo, description: action.payload.description }
           : todo
       );
+
+    case actions.CLEAR_TODOS:
+      return [];
 
     default: {
       return state;

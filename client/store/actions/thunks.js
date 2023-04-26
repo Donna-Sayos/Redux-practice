@@ -60,7 +60,7 @@ export const updateTodo_ = (id, todo) => async (dispatch) => {
 
 export const clearTodos_ = () => async (dispatch) => {
   try {
-    await Axios.delete(`/api/v1/todos`);
+    await Axios.delete(`/api/v1/todos/clear`);
     dispatch(actionCreators.clearTodos());
   } catch (err) {
     console.log(`Error in clearTodos thunk: ${err}`);

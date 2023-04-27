@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
+import { Button } from "@material-ui/core";
 
 function Todo({ todos, fetchTodos }) {
   useEffect(() => {
     fetchTodos();
   }, [fetchTodos]);
-  return <div>Todo</div>;
+  return (
+    <div>
+      <Button variant="contained" color="primary" onClick={() => fetchTodos()}>
+        Fetch
+      </Button>
+    </div>
+  );
 }
 
 const mapState = (state) => ({

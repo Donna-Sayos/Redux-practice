@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   fetchTodos_,
@@ -10,7 +10,10 @@ import {
   clearTodos_,
 } from "../../store/actions/thunks";
 
-function Todo() {
+function Todo({ todos, fetchTodos }) {
+  useEffect(() => {
+    fetchTodos();
+  }, [fetchTodos]);
   return <div>Todo</div>;
 }
 

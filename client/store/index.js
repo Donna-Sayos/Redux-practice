@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { createLogger } from "redux-logger";
+import thunkMiddleware from "redux-thunk";
 import { todoReducer } from "./reducers/todoReducer";
 
-const middleware = [createLogger({ collapsed: true })];
+const middleware = [thunkMiddleware, createLogger({ collapsed: true })];
 
 const store = configureStore({
   reducer: {

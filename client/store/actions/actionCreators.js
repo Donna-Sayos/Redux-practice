@@ -47,5 +47,3 @@ export const updateTodo = (id, todo) => ({
 export const clearTodos = () => ({
   type: actions.CLEAR_TODOS,
 });
-
-// THUNKS

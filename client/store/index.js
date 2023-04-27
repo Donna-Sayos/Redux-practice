@@ -6,7 +6,7 @@ const middleware = [createLogger({ collapsed: true })];
 
 const store = configureStore({
   reducer: {
-    todo: todoReducer,
+    todos: todoReducer,
   },
   middleware,
 });

@@ -1,7 +1,7 @@
 import * as actions from "../actions/actionTypes";
 
 export const todoReducer = (state = [], action) => {
-  // FIXME: needs fixing!!!
+
   switch (action.type) {
     case actions.SET_TODOS:
       return action.payload.todos;

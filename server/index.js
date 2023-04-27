@@ -5,10 +5,10 @@ const app = require("./app");
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
   console.log(
-    chalk.cyanBright(
-      `Server running in ${chalk.blueBright(
+    chalk.magentaBright.bold(
+      `Server running in MODE: ${chalk.yellowBright.underline(
         process.env.NODE_ENV
-      )} mode on PORT: ${chalk.blueBright(PORT)} 🔊🔊🔊...`
+      )} on PORT: ${chalk.yellowBright.underline(PORT)} 🔊🔊🔊...`
     )
   );
 });

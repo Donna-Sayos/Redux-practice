@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
-// import { Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 function Todo({ todos, fetchTodos }) {
+  const [todoList, setTodoList] = useState([]);
+
   useEffect(() => {
-    fetchTodos();
+    const fetch = async () => {
+      await fetchTodos();
+
+      if (todos && todos.success && todos.data) {
+        console.log(`RES DATA: ${JSON.stringify(todos.data)}`);
+        setTodoList(todos.data);
+        console.log(`TODO LIST: ${JSON.stringify(todoList)}`);
+      }
+    };
+
+    fetch();
   }, [fetchTodos]);
-  return (
-    <div>
-      <button onClick={() => fetchTodos()}>
-        Fetch
-      </button>
-    </div>
-  );
+
+  return <div>TODO</div>;
 }
 
 const mapState = (state) => ({

@@ -2057,20 +2057,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_todo_Todos__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/todo/Todos */ "./client/components/todo/Todos.js");
-/* harmony import */ var _components_todo_AddTodo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/todo/AddTodo */ "./client/components/todo/AddTodo.js");
+/* harmony import */ var _components_todo_SingleTodo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/todo/SingleTodo */ "./client/components/todo/SingleTodo.js");
 
 
 
 function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_todo_AddTodo__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_todo_SingleTodo__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 }
 
 /***/ }),
 
-/***/ "./client/components/todo/AddTodo.js":
-/*!*******************************************!*\
-  !*** ./client/components/todo/AddTodo.js ***!
-  \*******************************************/
+/***/ "./client/components/todo/SingleTodo.js":
+/*!**********************************************!*\
+  !*** ./client/components/todo/SingleTodo.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2085,12 +2085,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
- // FIXME: to add styles here...
- // FIXME: to add styles here...
-
-function AddTodo() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "AddTodo");
+function SingleTodo() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "SingleTodo");
 }
 var mapDispatch = function mapDispatch(dispatch) {
   return {
@@ -2099,7 +2095,7 @@ var mapDispatch = function mapDispatch(dispatch) {
     }
   };
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(null, mapDispatch)(AddTodo));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(null, mapDispatch)(SingleTodo));
 
 /***/ }),
 
@@ -2131,6 +2127,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+ // FIXME: to add styles here...
+ // FIXME: to add styles here...
 
 function Todos(_ref) {
   var todos = _ref.todos,

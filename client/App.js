@@ -1,12 +1,12 @@
 import React from "react";
 import Todos from "./components/todo/Todos";
-import AddTodo from "./components/todo/AddTodo";
+import SingleTodo from "./components/todo/SingleTodo";
 
 export default function App() {
   return (
     <>
       {/* <Todos /> */}
-      <AddTodo />
+      <SingleTodo />
     </>
   );
 }

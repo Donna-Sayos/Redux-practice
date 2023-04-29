@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
 import { Button } from "@material-ui/core";
 
-function Todo({ todos, fetchTodos }) {
+function Todos({ todos, fetchTodos }) {
   const [todoList, setTodoList] = useState([]);
 
   useEffect(() => {
@@ -37,4 +37,4 @@ const mapDispatch = (dispatch) => ({
   clearTodos: () => dispatch(thunks.clearTodos_()),
 });
 
-export default connect(mapState, mapDispatch)(Todo);
+export default connect(mapState, mapDispatch)(Todos);

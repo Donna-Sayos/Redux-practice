@@ -2056,7 +2056,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_todo_Todo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/todo/Todo */ "./client/components/todo/Todo.js");
+/* harmony import */ var _components_todo_Todos__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/todo/Todos */ "./client/components/todo/Todos.js");
 /* harmony import */ var _components_todo_AddTodo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/todo/AddTodo */ "./client/components/todo/AddTodo.js");
 
 
@@ -2086,6 +2086,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // FIXME: to add styles here...
+ // FIXME: to add styles here...
+
 function AddTodo() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "AddTodo");
 }
@@ -2100,10 +2103,10 @@ var mapDispatch = function mapDispatch(dispatch) {
 
 /***/ }),
 
-/***/ "./client/components/todo/Todo.js":
-/*!****************************************!*\
-  !*** ./client/components/todo/Todo.js ***!
-  \****************************************/
+/***/ "./client/components/todo/Todos.js":
+/*!*****************************************!*\
+  !*** ./client/components/todo/Todos.js ***!
+  \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2129,7 +2132,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Todo(_ref) {
+function Todos(_ref) {
   var todos = _ref.todos,
     fetchTodos = _ref.fetchTodos;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
@@ -2194,7 +2197,7 @@ var mapDispatch = function mapDispatch(dispatch) {
     }
   };
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Todo));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Todos));
 
 /***/ }),
 

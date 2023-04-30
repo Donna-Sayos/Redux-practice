@@ -5,8 +5,8 @@ import SingleTodo from "./components/todo/SingleTodo";
 export default function App() {
   return (
     <>
-      {/* <Todos /> */}
-      <SingleTodo />
+      <Todos />
+      {/* <SingleTodo /> */}
     </>
   );
 }

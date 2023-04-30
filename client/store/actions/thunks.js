@@ -5,21 +5,15 @@ import Axios from "axios";
 export const fetchTodos_ = () => async (dispatch) => {
   try {
     const { data } = await Axios.get(`/api/v1/todos`);
-    console.log(
-      `fetchTodos triggered. ALL DATA FETCHED:  ${JSON.stringify(data)}`
-    ); // TODO: remove later
     dispatch(actionCreators.setTodos(data));
   } catch (err) {
     console.log(`Error in fetchTodos thunk: ${err}`);
   }
 };
 
-export const fetchSingleTodo_ = (id) => async (dispatch) => {
+export const fetchSingleTodo_ = (id) => async (dispatch) => { // FIXME: remove later
   try {
     const { data } = await Axios.get(`/api/v1/todos/${id}`);
-    console.log(
-      `fetchSingleTodo triggered. DATA FETCHED:  ${JSON.stringify(data)}`
-    ); // TODO: remove later
     dispatch(actionCreators.setTodo(data));
   } catch (err) {
     console.log(`Error in fetchSingleTodo thunk: ${err}`);

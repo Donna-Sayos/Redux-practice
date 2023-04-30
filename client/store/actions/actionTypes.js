@@ -1,6 +1,6 @@
 // ACTION TYPES
 export const SET_TODOS = "SET_TODOS";
-export const SET_TODO = "SET_TODO";
+export const SET_TODO = "SET_TODO"; // FIXME: remove later
 export const ADD_TODO = "ADD_TODO";
 export const REMOVE_TODO = "REMOVE_TODO";
 export const TOGGLE_TODO = "TOGGLE_TODO";

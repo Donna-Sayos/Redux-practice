@@ -6,7 +6,7 @@ export const todoReducer = (state = [], action) => {
     case actions.SET_TODOS:
       return action.payload.todos;
 
-    case actions.SET_TODO:
+    case actions.SET_TODO: // FIXME: remove later
       return action.payload.todo;
 
     case actions.ADD_TODO:

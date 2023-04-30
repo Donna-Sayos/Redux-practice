@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import * as thunks from "../store/actions/thunks";
 
-function SingleTodo() {
+function SingleTodo({ todo }) {
   return <div>SingleTodo</div>;
 }
 

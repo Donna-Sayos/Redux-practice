@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import * as thunks from "../store/actions/thunks";
+import "../index.css"
+import * as thunks from "../../store/actions/thunks";
 import {
   Button,
   TextField,
@@ -30,7 +31,7 @@ function Todos({ todos, fetchTodos }) {
 
   return (
     <Container maxWidth="lg">
-      <Paper elevation={3} square>
+      <Paper className="paper" elevation={9} square>
         <div>
           <h1>TODO List</h1>
         </div>

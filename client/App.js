@@ -1,6 +1,6 @@
 import React from "react";
-import Todos from "./components/Todos";
-import SingleTodo from "./components/SingleTodo";
+import Todos from "./components/todo/Todos";
+import SingleTodo from "./components/todo/SingleTodo";
 
 export default function App() {
   return (

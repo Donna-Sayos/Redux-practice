@@ -11,6 +11,7 @@ import {
   Typography,
   Container,
 } from "@material-ui/core";
+import { Paper } from "@mui/material";
 
 function Todos({ todos, fetchTodos }) {
   const [todoList, setTodoList] = useState([]);
@@ -28,10 +29,12 @@ function Todos({ todos, fetchTodos }) {
   console.log("todoList", todoList);
 
   return (
-    <Container maxWidth="md">
-      <div>
-        <Typography variant="h4" align="center" color="textPrimary" gutterBottom> TODO List</Typography>
-      </div>
+    <Container maxWidth="lg">
+      <Paper elevation={3} square>
+        <div>
+          <h1>TODO List</h1>
+        </div>
+      </Paper>
     </Container>
   );
 }

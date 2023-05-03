@@ -13,6 +13,7 @@ import {
   Typography,
   FormGroup,
   Container,
+  Card,
 } from "@material-ui/core";
 import { Paper } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
@@ -51,6 +52,30 @@ function Todos({ todos, fetchTodos }) {
           <h1>TODO List</h1>
         </div>
         <AddTodo setTodoList={setTodoList} />
+        {todoList && todoList.length > 0 ? (
+          <div>
+            {todoList.map((todo) => (
+              <div key={todo.id}>
+                <Grid
+                  container
+                  spacing={1}
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <Grid item xs={8} sm={6}>
+                    <Card>
+                      <p>{todo.description}</p>
+                    </Card>
+                  </Grid>
+                </Grid>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div>
+            <p>You have no tasks.</p>
+          </div>
+        )}
       </Paper>
     </Container>
   );

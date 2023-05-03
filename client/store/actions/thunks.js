@@ -11,7 +11,8 @@ export const fetchTodos_ = () => async (dispatch) => {
   }
 };
 
-export const fetchSingleTodo_ = (id) => async (dispatch) => { // FIXME: remove later
+export const fetchSingleTodo_ = (id) => async (dispatch) => {
+  // FIXME: remove later
   try {
     const { data } = await Axios.get(`/api/v1/todos/${id}`);
     dispatch(actionCreators.setTodo(data));
@@ -22,7 +23,7 @@ export const fetchSingleTodo_ = (id) => async (dispatch) => { // FIXME: remove l
 
 export const addTodo_ = (todo) => async (dispatch) => {
   try {
-    const { data } = await Axios.post(`/api/v1/todos`, { description: todo });
+    const { data } = await Axios.post(`/api/v1/todos`, todo);
     console.log(`addTodo triggered. DATA ADDED:  ${JSON.stringify(data)}`); // TODO: remove later
     dispatch(actionCreators.addTodo(data));
   } catch (err) {
@@ -52,9 +53,7 @@ export const toggleTodo_ = (id) => async (dispatch) => {
 
 export const updateTodo_ = (id, todo) => async (dispatch) => {
   try {
-    const { data } = await Axios.put(`/api/v1/todos/${id}`, {
-      description: todo,
-    });
+    const { data } = await Axios.put(`/api/v1/todos/${id}`, todo);
     console.log(`updateTodo triggered. DATA UPDATED:  ${JSON.stringify(data)}`); // TODO: remove later
     dispatch(actionCreators.updateTodo(data.id, data));
   } catch (err) {

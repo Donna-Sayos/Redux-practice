@@ -50,9 +50,7 @@ function Todos({ todos, fetchTodos }) {
         <div>
           <h1>TODO List</h1>
         </div>
-        <form>
-          <AddTodo />
-        </form>
+        <AddTodo />
       </Paper>
     </Container>
   );

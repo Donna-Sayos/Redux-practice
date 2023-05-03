@@ -36,10 +36,24 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-function AddTodo() {
+function AddTodo({ addTodo }) {
+  const [todoText, setTodoText] = useState("");
   const cssClasses = styles();
+
+  const handleAddTodo = (e) => {
+    e.preventDefault();
+
+    if (todoText) {
+      addTodo({
+        description: todoText,
+      });
+
+      setTodoText("");
+    }
+  };
+
   return (
-    <div>
+    <form onSubmit={handleAddTodo}>
       <Grid container spacing={1} justifyContent="center" alignItems="center">
         <Grid item xs={8} sm={6}>
           <TextField
@@ -48,6 +62,8 @@ function AddTodo() {
             variant="outlined"
             placeholder="Add a new task"
             fullWidth
+            value={todoText}
+            onChange={(e) => setTodoText(e.target.value)}
           />
         </Grid>
         <Grid item xs={4} sm={1}>
@@ -56,12 +72,13 @@ function AddTodo() {
             variant="contained"
             fullWidth
             disableElevation
+            type="submit"
           >
             <AddIcon style={{ height: "30px", width: "30px" }} color="action" />
           </Button>
         </Grid>
       </Grid>
-    </div>
+    </form>
   );
 }
 

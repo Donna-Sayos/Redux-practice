@@ -24486,6 +24486,138 @@ function App() {
 
 /***/ }),
 
+/***/ "./client/components/todo/AddTodo.js":
+/*!*******************************************!*\
+  !*** ./client/components/todo/AddTodo.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_actions_thunks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/actions/thunks */ "./client/store/actions/thunks.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/TextField/TextField.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Button/Button.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _mui_icons_material_Add__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/icons-material/Add */ "./node_modules/@mui/icons-material/Add.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+var styles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__["default"])(function (theme) {
+  return {
+    addText: {
+      "& .MuiOutlinedInput-root": {
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0
+      },
+      "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
+        borderColor: "rgba(223, 227, 238, 0.5)",
+        borderWidth: "3px"
+      },
+      "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+        borderColor: "rgba(223, 227, 238, 0.5)",
+        borderWidth: "3px"
+      }
+    },
+    input: {
+      background: "rgba(223, 227, 238, 0.5)"
+    },
+    addBtn: {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+      textTransform: "lowercase",
+      maxHeight: "55px",
+      background: "	#fbf7f5",
+      fontSize: "1rem",
+      "&:hover": {
+        background: "#f6e0b5"
+      }
+    }
+  };
+});
+function AddTodo(_ref) {
+  var addTodo = _ref.addTodo;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState2 = _slicedToArray(_useState, 2),
+    todoText = _useState2[0],
+    setTodoText = _useState2[1];
+  var cssClasses = styles();
+  var handleAddTodo = function handleAddTodo(e) {
+    e.preventDefault();
+    if (todoText) {
+      addTodo({
+        description: todoText
+      });
+      setTodoText("");
+    }
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    onSubmit: handleAddTodo
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    container: true,
+    spacing: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    item: true,
+    xs: 8,
+    sm: 6
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    className: cssClasses.addText,
+    InputProps: {
+      className: cssClasses.input
+    },
+    variant: "outlined",
+    placeholder: "Add a new task",
+    fullWidth: true,
+    value: todoText,
+    onChange: function onChange(e) {
+      return setTodoText(e.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    item: true,
+    xs: 4,
+    sm: 1
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    className: cssClasses.addBtn,
+    variant: "contained",
+    fullWidth: true,
+    disableElevation: true,
+    type: "submit"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material_Add__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    style: {
+      height: "30px",
+      width: "30px"
+    },
+    color: "action"
+  })))));
+}
+var mapDispatch = function mapDispatch(dispatch) {
+  return {
+    addTodo: function addTodo(todo) {
+      return dispatch(_store_actions_thunks__WEBPACK_IMPORTED_MODULE_2__.addTodo_(todo));
+    }
+  };
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(null, mapDispatch)(AddTodo));
+
+/***/ }),
+
 /***/ "./client/components/todo/SingleTodo.js":
 /*!**********************************************!*\
   !*** ./client/components/todo/SingleTodo.js ***!
@@ -24534,13 +24666,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_actions_thunks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/actions/thunks */ "./client/store/actions/thunks.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Container/Container.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/TextField/TextField.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Button/Button.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Paper/Paper.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
-/* harmony import */ var _mui_icons_material_Add__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/icons-material/Add */ "./node_modules/@mui/icons-material/Add.js");
+/* harmony import */ var _AddTodo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddTodo */ "./client/components/todo/AddTodo.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Container/Container.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Paper/Paper.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -24554,7 +24683,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var styles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__["default"])(function (theme) {
+var styles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__["default"])(function (theme) {
   return {
     paper: {
       padding: "5px",
@@ -24563,34 +24692,6 @@ var styles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__["default"]
       backgroundColor: "#4a6741 !important",
       maxWidth: "100vw",
       maxHeight: "100vh"
-    },
-    addText: {
-      "& .MuiOutlinedInput-root": {
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0
-      },
-      "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-        borderColor: "rgba(223, 227, 238, 0.5)",
-        borderWidth: "3px"
-      },
-      "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        borderColor: "rgba(223, 227, 238, 0.5)",
-        borderWidth: "3px"
-      }
-    },
-    input: {
-      background: "rgba(223, 227, 238, 0.5)"
-    },
-    addBtn: {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-      textTransform: "lowercase",
-      maxHeight: "55px",
-      background: "	#fbf7f5",
-      fontSize: "1rem",
-      "&:hover": {
-        background: "#f6e0b5"
-      }
     }
   };
 });
@@ -24611,45 +24712,13 @@ function Todos(_ref) {
     }
   }, [todos]);
   console.log("todoList", todoList);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["default"], {
     maxWidth: "lg"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], {
     className: cssClasses.paper,
     elevation: 9,
     square: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "TODO List")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    container: true,
-    spacing: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    item: true,
-    xs: 8,
-    sm: 6
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    className: cssClasses.addText,
-    InputProps: {
-      className: cssClasses.input
-    },
-    variant: "outlined",
-    placeholder: "Add a new task",
-    fullWidth: true
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    item: true,
-    xs: 4,
-    sm: 1
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    className: cssClasses.addBtn,
-    variant: "contained",
-    fullWidth: true,
-    disableElevation: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material_Add__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    style: {
-      height: "30px",
-      width: "30px"
-    },
-    color: "action"
-  })))))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "TODO List")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_AddTodo__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
 }
 var mapState = function mapState(state) {
   return {
@@ -24708,9 +24777,7 @@ var setTodo = function setTodo(todo) {
 var addTodo = function addTodo(todo) {
   return {
     type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__.ADD_TODO,
-    payload: {
-      todo: todo
-    }
+    payload: todo
   };
 };
 var removeTodo = function removeTodo(id) {
@@ -24872,9 +24939,7 @@ var addTodo_ = function addTodo_(todo) {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/v1/todos", {
-              description: todo
-            });
+            return axios__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/v1/todos", todo);
           case 3:
             _yield$Axios$post = _context3.sent;
             data = _yield$Axios$post.data;
@@ -24970,9 +25035,7 @@ var updateTodo_ = function updateTodo_(id, todo) {
           case 0:
             _context6.prev = 0;
             _context6.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/todos/".concat(id), {
-              description: todo
-            });
+            return axios__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/todos/".concat(id), todo);
           case 3:
             _yield$Axios$put2 = _context6.sent;
             data = _yield$Axios$put2.data;
@@ -25095,7 +25158,7 @@ var todoReducer = function todoReducer() {
       // FIXME: remove later
       return action.payload.todo;
     case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.ADD_TODO:
-      return [].concat(_toConsumableArray(state), [action.payload.todo]);
+      return [].concat(_toConsumableArray(state), [_objectSpread({}, action.payload)]);
     case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.REMOVE_TODO:
       return state.filter(function (todo) {
         return todo.id !== action.payload.id;
@@ -25115,9 +25178,7 @@ var todoReducer = function todoReducer() {
     case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.CLEAR_TODOS:
       return [];
     default:
-      {
-        return state;
-      }
+      return state;
   }
 };
 

@@ -8,7 +8,8 @@ export const setTodos = (todos) => ({
   },
 });
 
-export const setTodo = (todo) => ({ // FIXME: remove later
+export const setTodo = (todo) => ({
+  // FIXME: remove later
   type: actions.SET_TODO,
   payload: {
     todo,

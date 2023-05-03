@@ -1,34 +1,72 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
-import {
-  Button,
-  TextField,
-  FormControlLabel,
-  Checkbox,
-  Grid,
-  Box,
-  Typography,
-  Container,
-} from "@material-ui/core";
+import { Button, TextField, Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import AddIcon from "@mui/icons-material/Add";
 
-import {
-  Button,
-  TextField,
-  FormControlLabel,
-  Checkbox,
-  Grid,
-  Box,
-  Typography,
-  Container,
-} from "@material-ui/core";
+const styles = makeStyles((theme) => ({
+  addText: {
+    "& .MuiOutlinedInput-root": {
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+    "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
+      borderColor: "rgba(223, 227, 238, 0.5)",
+      borderWidth: "3px",
+    },
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "rgba(223, 227, 238, 0.5)",
+      borderWidth: "3px",
+    },
+  },
+  input: {
+    background: "rgba(223, 227, 238, 0.5)",
+  },
+  addBtn: {
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
+    textTransform: "lowercase",
+    maxHeight: "55px",
+    background: "	#fbf7f5",
+    fontSize: "1rem",
+    "&:hover": {
+      background: "#f6e0b5",
+    },
+  },
+}));
 
 function AddTodo() {
-  return <div>AddTodo</div>;
+  const cssClasses = styles();
+  return (
+    <div>
+      <Grid container spacing={1} justifyContent="center" alignItems="center">
+        <Grid item xs={8} sm={6}>
+          <TextField
+            className={cssClasses.addText}
+            InputProps={{ className: cssClasses.input }}
+            variant="outlined"
+            placeholder="Add a new task"
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={4} sm={1}>
+          <Button
+            className={cssClasses.addBtn}
+            variant="contained"
+            fullWidth
+            disableElevation
+          >
+            <AddIcon style={{ height: "30px", width: "30px" }} color="action" />
+          </Button>
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
 
 const mapDispatch = (dispatch) => ({
-  addTodo: (todo) => dispatch(thunks.AddTodo_(todo)),
+  addTodo: (todo) => dispatch(thunks.addTodo_(todo)),
 });
 
 export default connect(null, mapDispatch)(AddTodo);

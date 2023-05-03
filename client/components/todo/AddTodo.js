@@ -36,7 +36,7 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-function AddTodo({ addTodo }) {
+function AddTodo({ addTodo, setTodoList }) {
   const [todoText, setTodoText] = useState("");
   const cssClasses = styles();
 
@@ -47,6 +47,8 @@ function AddTodo({ addTodo }) {
       addTodo({
         description: todoText,
       });
+
+      setTodoList((prev) => [...prev, { description: todoText }]);
 
       setTodoText("");
     }

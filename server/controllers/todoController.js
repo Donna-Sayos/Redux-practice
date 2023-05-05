@@ -7,10 +7,7 @@ const getAllTodos = async (req, res, next) => {
     const noTodosFound = todos.rows.length === 0;
 
     if (noTodosFound) {
-      return res.status(404).json({
-        success: `false`,
-        message: "No todos found",
-      });
+      return;
     } else {
       return res.status(200).json({
         success: `true`,
@@ -33,10 +30,7 @@ const getSingleTodo = async (req, res, next) => {
     const todoNotFound = todo.rows.length === 0;
 
     if (todoNotFound) {
-      return res.status(404).json({
-        success: `false`,
-        message: `TODO with id ${todoId} not found`,
-      });
+      return;
     } else {
       return res.status(200).json({
         success: `true`,

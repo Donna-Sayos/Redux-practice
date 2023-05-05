@@ -9,7 +9,7 @@ export const todoReducer = (state = [], action) => {
       return action.payload.todo;
 
     case actions.ADD_TODO:
-      return action.payload;
+      return action.payload.todo;
 
     case actions.REMOVE_TODO:
       return state.filter((todo) => todo.id !== action.payload.id);

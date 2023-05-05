@@ -48,7 +48,7 @@ function Todos({ todos, fetchTodos }) {
         <div>
           <h1>TODO List</h1>
         </div>
-        <AddTodo setTodoList={setTodoList} />
+        <AddTodo fetchTodos={fetchTodos} />
         {todoList && todoList.length > 0 ? (
           <div>
             {todoList.map((todo) => (

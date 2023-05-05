@@ -2,16 +2,13 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
 import AddTodo from "./AddTodo";
+import SingleTodo from "./SingleTodo";
 import {
   Button,
   IconButton,
-  TextField,
-  FormControlLabel,
   Checkbox,
   Grid,
   Box,
-  Typography,
-  FormGroup,
   Container,
   Card,
 } from "@material-ui/core";
@@ -62,11 +59,7 @@ function Todos({ todos, fetchTodos }) {
                 alignItems="center"
                 key={todo.id}
               >
-                <Grid item xs={8} sm={6}>
-                  <Card>
-                    <p>{todo.description}</p>
-                  </Card>
-                </Grid>
+                <SingleTodo todo={todo} />
               </Grid>
             ))}
           </div>
@@ -86,6 +79,7 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => ({
   fetchTodos: () => dispatch(thunks.fetchTodos_()),
+  clearTodos: () => dispatch(thunks.clearTodos_()),
 });
 
 export default connect(mapState, mapDispatch)(Todos);

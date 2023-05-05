@@ -55,20 +55,19 @@ function Todos({ todos, fetchTodos }) {
         {todoList && todoList.length > 0 ? (
           <div>
             {todoList.map((todo) => (
-              <div key={todo.id}>
-                <Grid
-                  container
-                  spacing={1}
-                  justifyContent="center"
-                  alignItems="center"
-                >
-                  <Grid item xs={8} sm={6}>
-                    <Card>
-                      <p>{todo.description}</p>
-                    </Card>
-                  </Grid>
+              <Grid
+                container
+                spacing={1}
+                justifyContent="center"
+                alignItems="center"
+                key={todo.id}
+              >
+                <Grid item xs={8} sm={6}>
+                  <Card>
+                    <p>{todo.description}</p>
+                  </Card>
                 </Grid>
-              </div>
+              </Grid>
             ))}
           </div>
         ) : (

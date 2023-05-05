@@ -9,12 +9,22 @@ import {
   Box,
   Card,
 } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+const styles = makeStyles((theme) => ({
+  card: {
+    padding: "5px",
+    textAlign: "center",
+    backgroundColor: "#455b55",
+  },
+}));
 
 function SingleTodo({ todo }) {
+  const cssClasses = styles();
   return (
     <Grid item xs={8} sm={6}>
-      <Card>
-        <p>{todo.description}</p>
+      <Card className={cssClasses.card} raised>
+        <h2>{todo.description}</h2>
       </Card>
     </Grid>
   );

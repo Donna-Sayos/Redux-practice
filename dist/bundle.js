@@ -23379,8 +23379,7 @@ var styles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__["default"]
   };
 });
 function AddTodo(_ref) {
-  var addTodo = _ref.addTodo,
-    fetchTodos = _ref.fetchTodos;
+  var addTodo = _ref.addTodo;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState2 = _slicedToArray(_useState, 2),
     todoText = _useState2[0],
@@ -23392,7 +23391,6 @@ function AddTodo(_ref) {
       addTodo({
         description: todoText
       });
-      fetchTodos();
       setTodoText("");
     }
   };

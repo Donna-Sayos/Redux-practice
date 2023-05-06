@@ -18,11 +18,11 @@ function Todos({ todos, fetchTodos }) {
 
   useEffect(() => {
     fetchTodos();
-  }, [fetchTodos]);
+  }, []);
 
   useEffect(() => {
     if (todos && todos.success && todos.data) {
-      setTodoList(todos.data);
+      setTodoList((prev) => [...prev, todos.data]);
     }
   }, [todos]);
 
@@ -33,7 +33,7 @@ function Todos({ todos, fetchTodos }) {
       <div>
         <h1>TODO List</h1>
       </div>
-      <AddTodo fetchTodos={fetchTodos} setTodoList={setTodoList} todos={todos} />
+      <AddTodo fetchTodos={fetchTodos} />
       {todoList && todoList.length > 0 ? (
         <div>
           {todoList.map((todo) => (

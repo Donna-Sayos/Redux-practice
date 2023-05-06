@@ -9,8 +9,8 @@ const styles = makeStyles((theme) => ({
     textAlign: "center",
     color: "#faf0e6 !important",
     backgroundColor: "#4a6741 !important",
-    maxWidth: "100vw",
-    maxHeight: "100vh",
+    // maxWidth: "100vw",
+    // maxHeight: "100vh",
   },
 }));
 

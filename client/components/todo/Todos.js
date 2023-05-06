@@ -18,11 +18,12 @@ function Todos({ todos, fetchTodos }) {
 
   useEffect(() => {
     fetchTodos();
-  }, []);
+  }, [fetchTodos]);
 
   useEffect(() => {
     if (todos && todos.success && todos.data) {
-      setTodoList((prev) => [...prev, todos.data]);
+      console.log("todos.data", todos.data);
+      setTodoList(todos.data);
     }
   }, [todos]);
 

@@ -5,6 +5,7 @@ import Axios from "axios";
 export const fetchTodos_ = () => async (dispatch) => {
   try {
     const { data } = await Axios.get(`/api/v1/todos`);
+    console.log(`fetchTodos triggered. DATA:  ${JSON.stringify(data)}`); // TODO: remove later
     dispatch(actionCreators.setTodos(data));
   } catch (err) {
     console.log(`Error in fetchTodos thunk: ${err}`);

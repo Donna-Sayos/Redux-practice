@@ -23543,9 +23543,10 @@ function Todos(_ref) {
     setTodoList = _useState2[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchTodos();
-  }, []);
+  }, [fetchTodos]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (todos && todos.success && todos.data) {
+      console.log("todos.data", todos.data);
       setTodoList(todos.data);
     }
   }, [todos]);
@@ -23732,18 +23733,19 @@ var fetchTodos_ = function fetchTodos_() {
           case 3:
             _yield$Axios$get = _context.sent;
             data = _yield$Axios$get.data;
+            console.log("fetchTodos triggered. DATA:  ".concat(JSON.stringify(data))); // TODO: remove later
             dispatch(_actionCreators__WEBPACK_IMPORTED_MODULE_0__.setTodos(data));
-            _context.next = 11;
+            _context.next = 12;
             break;
-          case 8:
-            _context.prev = 8;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context["catch"](0);
             console.log("Error in fetchTodos thunk: ".concat(_context.t0));
-          case 11:
+          case 12:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 8]]);
+      }, _callee, null, [[0, 9]]);
     }));
     return function (_x) {
       return _ref.apply(this, arguments);
@@ -23992,6 +23994,12 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 
 var todoReducer = function todoReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
@@ -24003,7 +24011,7 @@ var todoReducer = function todoReducer() {
       // FIXME: remove later
       return action.payload.todo;
     case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.ADD_TODO:
-      return action.payload.todo;
+      return [].concat(_toConsumableArray(state), [action.payload.todo]);
     case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.REMOVE_TODO:
       return state.filter(function (todo) {
         return todo.id !== action.payload.id;

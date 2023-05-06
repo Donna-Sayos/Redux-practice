@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
 import { Button, TextField, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import AddIcon from "@mui/icons-material/Add";
 
 const styles = makeStyles((theme) => ({
   addText: {
@@ -26,12 +25,17 @@ const styles = makeStyles((theme) => ({
   addBtn: {
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
-    textTransform: "lowercase",
     maxHeight: "55px",
-    background: "	#fbf7f5",
-    fontSize: "1rem",
+    background: "#f6e0b5",
     "&:hover": {
-      background: "#f6e0b5",
+      background: "#d2a56d",
+    },
+  },
+  plus: {
+    fontSize: "3.5rem",
+    color: "#96613d",
+    "&:hover": {
+      color: "#f6e0b5",
     },
   },
 }));
@@ -76,7 +80,7 @@ function AddTodo({ addTodo, fetchTodos }) {
             disableElevation
             type="submit"
           >
-            <AddIcon style={{ height: "30px", width: "30px" }} color="action" />
+            <b className={cssClasses.plus}>+</b>
           </Button>
         </Grid>
       </Grid>

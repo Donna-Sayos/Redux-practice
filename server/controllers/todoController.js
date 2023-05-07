@@ -15,21 +15,6 @@ const getAllTodos = async (req, res, next) => {
   }
 };
 
-const getSingleTodo = async (req, res, next) => {
-  try {
-    const todoId = req.params.todoId;
-    const todo = await pgPool.query(QUERIES.getTodoByID_, [todoId]); // [todoId] is the array of values to be inserted into the query
-
-    res.status(200).json(todo.rows[0]);
-  } catch (err) {
-    console.error(`Error in getSingleTodo: ${err}`);
-    res.status(500).json({
-      success: `false`,
-      message: `Internal Server Error at "getSingleTodo"`,
-    });
-  }
-};
-
 const addTodo = async (req, res, next) => {
   try {
     const description = req.body.description;
@@ -116,7 +101,6 @@ const clearAllTodos = async (req, res, next) => {
 
 module.exports = {
   getAllTodos,
-  getSingleTodo,
   addTodo,
   removeTodo,
   updateTodo,

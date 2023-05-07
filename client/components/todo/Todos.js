@@ -26,8 +26,6 @@ function Todos({ todos, fetchTodos }) {
     }
   }, [todos]);
 
-  console.log("todoList", todoList); 
-
   return (
     <Container maxWidth="lg">
       <div>

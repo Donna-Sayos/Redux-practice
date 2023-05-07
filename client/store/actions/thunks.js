@@ -12,16 +12,6 @@ export const fetchTodos_ = () => async (dispatch) => {
   }
 };
 
-export const fetchSingleTodo_ = (id) => async (dispatch) => {
-  // FIXME: remove later
-  try {
-    const { data } = await Axios.get(`/api/v1/todos/${id}`);
-    dispatch(actionCreators.setTodo(data));
-  } catch (err) {
-    console.log(`Error in fetchSingleTodo thunk: ${err}`);
-  }
-};
-
 export const addTodo_ = (todo) => async (dispatch) => {
   try {
     const { data } = await Axios.post(`/api/v1/todos`, todo);

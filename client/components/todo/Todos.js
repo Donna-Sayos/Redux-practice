@@ -21,8 +21,9 @@ function Todos({ todos, fetchTodos }) {
   }, []);
 
   useEffect(() => {
-    if (todos && todos.data) {
-      setTodoList(todos.data);
+    if (todos) {
+      console.log("todos", todos);
+      setTodoList(todos);
     }
   }, [todos]);
 

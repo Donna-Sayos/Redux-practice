@@ -53,15 +53,16 @@ function AddTodo({ addTodo, fetchTodos, setTodoList, todos }) {
       });
 
       setTodoText("");
-      
+
       fetchTodos();
     }
   };
 
   useEffect(() => {
-    if (todos && todos.data) {
-      console.log("ADDTODO todos.data", todos.data);
-      setTodoList(todos.data);
+    if (todos && todos.length > 0) {
+      const latestTodo = todos[todos.length - 1];
+      console.log("ADDTODO todos", todos);
+      setTodoList((prev) => [...prev, latestTodo]);
     }
   }, [todos]);
 

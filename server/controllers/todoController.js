@@ -4,16 +4,8 @@ const QUERIES = require("../db/queries/todoQueries");
 const getAllTodos = async (req, res, next) => {
   try {
     const todos = await pgPool.query(QUERIES.getAllTodos_);
-    const noTodosFound = todos.rows.length === 0;
 
-    if (noTodosFound) {
-      return;
-    } else {
-      return res.status(200).json({
-        success: `true`,
-        data: todos.rows,
-      });
-    }
+    res.status(200).json(todos.rows);
   } catch (err) {
     console.error(`Error in getAllTodos: ${err}`);
     res.status(500).json({
@@ -27,16 +19,8 @@ const getSingleTodo = async (req, res, next) => {
   try {
     const todoId = req.params.todoId;
     const todo = await pgPool.query(QUERIES.getTodoByID_, [todoId]); // [todoId] is the array of values to be inserted into the query
-    const todoNotFound = todo.rows.length === 0;
 
-    if (todoNotFound) {
-      return;
-    } else {
-      return res.status(200).json({
-        success: `true`,
-        data: todo.rows[0],
-      });
-    }
+    res.status(200).json(todo.rows[0]);
   } catch (err) {
     console.error(`Error in getSingleTodo: ${err}`);
     res.status(500).json({
@@ -50,19 +34,8 @@ const addTodo = async (req, res, next) => {
   try {
     const description = req.body.description;
     const newTodo = await pgPool.query(QUERIES.addTodo_, [description]);
-    const todoAdded = newTodo.rows.length > 0;
 
-    if (todoAdded) {
-      return res.status(201).json({
-        success: `true`,
-        data: newTodo.rows[0],
-      });
-    } else {
-      return res.status(400).json({
-        success: `false`,
-        message: `TODO with description ${description} not added`,
-      });
-    }
+    res.status(201).json(newTodo.rows[0]);
   } catch (err) {
     console.error(`Error in addTodo: ${err}`);
     res.status(500).json({
@@ -98,19 +71,8 @@ const updateTodo = async (req, res, next) => {
       description,
       todoId,
     ]);
-    const todoUpdated = todoToBeUpdated.rows.length > 0;
 
-    if (todoUpdated) {
-      return res.status(200).json({
-        success: `true`,
-        data: todoToBeUpdated.rows[0],
-      });
-    } else {
-      return res.status(400).json({
-        success: `false`,
-        message: `TODO with id ${todoId} not updated`,
-      });
-    }
+    res.status(200).json(todoToBeUpdated.rows[0]);
   } catch (err) {
     console.error(`Error in updateTodo: ${err}`);
     res.status(500).json({
@@ -124,19 +86,8 @@ const toggleTodo = async (req, res, next) => {
   try {
     const todoId = req.params.todoId;
     const todoToBeToggled = await pgPool.query(QUERIES.toggleTodo_, [todoId]);
-    const todoToggled = todoToBeToggled.rows.length > 0;
 
-    if (todoToggled) {
-      return res.status(200).json({
-        success: `true`,
-        data: todoToBeToggled.rows[0],
-      });
-    } else {
-      return res.status(400).json({
-        success: `false`,
-        message: `TODO with id ${todoId} not toggled`,
-      });
-    }
+    res.status(200).json(todoToBeToggled.rows[0]);
   } catch (err) {
     console.error(`Error in toggleTodo: ${err}`);
     res.status(500).json({

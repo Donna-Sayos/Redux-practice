@@ -9,8 +9,8 @@ const styles = makeStyles((theme) => ({
     textAlign: "center",
     color: "#faf0e6 !important",
     backgroundColor: "#4a6741 !important",
-    minWidth: "100vw",
-    minHeight: "100vh",
+    minWidth: "90vw",
+    minHeight: "90vh",
   },
 }));
 

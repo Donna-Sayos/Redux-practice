@@ -23293,13 +23293,12 @@ var styles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["default"]
       padding: "5px",
       textAlign: "center",
       color: "#faf0e6 !important",
-      backgroundColor: "#4a6741 !important"
-      // maxWidth: "100vw",
-      // maxHeight: "100vh",
+      backgroundColor: "#4a6741 !important",
+      minWidth: "100vw",
+      minHeight: "100vh"
     }
   };
 });
-
 function App() {
   var cssClasses = styles();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -23330,10 +23329,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/TextField/TextField.js");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Button/Button.js");
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -23383,10 +23378,7 @@ var styles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__["default"]
   };
 });
 function AddTodo(_ref) {
-  var addTodo = _ref.addTodo,
-    fetchTodos = _ref.fetchTodos,
-    setTodoList = _ref.setTodoList,
-    todos = _ref.todos;
+  var addTodo = _ref.addTodo;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState2 = _slicedToArray(_useState, 2),
     todoText = _useState2[0],
@@ -23399,18 +23391,8 @@ function AddTodo(_ref) {
         description: todoText
       });
       setTodoText("");
-      fetchTodos();
     }
   };
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (todos && todos.length > 0) {
-      var latestTodo = todos[todos.length - 1];
-      console.log("ADDTODO todos", todos);
-      setTodoList(function (prev) {
-        return [].concat(_toConsumableArray(prev), [latestTodo]);
-      });
-    }
-  }, [todos]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
     onSubmit: handleAddTodo
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -23448,22 +23430,14 @@ function AddTodo(_ref) {
     className: cssClasses.plus
   }, "+")))));
 }
-var mapState = function mapState(state) {
-  return {
-    todos: state.todos
-  };
-};
 var mapDispatch = function mapDispatch(dispatch) {
   return {
     addTodo: function addTodo(todo) {
       return dispatch(_store_actions_thunks__WEBPACK_IMPORTED_MODULE_2__.addTodo_(todo));
-    },
-    fetchTodos: function fetchTodos() {
-      return dispatch(_store_actions_thunks__WEBPACK_IMPORTED_MODULE_2__.fetchTodos_());
     }
   };
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(AddTodo));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(null, mapDispatch)(AddTodo));
 
 /***/ }),
 
@@ -23571,16 +23545,12 @@ function Todos(_ref) {
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (todos) {
-      console.log("todos", todos);
       setTodoList(todos);
     }
   }, [todos]);
-  console.log("todoList", todoList);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["default"], {
     maxWidth: "lg"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "TODO List")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_AddTodo__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    setTodoList: setTodoList
-  }), todoList && todoList.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, todoList.map(function (todo) {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "TODO List")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_AddTodo__WEBPACK_IMPORTED_MODULE_3__["default"], null), todoList && todoList.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, todoList.map(function (todo) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["default"], {
       container: true,
       spacing: 1,
@@ -23623,7 +23593,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "addTodo": () => (/* binding */ addTodo),
 /* harmony export */   "clearTodos": () => (/* binding */ clearTodos),
 /* harmony export */   "removeTodo": () => (/* binding */ removeTodo),
-/* harmony export */   "setTodo": () => (/* binding */ setTodo),
 /* harmony export */   "setTodos": () => (/* binding */ setTodos),
 /* harmony export */   "toggleTodo": () => (/* binding */ toggleTodo),
 /* harmony export */   "updateTodo": () => (/* binding */ updateTodo)
@@ -23637,15 +23606,6 @@ var setTodos = function setTodos(todos) {
     type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__.SET_TODOS,
     payload: {
       todos: todos
-    }
-  };
-};
-var setTodo = function setTodo(todo) {
-  return {
-    // FIXME: remove later
-    type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__.SET_TODO,
-    payload: {
-      todo: todo
     }
   };
 };
@@ -23702,14 +23662,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ADD_TODO": () => (/* binding */ ADD_TODO),
 /* harmony export */   "CLEAR_TODOS": () => (/* binding */ CLEAR_TODOS),
 /* harmony export */   "REMOVE_TODO": () => (/* binding */ REMOVE_TODO),
-/* harmony export */   "SET_TODO": () => (/* binding */ SET_TODO),
 /* harmony export */   "SET_TODOS": () => (/* binding */ SET_TODOS),
 /* harmony export */   "TOGGLE_TODO": () => (/* binding */ TOGGLE_TODO),
 /* harmony export */   "UPDATE_TODO": () => (/* binding */ UPDATE_TODO)
 /* harmony export */ });
 // ACTION TYPES
 var SET_TODOS = "SET_TODOS";
-var SET_TODO = "SET_TODO"; // FIXME: remove later
 var ADD_TODO = "ADD_TODO";
 var REMOVE_TODO = "REMOVE_TODO";
 var TOGGLE_TODO = "TOGGLE_TODO";
@@ -23729,7 +23687,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "addTodo_": () => (/* binding */ addTodo_),
 /* harmony export */   "clearTodos_": () => (/* binding */ clearTodos_),
-/* harmony export */   "fetchSingleTodo_": () => (/* binding */ fetchSingleTodo_),
 /* harmony export */   "fetchTodos_": () => (/* binding */ fetchTodos_),
 /* harmony export */   "removeTodo_": () => (/* binding */ removeTodo_),
 /* harmony export */   "toggleTodo_": () => (/* binding */ toggleTodo_),
@@ -23777,58 +23734,59 @@ var fetchTodos_ = function fetchTodos_() {
     };
   }();
 };
-var fetchSingleTodo_ = function fetchSingleTodo_(id) {
+var addTodo_ = function addTodo_(todo) {
   return /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(dispatch) {
-      var _yield$Axios$get2, data;
+      var _yield$Axios$post, data;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1__["default"].get("/api/v1/todos/".concat(id));
+            return axios__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/v1/todos", todo);
           case 3:
-            _yield$Axios$get2 = _context2.sent;
-            data = _yield$Axios$get2.data;
-            dispatch(_actionCreators__WEBPACK_IMPORTED_MODULE_0__.setTodo(data));
-            _context2.next = 11;
+            _yield$Axios$post = _context2.sent;
+            data = _yield$Axios$post.data;
+            console.log("ADDTODO DATA added:  ".concat(JSON.stringify(data))); // TODO: remove later
+            dispatch(_actionCreators__WEBPACK_IMPORTED_MODULE_0__.addTodo(data));
+            _context2.next = 12;
             break;
-          case 8:
-            _context2.prev = 8;
+          case 9:
+            _context2.prev = 9;
             _context2.t0 = _context2["catch"](0);
-            console.log("Error in fetchSingleTodo thunk: ".concat(_context2.t0));
-          case 11:
+            console.log("Error in addTodo thunk: ".concat(_context2.t0));
+          case 12:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 8]]);
+      }, _callee2, null, [[0, 9]]);
     }));
     return function (_x2) {
       return _ref2.apply(this, arguments);
     };
   }();
 };
-var addTodo_ = function addTodo_(todo) {
+var removeTodo_ = function removeTodo_(id) {
   return /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(dispatch) {
-      var _yield$Axios$post, data;
+      var _yield$Axios$delete, data;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/v1/todos", todo);
+            return axios__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"]("/api/v1/todos/".concat(id));
           case 3:
-            _yield$Axios$post = _context3.sent;
-            data = _yield$Axios$post.data;
-            console.log("ADDTODO DATA added:  ".concat(JSON.stringify(data))); // TODO: remove later
-            dispatch(_actionCreators__WEBPACK_IMPORTED_MODULE_0__.addTodo(data));
+            _yield$Axios$delete = _context3.sent;
+            data = _yield$Axios$delete.data;
+            console.log("removeTodo triggered. DATA REMOVED:  ".concat(JSON.stringify(data))); // TODO: remove later
+            dispatch(_actionCreators__WEBPACK_IMPORTED_MODULE_0__.removeTodo(data.id));
             _context3.next = 12;
             break;
           case 9:
             _context3.prev = 9;
             _context3.t0 = _context3["catch"](0);
-            console.log("Error in addTodo thunk: ".concat(_context3.t0));
+            console.log("Error in removeTodo thunk: ".concat(_context3.t0));
           case 12:
           case "end":
             return _context3.stop();
@@ -23840,27 +23798,27 @@ var addTodo_ = function addTodo_(todo) {
     };
   }();
 };
-var removeTodo_ = function removeTodo_(id) {
+var toggleTodo_ = function toggleTodo_(id) {
   return /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(dispatch) {
-      var _yield$Axios$delete, data;
+      var _yield$Axios$put, data;
       return _regeneratorRuntime().wrap(function _callee4$(_context4) {
         while (1) switch (_context4.prev = _context4.next) {
           case 0:
             _context4.prev = 0;
             _context4.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"]("/api/v1/todos/".concat(id));
+            return axios__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/todos/".concat(id, "/toggle"));
           case 3:
-            _yield$Axios$delete = _context4.sent;
-            data = _yield$Axios$delete.data;
-            console.log("removeTodo triggered. DATA REMOVED:  ".concat(JSON.stringify(data))); // TODO: remove later
-            dispatch(_actionCreators__WEBPACK_IMPORTED_MODULE_0__.removeTodo(data.id));
+            _yield$Axios$put = _context4.sent;
+            data = _yield$Axios$put.data;
+            console.log("toggleTodo triggered. DATA TOGGLED:  ".concat(JSON.stringify(data))); // TODO: remove later
+            dispatch(_actionCreators__WEBPACK_IMPORTED_MODULE_0__.toggleTodo(data.id));
             _context4.next = 12;
             break;
           case 9:
             _context4.prev = 9;
             _context4.t0 = _context4["catch"](0);
-            console.log("Error in removeTodo thunk: ".concat(_context4.t0));
+            console.log("Error in toggleTodo thunk: ".concat(_context4.t0));
           case 12:
           case "end":
             return _context4.stop();
@@ -23872,27 +23830,27 @@ var removeTodo_ = function removeTodo_(id) {
     };
   }();
 };
-var toggleTodo_ = function toggleTodo_(id) {
+var updateTodo_ = function updateTodo_(id, todo) {
   return /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(dispatch) {
-      var _yield$Axios$put, data;
+      var _yield$Axios$put2, data;
       return _regeneratorRuntime().wrap(function _callee5$(_context5) {
         while (1) switch (_context5.prev = _context5.next) {
           case 0:
             _context5.prev = 0;
             _context5.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/todos/".concat(id, "/toggle"));
+            return axios__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/todos/".concat(id), todo);
           case 3:
-            _yield$Axios$put = _context5.sent;
-            data = _yield$Axios$put.data;
-            console.log("toggleTodo triggered. DATA TOGGLED:  ".concat(JSON.stringify(data))); // TODO: remove later
-            dispatch(_actionCreators__WEBPACK_IMPORTED_MODULE_0__.toggleTodo(data.id));
+            _yield$Axios$put2 = _context5.sent;
+            data = _yield$Axios$put2.data;
+            console.log("updateTodo triggered. DATA UPDATED:  ".concat(JSON.stringify(data))); // TODO: remove later
+            dispatch(_actionCreators__WEBPACK_IMPORTED_MODULE_0__.updateTodo(data.id, data));
             _context5.next = 12;
             break;
           case 9:
             _context5.prev = 9;
             _context5.t0 = _context5["catch"](0);
-            console.log("Error in toggleTodo thunk: ".concat(_context5.t0));
+            console.log("Error in updateTodo thunk: ".concat(_context5.t0));
           case 12:
           case "end":
             return _context5.stop();
@@ -23904,64 +23862,32 @@ var toggleTodo_ = function toggleTodo_(id) {
     };
   }();
 };
-var updateTodo_ = function updateTodo_(id, todo) {
+var clearTodos_ = function clearTodos_() {
   return /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(dispatch) {
-      var _yield$Axios$put2, data;
       return _regeneratorRuntime().wrap(function _callee6$(_context6) {
         while (1) switch (_context6.prev = _context6.next) {
           case 0:
             _context6.prev = 0;
             _context6.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/todos/".concat(id), todo);
-          case 3:
-            _yield$Axios$put2 = _context6.sent;
-            data = _yield$Axios$put2.data;
-            console.log("updateTodo triggered. DATA UPDATED:  ".concat(JSON.stringify(data))); // TODO: remove later
-            dispatch(_actionCreators__WEBPACK_IMPORTED_MODULE_0__.updateTodo(data.id, data));
-            _context6.next = 12;
-            break;
-          case 9:
-            _context6.prev = 9;
-            _context6.t0 = _context6["catch"](0);
-            console.log("Error in updateTodo thunk: ".concat(_context6.t0));
-          case 12:
-          case "end":
-            return _context6.stop();
-        }
-      }, _callee6, null, [[0, 9]]);
-    }));
-    return function (_x6) {
-      return _ref6.apply(this, arguments);
-    };
-  }();
-};
-var clearTodos_ = function clearTodos_() {
-  return /*#__PURE__*/function () {
-    var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(dispatch) {
-      return _regeneratorRuntime().wrap(function _callee7$(_context7) {
-        while (1) switch (_context7.prev = _context7.next) {
-          case 0:
-            _context7.prev = 0;
-            _context7.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"]("/api/v1/todos/clear");
           case 3:
             console.log("clearTodos triggered"); // TODO: remove later
             dispatch(_actionCreators__WEBPACK_IMPORTED_MODULE_0__.clearTodos());
-            _context7.next = 10;
+            _context6.next = 10;
             break;
           case 7:
-            _context7.prev = 7;
-            _context7.t0 = _context7["catch"](0);
-            console.log("Error in clearTodos thunk: ".concat(_context7.t0));
+            _context6.prev = 7;
+            _context6.t0 = _context6["catch"](0);
+            console.log("Error in clearTodos thunk: ".concat(_context6.t0));
           case 10:
           case "end":
-            return _context7.stop();
+            return _context6.stop();
         }
-      }, _callee7, null, [[0, 7]]);
+      }, _callee6, null, [[0, 7]]);
     }));
-    return function (_x7) {
-      return _ref7.apply(this, arguments);
+    return function (_x6) {
+      return _ref6.apply(this, arguments);
     };
   }();
 };
@@ -24032,9 +23958,6 @@ var todoReducer = function todoReducer() {
   switch (action.type) {
     case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.SET_TODOS:
       return action.payload.todos;
-    case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.SET_TODO:
-      // FIXME: remove later
-      return action.payload.todo;
     case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.ADD_TODO:
       return [].concat(_toConsumableArray(state), [action.payload.todo]);
     case _actions_actionTypes__WEBPACK_IMPORTED_MODULE_0__.REMOVE_TODO:

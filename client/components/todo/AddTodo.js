@@ -40,7 +40,7 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-function AddTodo({ addTodo, fetchTodos, setTodoList, todos }) {
+function AddTodo({ addTodo }) {
   const [todoText, setTodoText] = useState("");
   const cssClasses = styles();
 
@@ -53,18 +53,8 @@ function AddTodo({ addTodo, fetchTodos, setTodoList, todos }) {
       });
 
       setTodoText("");
-
-      fetchTodos();
     }
   };
-
-  useEffect(() => {
-    if (todos && todos.length > 0) {
-      const latestTodo = todos[todos.length - 1];
-      console.log("ADDTODO todos", todos);
-      setTodoList((prev) => [...prev, latestTodo]);
-    }
-  }, [todos]);
 
   return (
     <form onSubmit={handleAddTodo}>
@@ -96,13 +86,8 @@ function AddTodo({ addTodo, fetchTodos, setTodoList, todos }) {
   );
 }
 
-const mapState = (state) => ({
-  todos: state.todos,
-});
-
 const mapDispatch = (dispatch) => ({
   addTodo: (todo) => dispatch(thunks.addTodo_(todo)),
-  fetchTodos: () => dispatch(thunks.fetchTodos_()),
 });
 
-export default connect(mapState, mapDispatch)(AddTodo);
+export default connect(null, mapDispatch)(AddTodo);

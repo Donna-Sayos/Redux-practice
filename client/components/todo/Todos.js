@@ -22,7 +22,6 @@ function Todos({ todos, fetchTodos }) {
 
   useEffect(() => {
     if (todos) {
-      console.log("todos", todos);
       setTodoList(todos);
     }
   }, [todos]);
@@ -34,7 +33,7 @@ function Todos({ todos, fetchTodos }) {
       <div>
         <h1>TODO List</h1>
       </div>
-      <AddTodo setTodoList={setTodoList} />
+      <AddTodo />
       {todoList && todoList.length > 0 ? (
         <div>
           {todoList.map((todo) => (

@@ -21,20 +21,22 @@ function Todos({ todos, fetchTodos }) {
   }, [fetchTodos]);
 
   useEffect(() => {
-    if (todos && todos.success && todos.data) {
+    if (todos && todos.data && todos.data.length > 0) {
+      const latestTodo = todos.data[todos.data.length - 1];
       console.log("todos.data", todos.data);
-      setTodoList(todos.data);
+      console.log("latestTodo", latestTodo);
+      setTodoList((prev) => [...prev, latestTodo]);
     }
   }, [todos]);
 
-  console.log("todoList", todoList);
+  console.log("todoList", todoList); 
 
   return (
     <Container maxWidth="lg">
       <div>
         <h1>TODO List</h1>
       </div>
-      <AddTodo fetchTodos={fetchTodos} />
+      <AddTodo />
       {todoList && todoList.length > 0 ? (
         <div>
           {todoList.map((todo) => (

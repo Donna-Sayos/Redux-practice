@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
 import { Button, TextField, Grid } from "@material-ui/core";
@@ -40,21 +40,25 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-function AddTodo({ addTodo }) {
+function AddTodo({ addTodo, fetchTodos }) {
   const [todoText, setTodoText] = useState("");
   const cssClasses = styles();
 
-  const handleAddTodo = (e) => {
-    e.preventDefault();
+  const handleAddTodo = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    if (todoText) {
-      addTodo({
-        description: todoText,
-      });
+      if (todoText) {
+        addTodo({
+          description: todoText,
+        });
 
-      setTodoText("");
-    }
-  };
+        setTodoText("");
+        fetchTodos();
+      }
+    },
+    [todoText, addTodo, fetchTodos]
+  );
 
   return (
     <form onSubmit={handleAddTodo}>
@@ -88,6 +92,7 @@ function AddTodo({ addTodo }) {
 
 const mapDispatch = (dispatch) => ({
   addTodo: (todo) => dispatch(thunks.addTodo_(todo)),
+  fetchTodos: () => dispatch(thunks.fetchTodos_()),
 });
 
 export default connect(null, mapDispatch)(AddTodo);

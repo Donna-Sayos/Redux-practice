@@ -29,6 +29,7 @@ const styles = makeStyles((theme) => ({
       fontSize: 30,
     },
     cursor: "pointer",
+    marginLeft: "40px",
   },
   edit: {
     position: "absolute",
@@ -49,8 +50,13 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-function SingleTodo({ todo }) {
+function SingleTodo({ todo, toggleTodo }) {
   const cssClasses = styles();
+
+  const checkboxHandler = (e, id) => {
+    e.preventDefault();
+    toggleTodo(id);
+  };
 
   return (
     <>
@@ -58,7 +64,12 @@ function SingleTodo({ todo }) {
         <Card className={cssClasses.card} raised>
           <FormControlLabel
             className={cssClasses.desc}
-            control={<Checkbox className={cssClasses.checkbox} />}
+            control={
+              <Checkbox
+                className={cssClasses.checkbox}
+                onChange={(e) => checkboxHandler(e, todo.id)}
+              />
+            }
             label={<h2>{todo.description}</h2>}
           />
           <Edit className={cssClasses.edit} />

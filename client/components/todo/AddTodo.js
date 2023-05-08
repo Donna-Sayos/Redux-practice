@@ -9,6 +9,7 @@ const styles = makeStyles((theme) => ({
     "& .MuiOutlinedInput-root": {
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
+      color: "#8b6914",
     },
     "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
       borderColor: "rgba(223, 227, 238, 0.5)",
@@ -65,6 +66,7 @@ function AddTodo({ addTodo }) {
             InputProps={{ className: cssClasses.input }}
             variant="outlined"
             placeholder="Add a new task"
+            autoFocus
             fullWidth
             value={todoText}
             onChange={(e) => setTodoText(e.target.value)}

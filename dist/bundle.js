@@ -25133,12 +25133,9 @@ var styles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 function SingleTodo(_ref) {
   var todo = _ref.todo,
-    toggleTodo = _ref.toggleTodo;
+    toggleTodo = _ref.toggleTodo,
+    removeTodo = _ref.removeTodo;
   var cssClasses = styles();
-  var checkboxHandler = function checkboxHandler(e, id) {
-    e.preventDefault();
-    toggleTodo(id);
-  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["default"], {
     item: true,
     xs: 8,
@@ -25150,9 +25147,7 @@ function SingleTodo(_ref) {
     className: cssClasses.desc,
     control: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__["default"], {
       className: cssClasses.checkbox,
-      onChange: function onChange(e) {
-        return checkboxHandler(e, todo.id);
-      }
+      onChange: toggleTodo(todo.id)
     }),
     label: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, todo.description)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -25160,9 +25155,11 @@ function SingleTodo(_ref) {
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["default"], {
     item: true,
     sm: 1
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    onClick: removeTodo(todo.id)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
     className: cssClasses["delete"]
-  })));
+  }))));
 }
 var mapDispatch = function mapDispatch(dispatch) {
   return {

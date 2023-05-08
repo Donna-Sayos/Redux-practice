@@ -53,17 +53,6 @@ const styles = makeStyles((theme) => ({
 function SingleTodo({ todo, toggleTodo, removeTodo }) {
   const cssClasses = styles();
 
-  const checkboxHandler = (e, id) => {
-    e.preventDefault();
-    toggleTodo(id);
-  };
-
-  const deleteHandler = (e, id) => {
-    e.preventDefault();
-    console.log("clicked");
-    removeTodo(id);
-  };
-
   return (
     <>
       <Grid item xs={8} sm={6}>
@@ -73,7 +62,7 @@ function SingleTodo({ todo, toggleTodo, removeTodo }) {
             control={
               <Checkbox
                 className={cssClasses.checkbox}
-                onChange={(e) => checkboxHandler(e, todo.id)}
+                onChange={() => toggleTodo(todo.id)}
               />
             }
             label={<h2>{todo.description}</h2>}
@@ -82,7 +71,7 @@ function SingleTodo({ todo, toggleTodo, removeTodo }) {
         </Card>
       </Grid>
       <Grid item sm={1}>
-        <div onClick={(e) => deleteHandler(e, todo.id)}>
+        <div onClick={() => removeTodo(todo.id)}>
           <DeleteForever className={cssClasses.delete} />
         </div>
       </Grid>
@@ -92,7 +81,7 @@ function SingleTodo({ todo, toggleTodo, removeTodo }) {
 
 const mapDispatch = (dispatch) => ({
   toggleTodo: (id) => dispatch(thunks.toggleTodo_(id)),
-  // removeTodo: (id) => dispatch(thunks.removeTodo_(id)),
+  removeTodo: (id) => dispatch(thunks.removeTodo_(id)),
   updateTodo: (id, todo) => dispatch(thunks.updateTodo_(id, todo)),
 });
 

@@ -13,7 +13,7 @@ import {
   Card,
 } from "@material-ui/core";
 
-function Todos({ todos, fetchTodos, removeTodo }) {
+function Todos({ todos, fetchTodos }) {
   const [todoList, setTodoList] = useState([]);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ function Todos({ todos, fetchTodos, removeTodo }) {
               alignItems="center"
               key={todo.id}
             >
-              <SingleTodo todo={todo} removeTodo={removeTodo} />
+              <SingleTodo todo={todo} />
             </Grid>
           ))}
         </div>
@@ -63,7 +63,6 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   fetchTodos: () => dispatch(thunks.fetchTodos_()),
   clearTodos: () => dispatch(thunks.clearTodos_()),
-  removeTodo: (id) => dispatch(thunks.removeTodo_(id)),
 });
 
 export default connect(mapState, mapDispatch)(Todos);

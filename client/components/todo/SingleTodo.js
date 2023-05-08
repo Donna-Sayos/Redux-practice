@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
 import {
+  Button,
   TextField,
   Checkbox,
   FormControlLabel,
@@ -20,7 +21,21 @@ const styles = makeStyles((theme) => ({
     cursor: "default",
   },
   text: {
-    padding: "5px",
+    "& .MuiOutlinedInput-root": {
+      color: "#8b6914",
+      marginTop: "40px",
+    },
+    "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
+      borderColor: "rgba(223, 227, 238, 0.5)",
+      borderWidth: "3px",
+    },
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "rgba(223, 227, 238, 0.5)",
+      borderWidth: "3px",
+    },
+  },
+  input: {
+    background: "rgba(223, 227, 238, 0.5)",
   },
   desc: {
     display: "flex",
@@ -73,20 +88,22 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
       <Grid item xs={8} sm={6}>
         <Card className={cssClasses.card} raised>
           {isEditing ? (
-            <TextField
-              className={cssClasses.text}
-              fullWidth
-              value={newDescription}
-              onChange={(e) => setNewDescription(e.target.value)}
-              InputProps={{
-                endAdornment: (
-                  <>
-                    <span onClick={saveHandler}>Save</span>
-                    <span onClick={() => setIsEditing(false)}>Cancel</span>
-                  </>
-                ),
-              }}
-            />
+            <div>
+              <TextField
+                className={cssClasses.text}
+                variant="outlined"
+                autoFocus
+                value={newDescription}
+                onChange={(e) => setNewDescription(e.target.value)}
+                InputProps={{
+                  className: cssClasses.input,
+                }}
+              />
+              <div>
+                <Button onClick={saveHandler}>Save</Button>
+                <Button onClick={() => setIsEditing(false)}>Cancel</Button>
+              </div>
+            </div>
           ) : (
             <FormControlLabel
               className={cssClasses.desc}

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
-import { Button, TextField, Grid } from "@material-ui/core";
+import { Button, TextField, Grid, InputAdornment } from "@material-ui/core";
+import { Assignment } from "@mui/icons-material/";
 import { makeStyles } from "@material-ui/core/styles";
 
 const styles = makeStyles((theme) => ({
@@ -63,11 +64,18 @@ function AddTodo({ addTodo }) {
         <Grid item xs={8} sm={6}>
           <TextField
             className={cssClasses.addText}
-            InputProps={{ className: cssClasses.input }}
             variant="outlined"
             placeholder="Add a new task"
             autoFocus
             fullWidth
+            InputProps={{
+              className: cssClasses.input,
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Assignment />{" "} 
+                </InputAdornment>
+              ),
+            }}
             value={todoText}
             onChange={(e) => setTodoText(e.target.value)}
           />

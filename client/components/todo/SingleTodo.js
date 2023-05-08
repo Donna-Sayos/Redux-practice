@@ -53,6 +53,11 @@ const styles = makeStyles((theme) => ({
 function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos }) {
   const cssClasses = styles();
 
+  const deleteHandler = (id) => {
+    removeTodo(id);
+    fetchTodos();
+  };
+
   return (
     <>
       <Grid item xs={8} sm={6}>
@@ -72,12 +77,7 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos }) {
         </Card>
       </Grid>
       <Grid item sm={1}>
-        <div
-          onClick={() => {
-            removeTodo(todo.id);
-            fetchTodos();
-          }}
-        >
+        <div onClick={() => deleteHandler(todo.id)}>
           <DeleteForever className={cssClasses.delete} />
         </div>
       </Grid>
@@ -89,7 +89,6 @@ const mapDispatch = (dispatch) => ({
   toggleTodo: (id) => dispatch(thunks.toggleTodo_(id)),
   removeTodo: (id) => dispatch(thunks.removeTodo_(id)),
   updateTodo: (id, todo) => dispatch(thunks.updateTodo_(id, todo)),
-  fetchTodos: () => dispatch(thunks.fetchTodos_()),
 });
 
 export default connect(null, mapDispatch)(SingleTodo);

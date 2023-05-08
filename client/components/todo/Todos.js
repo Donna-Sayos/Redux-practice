@@ -43,7 +43,7 @@ function Todos({ todos, fetchTodos }) {
               alignItems="center"
               key={todo.id}
             >
-              <SingleTodo todo={todo} />
+              <SingleTodo todo={todo} fetchTodos={fetchTodos} />
             </Grid>
           ))}
         </div>

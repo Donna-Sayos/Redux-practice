@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
-import {
-  Button,
-  IconButton,
-  Checkbox,
-  Grid,
-  Box,
-  Card,
-} from "@material-ui/core";
+import { Button, IconButton, Checkbox, Grid, Card } from "@material-ui/core";
+import { ExpandCircleDown, Mode, DeleteForever } from "@mui/icons-material"
 import { makeStyles } from "@material-ui/core/styles";
 
 const styles = makeStyles((theme) => ({
   card: {
     padding: "5px",
     textAlign: "center",
-    backgroundColor: "#455b55",
+    backgroundColor: "#c89f73",
   },
 }));
 

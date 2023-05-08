@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
 import {
-  Button,
-  IconButton,
+  TextField,
   Checkbox,
   FormControlLabel,
   Grid,
   Card,
 } from "@material-ui/core";
-import { Edit, Mode, DeleteForever } from "@mui/icons-material";
+import { Edit, DeleteForever } from "@mui/icons-material";
 import { makeStyles } from "@material-ui/core/styles";
 
 const styles = makeStyles((theme) => ({
@@ -19,6 +18,9 @@ const styles = makeStyles((theme) => ({
     backgroundColor: "#c89f73",
     position: "relative",
     cursor: "default",
+  },
+  text: {
+    padding: "5px",
   },
   desc: {
     display: "flex",
@@ -50,8 +52,16 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos }) {
+function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [newDescription, setNewDescription] = useState(todo.description);
   const cssClasses = styles();
+
+  const saveHandler = () => {
+    updateTodo(todo.id, { ...todo, description: newDescription });
+    fetchTodos();
+    setIsEditing(false);
+  };
 
   const deleteHandler = (id) => {
     removeTodo(id);
@@ -62,24 +72,45 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos }) {
     <>
       <Grid item xs={8} sm={6}>
         <Card className={cssClasses.card} raised>
-          <FormControlLabel
-            className={cssClasses.desc}
-            control={
-              <Checkbox
-                className={cssClasses.checkbox}
-                onChange={() => toggleTodo(todo.id)}
-                checked={todo.isCompleted}
-              />
-            }
-            label={<h2>{todo.description}</h2>}
+          {isEditing ? (
+            <TextField
+              className={cssClasses.text}
+              fullWidth
+              value={newDescription}
+              onChange={(e) => setNewDescription(e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <>
+                    <span onClick={saveHandler}>Save</span>
+                    <span onClick={() => setIsEditing(false)}>Cancel</span>
+                  </>
+                ),
+              }}
+            />
+          ) : (
+            <FormControlLabel
+              className={cssClasses.desc}
+              control={
+                <Checkbox
+                  className={cssClasses.checkbox}
+                  onChange={() => toggleTodo(todo.id)}
+                  checked={todo.isCompleted}
+                />
+              }
+              label={<h2>{todo.description}</h2>}
+            />
+          )}
+          <Edit
+            className={cssClasses.edit}
+            onClick={() => setIsEditing(true)}
           />
-          <Edit className={cssClasses.edit} />
         </Card>
       </Grid>
       <Grid item sm={1}>
-        <div onClick={() => deleteHandler(todo.id)}>
-          <DeleteForever className={cssClasses.delete} />
-        </div>
+        <DeleteForever
+          className={cssClasses.delete}
+          onClick={() => deleteHandler(todo.id)}
+        />
       </Grid>
     </>
   );

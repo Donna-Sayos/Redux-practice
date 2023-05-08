@@ -50,12 +50,18 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-function SingleTodo({ todo, toggleTodo }) {
+function SingleTodo({ todo, toggleTodo, removeTodo }) {
   const cssClasses = styles();
 
   const checkboxHandler = (e, id) => {
     e.preventDefault();
     toggleTodo(id);
+  };
+
+  const deleteHandler = (e, id) => {
+    e.preventDefault();
+    console.log("clicked");
+    removeTodo(id);
   };
 
   return (
@@ -76,7 +82,9 @@ function SingleTodo({ todo, toggleTodo }) {
         </Card>
       </Grid>
       <Grid item sm={1}>
-        <DeleteForever className={cssClasses.delete} />
+        <div onClick={(e) => deleteHandler(e, todo.id)}>
+          <DeleteForever className={cssClasses.delete} />
+        </div>
       </Grid>
     </>
   );
@@ -84,7 +92,7 @@ function SingleTodo({ todo, toggleTodo }) {
 
 const mapDispatch = (dispatch) => ({
   toggleTodo: (id) => dispatch(thunks.toggleTodo_(id)),
-  removeTodo: (id) => dispatch(thunks.removeTodo_(id)),
+  // removeTodo: (id) => dispatch(thunks.removeTodo_(id)),
   updateTodo: (id, todo) => dispatch(thunks.updateTodo_(id, todo)),
 });
 

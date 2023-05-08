@@ -37,7 +37,6 @@ function Todos({ todos, fetchTodos }) {
           {todoList.map((todo) => (
             <Grid
               container
-              spacing={1}
               justifyContent="center"
               alignItems="center"
               key={todo.id}

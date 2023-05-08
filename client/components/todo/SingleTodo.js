@@ -4,12 +4,13 @@ import * as thunks from "../../store/actions/thunks";
 import {
   Button,
   TextField,
+  InputAdornment,
   Checkbox,
   FormControlLabel,
   Grid,
   Card,
 } from "@material-ui/core";
-import { Edit, DeleteForever } from "@mui/icons-material";
+import { Edit, DeleteForever, Assignment } from "@mui/icons-material";
 import { makeStyles } from "@material-ui/core/styles";
 
 const styles = makeStyles((theme) => ({
@@ -65,6 +66,26 @@ const styles = makeStyles((theme) => ({
     marginLeft: "-20px",
     cursor: "pointer",
   },
+  save: {
+    border: "1px solid white",
+    backgroundColor: "#bd8966",
+    marginRight: "10px",
+    "&:hover": {
+      fontSize: "1rem",
+      border: "4px solid #d39972",
+      backgroundColor: "#eea990",
+    },
+  },
+  cancel: {
+    border: "1px solid white",
+    backgroundColor: "#bd8966",
+    marginLeft: "10px",
+    "&:hover": {
+      fontSize: "1rem",
+      border: "4px solid #d39972",
+      backgroundColor: "#eea990",
+    },
+  },
 }));
 
 function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
@@ -97,11 +118,23 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
                 onChange={(e) => setNewDescription(e.target.value)}
                 InputProps={{
                   className: cssClasses.input,
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Assignment />{" "}
+                    </InputAdornment>
+                  ),
                 }}
               />
               <div>
-                <Button onClick={saveHandler}>Save</Button>
-                <Button onClick={() => setIsEditing(false)}>Cancel</Button>
+                <Button className={cssClasses.save} onClick={saveHandler}>
+                  Save
+                </Button>
+                <Button
+                  className={cssClasses.cancel}
+                  onClick={() => setIsEditing(false)}
+                >
+                  Cancel
+                </Button>
               </div>
             </div>
           ) : (

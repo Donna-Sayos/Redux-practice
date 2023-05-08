@@ -63,6 +63,7 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos }) {
               <Checkbox
                 className={cssClasses.checkbox}
                 onChange={() => toggleTodo(todo.id)}
+                checked={todo.isCompleted}
               />
             }
             label={<h2>{todo.description}</h2>}

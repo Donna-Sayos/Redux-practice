@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 import { Edit, DeleteForever, Assignment } from "@mui/icons-material";
 import { makeStyles } from "@material-ui/core/styles";
+import { transform } from "lodash";
 
 const styles = makeStyles((theme) => ({
   card: {
@@ -87,8 +88,10 @@ const styles = makeStyles((theme) => ({
     },
   },
   iconButton: {
+    transition: "transform 0.1s ease-in-out",
     "&:hover": {
       backgroundColor: "transparent",
+      transform: "rotate(15deg)",
     },
   },
 }));
@@ -175,8 +178,8 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
             className={cssClasses.delete}
             style={{
               fill: hover ? "#fbe7a1" : "#e4d5b7",
-              height: hover ? "120%" : "100%",
-              width: hover ? "120%" : "100%",
+              height: hover ? "140%" : "100%",
+              width: hover ? "140%" : "100%",
             }}
           />
         </IconButton>

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
 import {
   Button,
+  IconButton,
   TextField,
   InputAdornment,
   Checkbox,
@@ -64,7 +65,6 @@ const styles = makeStyles((theme) => ({
   },
   delete: {
     marginLeft: "-20px",
-    cursor: "pointer",
   },
   save: {
     border: "1px solid white",
@@ -84,6 +84,11 @@ const styles = makeStyles((theme) => ({
       fontSize: "1rem",
       border: "4px solid #d39972",
       backgroundColor: "#eea990",
+    },
+  },
+  iconButton: {
+    "&:hover": {
+      backgroundColor: "transparent",
     },
   },
 }));
@@ -157,10 +162,16 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
         </Card>
       </Grid>
       <Grid item sm={1}>
-        <DeleteForever
-          className={cssClasses.delete}
+        <IconButton
+          className={cssClasses.iconButton}
           onClick={() => deleteHandler(todo.id)}
-        />
+        >
+          <DeleteForever
+            className={cssClasses.delete}
+            style={{ fill: "#e4d5b7", height: "100%", width: "100%" }}
+            sx={{ "&:hover": { fill: "#d9b99b" } }}
+          />
+        </IconButton>
       </Grid>
     </>
   );

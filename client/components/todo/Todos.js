@@ -22,7 +22,9 @@ function Todos({ todos, fetchTodos }) {
 
   useEffect(() => {
     if (todos) {
-      setTodoList(todos);
+      setTodoList(
+        [...todos].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+      );
     }
   }, [todos]);
 

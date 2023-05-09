@@ -96,6 +96,7 @@ const styles = makeStyles((theme) => ({
 function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newDescription, setNewDescription] = useState(todo.description);
+  const [hover, setHover] = useState(false);
   const cssClasses = styles();
 
   const saveHandler = () => {
@@ -165,11 +166,18 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
         <IconButton
           className={cssClasses.iconButton}
           onClick={() => deleteHandler(todo.id)}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => {
+            setHover(false);
+          }}
         >
           <DeleteForever
             className={cssClasses.delete}
-            style={{ fill: "#e4d5b7", height: "100%", width: "100%" }}
-            sx={{ "&:hover": { fill: "#d9b99b" } }}
+            style={{
+              fill: hover ? "#fbe7a1" : "#e4d5b7",
+              height: hover ? "120%" : "100%",
+              width: hover ? "120%" : "100%",
+            }}
           />
         </IconButton>
       </Grid>

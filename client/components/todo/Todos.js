@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
 import AddTodo from "./AddTodo";
@@ -16,19 +16,25 @@ import {
 function Todos({ todos, fetchTodos }) {
   const [todoList, setTodoList] = useState([]);
 
+  const sortedTodos = useMemo(() => {
+    if (todos) {
+      return [...todos].sort(
+        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+      );
+    }
+  }, [todos]);
+
   useEffect(() => {
     fetchTodos();
   }, []);
 
   useEffect(() => {
     if (todos) {
-      setTodoList(
-        [...todos].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
-      );
+      setTodoList(sortedTodos);
     }
   }, [todos]);
 
-  console.log("todoList", todoList);
+  console.log("todoList", todoList); // TODO: remove later
 
   return (
     <Container maxWidth="lg">

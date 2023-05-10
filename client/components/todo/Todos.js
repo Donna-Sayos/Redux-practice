@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const styles = makeStyles((theme) => ({
   divider: {
-    borderBottom: "2px solid #007777",
+    borderBottom: "2px solid #99aab5",
   },
 }));
 

@@ -165,7 +165,7 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
           />
         </Card>
       </Grid>
-      <Grid item sm={1}>
+      <Grid item xs={8} sm={1}>
         <IconButton
           className={cssClasses.iconButton}
           onClick={() => deleteHandler(todo.id)}

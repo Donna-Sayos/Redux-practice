@@ -3,18 +3,18 @@ import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
 import AddTodo from "./AddTodo";
 import SingleTodo from "./SingleTodo";
-import {
-  Button,
-  IconButton,
-  Checkbox,
-  Grid,
-  Box,
-  Container,
-  Card,
-} from "@material-ui/core";
+import { Button, Grid, Container, Divider } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+const styles = makeStyles((theme) => ({
+  divider: {
+    borderBottom: "2px solid #007777",
+  },
+}));
 
 function Todos({ todos, fetchTodos }) {
   const [todoList, setTodoList] = useState([]);
+  const cssClasses = styles();
 
   const sortedTodos = useMemo(() => {
     if (todos) {
@@ -42,6 +42,7 @@ function Todos({ todos, fetchTodos }) {
         <h1>TODO List</h1>
       </div>
       <AddTodo />
+      <Divider className={cssClasses.divider} variant="fullWidth" />
       {todoList && todoList.length > 0 ? (
         <div>
           {todoList.map((todo) => (

@@ -27,7 +27,7 @@ const styles = makeStyles((theme) => ({
   addBtn: {
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
-    maxHeight: "55px",
+    maxHeight: "58px",
     background: "#f6e0b5",
     "&:hover": {
       background: "#d2a56d",

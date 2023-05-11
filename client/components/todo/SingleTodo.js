@@ -133,7 +133,7 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
                   className: cssClasses.input,
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Assignment />{" "}
+                      <Assignment style={{ height: "2.3rem", width: "2.3rem" }} />{" "}
                     </InputAdornment>
                   ),
                 }}
@@ -182,8 +182,8 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
             className={cssClasses.delete}
             style={{
               fill: hover ? "#fbe7a1" : "#e4d5b7",
-              height: hover ? "140%" : "100%",
-              width: hover ? "140%" : "100%",
+              height: hover ? "70px" : "60px",
+              width: hover ? "70px" : "60px",
             }}
           />
         </IconButton>

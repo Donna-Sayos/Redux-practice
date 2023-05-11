@@ -73,7 +73,7 @@ function AddTodo({ addTodo }) {
               className: cssClasses.input,
               startAdornment: (
                 <InputAdornment position="start">
-                  <Assignment />{" "}
+                  <Assignment style={{ height: "2.3rem", width: "2.3rem" }} />{" "}
                 </InputAdornment>
               ),
             }}

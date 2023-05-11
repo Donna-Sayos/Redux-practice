@@ -97,7 +97,7 @@ const styles = makeStyles((theme) => ({
     border: "2px solid #a39193",
     padding: "2px",
     backgroundColor: "#777777",
-    cursor: "pointer",
+    cursor: "default",
   },
   delete: {
     marginLeft: "-20px",
@@ -222,7 +222,9 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
               todo.isCompleted ? cssClasses.editChecked : cssClasses.edit
             }
             style={todo.isCompleted ? { fill: "#be9b7b" } : { fill: "white" }}
-            onClick={() => setIsEditing(true)}
+            onClick={() => {
+              if (!todo.isCompleted) setIsEditing(true);
+            }}
           />
         </Card>
       </Grid>
@@ -239,8 +241,8 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
             className={cssClasses.delete}
             style={{
               fill: hover ? "#fbe7a1" : "#e4d5b7",
-              height: hover ? "70px" : "60px",
-              width: hover ? "70px" : "60px",
+              height: hover ? "60px" : "45px",
+              width: hover ? "60px" : "45px",
             }}
           />
         </IconButton>

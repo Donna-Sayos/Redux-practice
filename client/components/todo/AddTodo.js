@@ -66,13 +66,14 @@ function AddTodo({ addTodo }) {
             className={cssClasses.addText}
             variant="outlined"
             placeholder="Add a new task"
+            multiline={true}
             autoFocus
             fullWidth
             InputProps={{
               className: cssClasses.input,
               startAdornment: (
                 <InputAdornment position="start">
-                  <Assignment />{" "} 
+                  <Assignment />{" "}
                 </InputAdornment>
               ),
             }}
@@ -80,7 +81,7 @@ function AddTodo({ addTodo }) {
             onChange={(e) => setTodoText(e.target.value)}
           />
         </Grid>
-        <Grid item xs={4} sm={1}>
+        <Grid item xs={8} sm={1}>
           <Button
             className={cssClasses.addBtn}
             variant="contained"

@@ -40,9 +40,12 @@ const styles = makeStyles((theme) => ({
   input: {
     background: "rgba(223, 227, 238, 0.5)",
   },
-  desc: {
+  label: {
     display: "flex",
     justifyContent: "start",
+  },
+  desc: {
+    textAlign: "left",
   },
   checkbox: {
     "& .MuiSvgIcon-root": {
@@ -122,6 +125,7 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
               <TextField
                 className={cssClasses.text}
                 variant="outlined"
+                multiline={true}
                 autoFocus
                 value={newDescription}
                 onChange={(e) => setNewDescription(e.target.value)}
@@ -148,7 +152,7 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
             </div>
           ) : (
             <FormControlLabel
-              className={cssClasses.desc}
+              className={cssClasses.label}
               control={
                 <Checkbox
                   className={cssClasses.checkbox}
@@ -156,7 +160,7 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
                   checked={todo.isCompleted}
                 />
               }
-              label={<h2>{todo.description}</h2>}
+              label={<h2 className={cssClasses.desc}>{todo.description}</h2>}
             />
           )}
           <Edit

@@ -42,6 +42,20 @@ function Todos({ todos, fetchTodos }) {
         <h1>TODO List</h1>
       </div>
       <AddTodo />
+      <Grid container justifyContent="center">
+        <Grid item xs={8} sm={2}>
+          All
+        </Grid>
+        <Grid item xs={8} sm={2}>
+          Incomplete
+        </Grid>
+        <Grid item xs={8} sm={2}>
+          Completed
+        </Grid>
+        <Grid item xs={8} sm={2}>
+          CLEAR
+        </Grid>
+      </Grid>
       <Divider className={cssClasses.divider} variant="fullWidth" />
       {todoList && todoList.length > 0 ? (
         <div>

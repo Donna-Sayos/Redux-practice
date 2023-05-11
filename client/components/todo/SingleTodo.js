@@ -44,8 +44,14 @@ const styles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "start",
   },
-  desc: {
+  incompleteDesc: {
     textAlign: "left",
+  },
+  completedDesc: {
+    textAlign: "left",
+    textDecoration: "line-through",
+    color: "#d6c7c7",
+    fontStyle: "italic",
   },
   checkbox: {
     "& .MuiSvgIcon-root": {
@@ -103,6 +109,7 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newDescription, setNewDescription] = useState(todo.description);
   const [hover, setHover] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
   const cssClasses = styles();
 
   const saveHandler = () => {
@@ -133,7 +140,9 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
                   className: cssClasses.input,
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Assignment style={{ height: "2.3rem", width: "2.3rem" }} />{" "}
+                      <Assignment
+                        style={{ height: "2.3rem", width: "2.3rem" }}
+                      />{" "}
                     </InputAdornment>
                   ),
                 }}
@@ -160,7 +169,17 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
                   checked={todo.isCompleted}
                 />
               }
-              label={<h2 className={cssClasses.desc}>{todo.description}</h2>}
+              label={
+                <h2
+                  className={
+                    todo.isCompleted
+                      ? cssClasses.completedDesc
+                      : cssClasses.incompleteDesc
+                  }
+                >
+                  {todo.description}
+                </h2>
+              }
             />
           )}
           <Edit

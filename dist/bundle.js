@@ -4320,6 +4320,173 @@ var Container = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.forwardRef(funct
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/core/esm/Divider/Divider.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/Divider/Divider.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "styles": () => (/* binding */ styles)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
+/* harmony import */ var _styles_colorManipulator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../styles/colorManipulator */ "./node_modules/@material-ui/core/esm/styles/colorManipulator.js");
+
+
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      height: 1,
+      margin: 0,
+      // Reset browser default style.
+      border: 'none',
+      flexShrink: 0,
+      backgroundColor: theme.palette.divider
+    },
+
+    /* Styles applied to the root element if `absolute={true}`. */
+    absolute: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      width: '100%'
+    },
+
+    /* Styles applied to the root element if `variant="inset"`. */
+    inset: {
+      marginLeft: 72
+    },
+
+    /* Styles applied to the root element if `light={true}`. */
+    light: {
+      backgroundColor: (0,_styles_colorManipulator__WEBPACK_IMPORTED_MODULE_4__.alpha)(theme.palette.divider, 0.08)
+    },
+
+    /* Styles applied to the root element if `variant="middle"`. */
+    middle: {
+      marginLeft: theme.spacing(2),
+      marginRight: theme.spacing(2)
+    },
+
+    /* Styles applied to the root element if `orientation="vertical"`. */
+    vertical: {
+      height: '100%',
+      width: 1
+    },
+
+    /* Styles applied to the root element if `flexItem={true}`. */
+    flexItem: {
+      alignSelf: 'stretch',
+      height: 'auto'
+    }
+  };
+};
+var Divider = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function Divider(props, ref) {
+  var _props$absolute = props.absolute,
+      absolute = _props$absolute === void 0 ? false : _props$absolute,
+      classes = props.classes,
+      className = props.className,
+      _props$component = props.component,
+      Component = _props$component === void 0 ? 'hr' : _props$component,
+      _props$flexItem = props.flexItem,
+      flexItem = _props$flexItem === void 0 ? false : _props$flexItem,
+      _props$light = props.light,
+      light = _props$light === void 0 ? false : _props$light,
+      _props$orientation = props.orientation,
+      orientation = _props$orientation === void 0 ? 'horizontal' : _props$orientation,
+      _props$role = props.role,
+      role = _props$role === void 0 ? Component !== 'hr' ? 'separator' : undefined : _props$role,
+      _props$variant = props.variant,
+      variant = _props$variant === void 0 ? 'fullWidth' : _props$variant,
+      other = (0,_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(props, ["absolute", "classes", "className", "component", "flexItem", "light", "orientation", "role", "variant"]);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(Component, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_3__["default"])(classes.root, className, variant !== 'fullWidth' && classes[variant], absolute && classes.absolute, flexItem && classes.flexItem, light && classes.light, orientation === 'vertical' && classes.vertical),
+    role: role,
+    ref: ref
+  }, other));
+});
+ true ? Divider.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * Absolutely position the element.
+   */
+  absolute: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool),
+
+  /**
+   * @ignore
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().node),
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().object),
+
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string),
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().elementType),
+
+  /**
+   * If `true`, a vertical divider will have the correct height when used in flex container.
+   * (By default, a vertical divider will have a calculated height of `0px` if it is the child of a flex container.)
+   */
+  flexItem: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool),
+
+  /**
+   * If `true`, the divider will have a lighter color.
+   */
+  light: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool),
+
+  /**
+   * The divider orientation.
+   */
+  orientation: prop_types__WEBPACK_IMPORTED_MODULE_5___default().oneOf(['horizontal', 'vertical']),
+
+  /**
+   * @ignore
+   */
+  role: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string),
+
+  /**
+   * The variant to use.
+   */
+  variant: prop_types__WEBPACK_IMPORTED_MODULE_5___default().oneOf(['fullWidth', 'inset', 'middle'])
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_styles_withStyles__WEBPACK_IMPORTED_MODULE_6__["default"])(styles, {
+  name: 'MuiDivider'
+})(Divider));
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/core/esm/FilledInput/FilledInput.js":
 /*!***********************************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/FilledInput/FilledInput.js ***!
@@ -25172,7 +25339,7 @@ var styles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__["default"]
     addBtn: {
       borderTopLeftRadius: 0,
       borderBottomLeftRadius: 0,
-      maxHeight: "55px",
+      height: "4.4rem",
       background: "#f6e0b5",
       "&:hover": {
         background: "#d2a56d"
@@ -25218,13 +25385,19 @@ function AddTodo(_ref) {
     className: cssClasses.addText,
     variant: "outlined",
     placeholder: "Add a new task",
+    multiline: true,
     autoFocus: true,
     fullWidth: true,
     InputProps: {
       className: cssClasses.input,
       startAdornment: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["default"], {
         position: "start"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material___WEBPACK_IMPORTED_MODULE_7__["default"], null), " ")
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material___WEBPACK_IMPORTED_MODULE_7__["default"], {
+        style: {
+          height: "2.3rem",
+          width: "2.3rem"
+        }
+      }), " ")
     },
     value: todoText,
     onChange: function onChange(e) {
@@ -25232,7 +25405,7 @@ function AddTodo(_ref) {
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["default"], {
     item: true,
-    xs: 4,
+    xs: 8,
     sm: 1
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__["default"], {
     className: cssClasses.addBtn,
@@ -25329,9 +25502,12 @@ var styles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__["default"]
     input: {
       background: "rgba(223, 227, 238, 0.5)"
     },
-    desc: {
+    label: {
       display: "flex",
       justifyContent: "start"
+    },
+    desc: {
+      textAlign: "left"
     },
     checkbox: {
       "& .MuiSvgIcon-root": {
@@ -25425,6 +25601,7 @@ function SingleTodo(_ref) {
   }, isEditing ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__["default"], {
     className: cssClasses.text,
     variant: "outlined",
+    multiline: true,
     autoFocus: true,
     value: newDescription,
     onChange: function onChange(e) {
@@ -25434,7 +25611,12 @@ function SingleTodo(_ref) {
       className: cssClasses.input,
       startAdornment: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__["default"], {
         position: "start"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material__WEBPACK_IMPORTED_MODULE_9__["default"], null), " ")
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        style: {
+          height: "2.3rem",
+          width: "2.3rem"
+        }
+      }), " ")
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__["default"], {
     className: cssClasses.save,
@@ -25445,7 +25627,7 @@ function SingleTodo(_ref) {
       return setIsEditing(false);
     }
   }, "Cancel"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    className: cssClasses.desc,
+    className: cssClasses.label,
     control: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__["default"], {
       className: cssClasses.checkbox,
       onChange: function onChange() {
@@ -25453,7 +25635,9 @@ function SingleTodo(_ref) {
       },
       checked: todo.isCompleted
     }),
-    label: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, todo.description)
+    label: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+      className: cssClasses.desc
+    }, todo.description)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
     className: cssClasses.edit,
     onClick: function onClick() {
@@ -25461,6 +25645,7 @@ function SingleTodo(_ref) {
     }
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["default"], {
     item: true,
+    xs: 8,
     sm: 1
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_14__["default"], {
     className: cssClasses.iconButton,
@@ -25477,8 +25662,8 @@ function SingleTodo(_ref) {
     className: cssClasses["delete"],
     style: {
       fill: hover ? "#fbe7a1" : "#e4d5b7",
-      height: hover ? "140%" : "100%",
-      width: hover ? "140%" : "100%"
+      height: hover ? "70px" : "60px",
+      width: hover ? "70px" : "60px"
     }
   }))));
 }
@@ -25516,8 +25701,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_actions_thunks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/actions/thunks */ "./client/store/actions/thunks.js");
 /* harmony import */ var _AddTodo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddTodo */ "./client/components/todo/AddTodo.js");
 /* harmony import */ var _SingleTodo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SingleTodo */ "./client/components/todo/SingleTodo.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Container/Container.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Container/Container.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Divider/Divider.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -25534,6 +25721,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+var styles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__["default"])(function (theme) {
+  return {
+    divider: {
+      borderBottom: "2px solid #99aab5"
+    }
+  };
+});
 function Todos(_ref) {
   var todos = _ref.todos,
     fetchTodos = _ref.fetchTodos;
@@ -25541,21 +25736,31 @@ function Todos(_ref) {
     _useState2 = _slicedToArray(_useState, 2),
     todoList = _useState2[0],
     setTodoList = _useState2[1];
+  var cssClasses = styles();
+  var sortedTodos = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
+    if (todos) {
+      return _toConsumableArray(todos).sort(function (a, b) {
+        return new Date(a.createdAt) - new Date(b.createdAt);
+      });
+    }
+  }, [todos]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchTodos();
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (todos) {
-      setTodoList(_toConsumableArray(todos).sort(function (a, b) {
-        return new Date(a.createdAt) - new Date(b.createdAt);
-      }));
+      setTodoList(sortedTodos);
     }
   }, [todos]);
-  console.log("todoList", todoList);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  console.log("todoList", todoList); // TODO: remove later
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["default"], {
     maxWidth: "lg"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "TODO List")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_AddTodo__WEBPACK_IMPORTED_MODULE_3__["default"], null), todoList && todoList.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, todoList.map(function (todo) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "TODO List")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_AddTodo__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    className: cssClasses.divider,
+    variant: "fullWidth"
+  }), todoList && todoList.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, todoList.map(function (todo) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__["default"], {
       container: true,
       justifyContent: "center",
       alignItems: "center",

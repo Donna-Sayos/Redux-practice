@@ -50,7 +50,7 @@ const styles = makeStyles((theme) => ({
   completedDesc: {
     textAlign: "left",
     textDecoration: "line-through",
-    color: "#d6c7c7",
+    color: "	#a47c48",
     fontStyle: "italic",
   },
   checkbox: {
@@ -58,7 +58,13 @@ const styles = makeStyles((theme) => ({
       fontSize: 30,
     },
     cursor: "pointer",
-    marginLeft: "40px",
+  },
+  checkboxChecked: {
+    "& .MuiSvgIcon-root": {
+      fontSize: 30,
+      fill: "	#a47c48",
+    },
+    cursor: "pointer",
   },
   edit: {
     position: "absolute",
@@ -109,7 +115,6 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newDescription, setNewDescription] = useState(todo.description);
   const [hover, setHover] = useState(false);
-  const [isCompleted, setIsCompleted] = useState(false);
   const cssClasses = styles();
 
   const saveHandler = () => {
@@ -164,7 +169,12 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
               className={cssClasses.label}
               control={
                 <Checkbox
-                  className={cssClasses.checkbox}
+                  className={
+                    todo.isCompleted
+                      ? cssClasses.checkboxChecked
+                      : cssClasses.checkbox
+                  }
+                  color="primary"
                   onChange={() => toggleTodo(todo.id)}
                   checked={todo.isCompleted}
                 />

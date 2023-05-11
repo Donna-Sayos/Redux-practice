@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
 import { Button, TextField, Grid, InputAdornment } from "@material-ui/core";
@@ -27,7 +27,7 @@ const styles = makeStyles((theme) => ({
   addBtn: {
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
-    maxHeight: "58px",
+    height: "4.4rem",
     background: "#f6e0b5",
     "&:hover": {
       background: "#d2a56d",

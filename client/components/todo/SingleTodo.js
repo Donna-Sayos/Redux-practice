@@ -19,7 +19,14 @@ const styles = makeStyles((theme) => ({
   card: {
     padding: "0px",
     textAlign: "center",
-    backgroundColor: "#c89f73",
+    backgroundColor: "#cdaa7d",
+    position: "relative",
+    cursor: "default",
+  },
+  cardChecked: {
+    padding: "0px",
+    textAlign: "center",
+    backgroundColor: "#726255",
     position: "relative",
     cursor: "default",
   },
@@ -50,7 +57,7 @@ const styles = makeStyles((theme) => ({
   completedDesc: {
     textAlign: "left",
     textDecoration: "line-through",
-    color: "	#a47c48",
+    color: "#967259",
     fontStyle: "italic",
   },
   checkbox: {
@@ -62,7 +69,7 @@ const styles = makeStyles((theme) => ({
   checkboxChecked: {
     "& .MuiSvgIcon-root": {
       fontSize: 30,
-      fill: "	#a47c48",
+      fill: "#967259",
     },
     cursor: "pointer",
   },
@@ -77,6 +84,19 @@ const styles = makeStyles((theme) => ({
     border: "2px solid white",
     padding: "2px",
     backgroundColor: "#a3b899",
+    cursor: "pointer",
+  },
+  editChecked: {
+    position: "absolute",
+    top: "-10px",
+    right: "-10px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "50%",
+    border: "2px solid #a39193",
+    padding: "2px",
+    backgroundColor: "#777777",
     cursor: "pointer",
   },
   delete: {
@@ -131,7 +151,12 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
   return (
     <>
       <Grid item xs={8} sm={6}>
-        <Card className={cssClasses.card} raised>
+        <Card
+          className={
+            todo.isCompleted ? cssClasses.cardChecked : cssClasses.card
+          }
+          raised={todo.isCompleted ? false : true}
+        >
           {isEditing ? (
             <div>
               <TextField
@@ -193,7 +218,10 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
             />
           )}
           <Edit
-            className={cssClasses.edit}
+            className={
+              todo.isCompleted ? cssClasses.editChecked : cssClasses.edit
+            }
+            style={todo.isCompleted ? { fill: "#be9b7b" } : { fill: "white" }}
             onClick={() => setIsEditing(true)}
           />
         </Card>

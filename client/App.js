@@ -15,14 +15,18 @@ const styles = makeStyles((theme) => ({
   },
   hanger: {
     position: "absolute",
-    top: "-0.94%",
-    left: "32%", // TODO: adjust position and size of IMG
+    top: "4%",
+    top: `calc(${35 * 2}px - 4.5rem)`,
+    transform: "translateX(-50%)",
+    width: "65%",
+    height: "35rem",
+    imageRendering: "pixelated",
   },
 }));
 
 const styleProp = {
   box: {
-    marginTop: "6rem",
+    marginTop: "4rem",
     boxShadow: `
           0px 0px 1px rgb(73,121,107),
           0px 1px 1px rgb(73,121,107),

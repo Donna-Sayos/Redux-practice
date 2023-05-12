@@ -293,9 +293,9 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
           <DeleteForever
             className={cssClasses.delete}
             style={{
-              fill: hover ? "#fbe7a1" : "#e4d5b7",
-              height: hover ? "60px" : "45px",
-              width: hover ? "60px" : "45px",
+              fill: hover ? "#ff7878" : "#f6d9d5",
+              height: hover ? "65px" : "55px",
+              width: hover ? "65px" : "55px",
             }}
           />
         </IconButton>

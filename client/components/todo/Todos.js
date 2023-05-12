@@ -39,9 +39,9 @@ const styles = makeStyles((theme) => ({
       4px 6px 1px rgb(179,139,103)`,
   },
   options: {
+    textTransform: "none",
     "& .MuiButton-label": {
-      fontSize: "1.5rem",
-      fontSize: "2rem",
+      fontSize: "2.5rem",
       color: "#dde6d5",
       textShadow: `
         0px 0px 1px rgb(73,121,107),
@@ -58,22 +58,24 @@ const styles = makeStyles((theme) => ({
     },
   },
   activeOptions: {
+    textTransform: "uppercase",
     "& .MuiButton-label": {
-      color: "#f7cac9",
+      color: "#ddfffc",
       textDecoration: "underline",
-      textUnderlineOffset: "0.5em",
+      textUnderlineOffset: "0.4em",
+      fontSize: "2.5rem",
       textShadow: `
-        0px 0px 1px rgb(193,75,75),
-        0px 1px 1px rgb(193,75,75),
-        0px 2px 1px rgb(193,75,75),
+        0px 0px 1px rgb(57,109,124),
+        0px 1px 1px rgb(57,109,124),
+        0px 2px 1px rgb(57,109,124),
 
-        1px 1px 1px rgb(193,75,75),
-        1px 2px 1px rgb(193,75,75),
-        1px 3px 1px rgb(193,75,75),
+        1px 1px 1px rgb(57,109,124),
+        1px 2px 1px rgb(57,109,124),
+        1px 3px 1px rgb(57,109,124),
 
-        2px 2px 1px rgb(193,75,75),
-        2px 3px 1px rgb(193,75,75),
-        2px 4px 1px rgb(193,75,75)`,
+        2px 2px 1px rgb(57,109,124),
+        2px 3px 1px rgb(57,109,124),
+        2px 4px 1px rgb(57,109,124)`,
     },
   },
   divider: {
@@ -107,7 +109,7 @@ const styles = makeStyles((theme) => ({
       2px 4px 1px rgb(73,121,107)`,
     transition: "transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out",
     "& .MuiButton-label": {
-      fontSize: "1.5rem",
+      fontSize: "1.6rem",
     },
     "&:hover": {
       transform: "translateY(-3px)",
@@ -187,8 +189,13 @@ function Todos({ todos, fetchTodos, clearTodos }) {
         <h1 className={cssClasses.header}>TODO List</h1>
       </div>
       <AddTodo />
-      <Grid container justifyContent="space-evenly" alignItems="center">
-        <Grid item xs={8} sm={2}>
+      <Grid
+        container
+        spacing={2}
+        justifyContent="space-evenly"
+        alignItems="center"
+      >
+        <Grid item>
           <Button
             className={`${cssClasses.options} ${
               filterOptions === "all" && cssClasses.activeOptions
@@ -198,7 +205,7 @@ function Todos({ todos, fetchTodos, clearTodos }) {
             All
           </Button>
         </Grid>
-        <Grid item xs={8} sm={2}>
+        <Grid item>
           <Button
             className={`${cssClasses.options} ${
               filterOptions === "incomplete" && cssClasses.activeOptions
@@ -208,7 +215,7 @@ function Todos({ todos, fetchTodos, clearTodos }) {
             Incomplete
           </Button>
         </Grid>
-        <Grid item xs={8} sm={2}>
+        <Grid item>
           <Button
             className={`${cssClasses.options} ${
               filterOptions === "completed" && cssClasses.activeOptions
@@ -218,8 +225,10 @@ function Todos({ todos, fetchTodos, clearTodos }) {
             Completed
           </Button>
         </Grid>
-        <Grid item xs={8} sm={2}>
-          <Button className={cssClasses.clear}>CLEAR</Button>
+        <Grid item>
+          <Button className={cssClasses.clear} onClick={() => clearTodos()}>
+            CLEAR
+          </Button>
         </Grid>
       </Grid>
       <Divider className={cssClasses.divider} variant="fullWidth" />

@@ -60,7 +60,7 @@ export default function App() {
 
   return (
     <Paper className={cssClasses.paper} style={boxShadow}>
-      <div className={cssClasses.hanger} />
+      <img src={CLIP} className={cssClasses.hanger} />
       <Todos />
     </Paper>
   );

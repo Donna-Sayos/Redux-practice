@@ -39,7 +39,7 @@ const styles = makeStyles((theme) => ({
   addBtn: {
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
-    height: "4.4rem",
+    height: "5rem",
     background: "#f6e0b5",
     boxShadow: `
         0px 0px 1px rgb(219,193,172),

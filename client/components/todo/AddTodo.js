@@ -41,6 +41,11 @@ const styles = makeStyles((theme) => ({
     borderBottomLeftRadius: 0,
     height: "4.4rem",
     background: "#f6e0b5",
+    "& .MuiButton-label": {
+      fontSize: "3.5rem",
+      fontWeight: "bold",
+      color: "#96613d",
+    },
     boxShadow: `
         0px 0px 1px rgb(219,193,172),
         0px 1px 1px rgb(219,193,172),
@@ -55,13 +60,9 @@ const styles = makeStyles((theme) => ({
         2px 4px 1px rgb(219,193,172)`,
     "&:hover": {
       background: "#d2a56d",
-    },
-  },
-  plus: {
-    fontSize: "3.5rem",
-    color: "#96613d",
-    "&:hover": {
-      color: "#f6e0b5",
+      "& .MuiButton-label": {
+        color: "#f6e0b5",
+      },
     },
   },
 }));
@@ -103,7 +104,7 @@ function AddTodo({ addTodo }) {
             InputProps={{
               className: cssClasses.input,
               startAdornment: (
-                <InputAdornment position="start" >
+                <InputAdornment position="start">
                   <Assignment style={styleProp.hw} />{" "}
                 </InputAdornment>
               ),
@@ -113,13 +114,8 @@ function AddTodo({ addTodo }) {
           />
         </Grid>
         <Grid item xs={8} sm={1}>
-          <Button
-            className={cssClasses.addBtn}
-            variant="contained"
-            fullWidth
-            type="submit"
-          >
-            <b className={cssClasses.plus}>+</b>
+          <Button className={cssClasses.addBtn} fullWidth type="submit">
+            +
           </Button>
         </Grid>
       </Grid>

@@ -18,34 +18,34 @@ const styles = makeStyles((theme) => ({
   card: {
     padding: "0px",
     textAlign: "center",
-    backgroundColor: "#cdaa7d",
+    backgroundColor: "#e7c6a4",
     position: "relative",
     cursor: "default",
     boxShadow: `
-        0px 0px 1px rgb(179,139,103),
-        0px 1px 1px rgb(179,139,103),
-        0px 2px 1px rgb(179,139,103),
+        0px 0px 1px rgb(154,130,98),
+        0px 1px 1px rgb(154,130,98),
+        0px 2px 1px rgb(154,130,98),
 
-        1px 1px 1px rgb(179,139,103),
-        1px 2px 1px rgb(179,139,103),
-        1px 3px 1px rgb(179,139,103),
+        1px 1px 1px rgb(154,130,98),
+        1px 2px 1px rgb(154,130,98),
+        1px 3px 1px rgb(154,130,98),
 
-        2px 2px 1px rgb(179,139,103),
-        2px 3px 1px rgb(179,139,103),
-        2px 4px 1px rgb(179,139,103),
+        2px 2px 1px rgb(154,130,98),
+        2px 3px 1px rgb(154,130,98),
+        2px 4px 1px rgb(154,130,98),
 
-        3px 3px 1px rgb(179,139,103),
-        3px 4px 1px rgb(179,139,103),
-        3px 5px 1px rgb(179,139,103),
+        3px 3px 1px rgb(154,130,98),
+        3px 4px 1px rgb(154,130,98),
+        3px 5px 1px rgb(154,130,98),
 
-        4px 4px 1px rgb(179,139,103),
-        4px 5px 1px rgb(179,139,103),
-        4px 6px 1px rgb(179,139,103)`,
+        4px 4px 1px rgb(154,130,98),
+        4px 5px 1px rgb(154,130,98),
+        4px 6px 1px rgb(154,130,98)`,
   },
   cardChecked: {
     padding: "0px",
     textAlign: "center",
-    backgroundColor: "#726255",
+    backgroundColor: "#b38b67",
     position: "relative",
     cursor: "default",
   },
@@ -72,7 +72,7 @@ const styles = makeStyles((theme) => ({
   },
   incompleteDesc: {
     textAlign: "left",
-    fontSize: "1.7rem",
+    fontSize: "2rem",
     textShadow: `
       0px 0px 1px rgb(179,139,103),
       0px 1px 1px rgb(179,139,103),
@@ -89,12 +89,13 @@ const styles = makeStyles((theme) => ({
   completedDesc: {
     textAlign: "left",
     textDecoration: "line-through",
-    color: "#967259",
+    color: "#d9b380",
     fontStyle: "italic",
   },
   checkbox: {
     "& .MuiSvgIcon-root": {
       fontSize: 30,
+      fill: "#b38b67",
       boxShadow: `
         0px 0px 1px rgb(179,139,103),
         0px 1px 1px rgb(179,139,103),
@@ -117,7 +118,7 @@ const styles = makeStyles((theme) => ({
   checkboxChecked: {
     "& .MuiSvgIcon-root": {
       fontSize: 30,
-      fill: "#967259",
+      fill: "#d9b380",
     },
     cursor: "pointer",
   },
@@ -129,7 +130,7 @@ const styles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: "50%",
-    border: "2px solid white",
+    border: "2px solid #fdf5e2",
     padding: "2px",
     backgroundColor: "#a3b899",
     cursor: "pointer",
@@ -142,9 +143,9 @@ const styles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: "50%",
-    border: "2px solid #a39193",
+    border: "2px solid #cbbeb5",
     padding: "2px",
-    backgroundColor: "#777777",
+    backgroundColor: "#667b68",
     cursor: "default",
   },
   delete: {
@@ -274,7 +275,7 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
             className={
               todo.isCompleted ? cssClasses.editChecked : cssClasses.edit
             }
-            style={todo.isCompleted ? { fill: "#be9b7b" } : { fill: "white" }}
+            style={todo.isCompleted ? { fill: "#cbbeb5" } : { fill: "#fdf5e2" }}
             onClick={() => {
               if (!todo.isCompleted) setIsEditing(true);
             }}
@@ -293,7 +294,7 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
           <DeleteForever
             className={cssClasses.delete}
             style={{
-              fill: hover ? "#ff7878" : "#f6d9d5",
+              fill: hover ? "#b88c8c" : "#fceee9",
               height: hover ? "65px" : "55px",
               width: hover ? "65px" : "55px",
             }}

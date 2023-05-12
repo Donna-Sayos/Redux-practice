@@ -42,7 +42,29 @@ const styles = makeStyles((theme) => ({
     textTransform: "none",
     "& .MuiButton-label": {
       fontSize: "2.5rem",
-      color: "#dde6d5",
+      color: "#ddfffc",
+      textShadow: `
+        0px 0px 1px rgb(140,171,168), 
+        0px 1px 1px rgb(140,171,168),
+        0px 2px 1px rgb(140,171,168),
+
+        1px 1px 1px rgb(140,171,168),
+        1px 2px 1px rgb(140,171,168),
+        1px 3px 1px rgb(140,171,168),
+
+        2px 2px 1px rgb(140,171,168),
+        2px 3px 1px rgb(140,171,168),
+        2px 4px 1px rgb(140,171,168)`,
+    },
+  },
+  activeOptions: {
+    textTransform: "uppercase",
+    "& .MuiButton-label": {
+      color: "#daffe7",
+      textDecoration: "underline",
+      textDecorationColor: "#5f9ea0",
+      textUnderlineOffset: "0.5em",
+      fontSize: "2.5rem",
       textShadow: `
         0px 0px 1px rgb(73,121,107),
         0px 1px 1px rgb(73,121,107),
@@ -57,31 +79,11 @@ const styles = makeStyles((theme) => ({
         2px 4px 1px rgb(73,121,107)`,
     },
   },
-  activeOptions: {
-    textTransform: "uppercase",
-    "& .MuiButton-label": {
-      color: "#ddfffc",
-      borderBottom: "4px solid #83adb5",
-      fontSize: "2.5rem",
-      textShadow: `
-        0px 0px 1px rgb(118,182,196),
-        0px 1px 1px rgb(118,182,196),
-        0px 2px 1px rgb(118,182,196),
-
-        1px 1px 1px rgb(118,182,196),
-        1px 2px 1px rgb(118,182,196),
-        1px 3px 1px rgb(118,182,196),
-
-        2px 2px 1px rgb(118,182,196),
-        2px 3px 1px rgb(118,182,196),
-        2px 4px 1px rgb(118,182,196)`,
-    },
-  },
   divider: {
     borderBottom: "2px solid #99aab5",
   },
   clear: {
-    backgroundColor: "#a3c1ad",
+    backgroundColor: "#b8d8be",
     borderRadius: 5,
     border: "1px solid #008080",
     height: "3rem",
@@ -95,17 +97,17 @@ const styles = makeStyles((theme) => ({
       1px 2px 1px rgb(102,123,104),
       1px 3px 1px rgb(102,123,104)`,
     boxShadow: `
-      0px 0px 1px rgb(73,121,107),
-      0px 1px 1px rgb(73,121,107),
-      0px 2px 1px rgb(73,121,107),
+      0px 0px 1px rgb(57,133,100),
+      0px 1px 1px rgb(57,133,100),
+      0px 2px 1px rgb(57,133,100),
 
-      1px 1px 1px rgb(73,121,107),
-      1px 2px 1px rgb(73,121,107),
-      1px 3px 1px rgb(73,121,107),
+      1px 1px 1px rgb(57,133,100),
+      1px 2px 1px rgb(57,133,100),
+      1px 3px 1px rgb(57,133,100),
 
-      2px 2px 1px rgb(73,121,107),
-      2px 3px 1px rgb(73,121,107),
-      2px 4px 1px rgb(73,121,107)`,
+      2px 2px 1px rgb(57,133,100),
+      2px 3px 1px rgb(57,133,100),
+      2px 4px 1px rgb(57,133,100)`,
     transition: "transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out",
     "& .MuiButton-label": {
       fontSize: "1.6rem",
@@ -113,9 +115,9 @@ const styles = makeStyles((theme) => ({
     "&:hover": {
       transform: "translateY(-3px)",
       boxShadow: "0px 2px 0px #3e8e41, 0px 5px 5px rgba(0, 0, 0, 0.1)",
-      backgroundColor: "#e2ffec",
+      backgroundColor: "#e1f7d5",
       "& .MuiButton-label": {
-        color: "#baf2ef",
+        color: "#fff5ee",
       },
     },
   },

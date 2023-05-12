@@ -27,7 +27,7 @@ const styleProp = {
   box: {
     marginTop: "4rem",
     paddingBottom: "2rem",
-    border: "2px solid rgb(73,121,107)",
+    border: "1px solid rgb(73,121,107)",
     boxShadow: `
           0px 0px 1px rgb(73,121,107),
           0px 1px 1px rgb(73,121,107),

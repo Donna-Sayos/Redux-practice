@@ -16,7 +16,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const styles = makeStyles((theme) => ({
   header: {
     fontSize: "4rem",
-    marginTop: "4rem",
+    marginTop: "3rem",
     textShadow: `
       0px 0px 1px rgb(179,139,103),
       0px 1px 1px rgb(179,139,103),
@@ -59,6 +59,7 @@ const styles = makeStyles((theme) => ({
   clear: {
     backgroundColor: "#a3c1ad",
     borderRadius: 5,
+    border: "1px solid #008080",
     height: "3rem",
     width: "5rem",
     textShadow: `
@@ -85,6 +86,10 @@ const styles = makeStyles((theme) => ({
     "&:hover": {
       transform: "translateY(-3px)",
       boxShadow: "0px 2px 0px #3e8e41, 0px 5px 5px rgba(0, 0, 0, 0.1)",
+      backgroundColor: "#e2ffec",
+      "& .MuiButton-label": {
+        color: "#baf2ef",
+      },
     },
   },
 }));
@@ -131,9 +136,7 @@ function Todos({ todos, fetchTodos }) {
           <h1 className={cssClasses.options}>Completed</h1>
         </Grid>
         <Grid item xs={8} sm={2}>
-          <Button className={cssClasses.clear} variant="contained">
-            CLEAR
-          </Button>
+          <Button className={cssClasses.clear}>CLEAR</Button>
         </Grid>
       </Grid>
       <Divider className={cssClasses.divider} variant="fullWidth" />

@@ -14,14 +14,8 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-export default function App() {
-  const cssClasses = styles();
-
-  return (
-    <Paper
-      className={cssClasses.paper}
-      style={{
-        boxShadow: `
+const boxShadow = {
+  boxShadow: `
           0px 0px 1px rgb(73,121,107),
           0px 1px 1px rgb(73,121,107),
           0px 2px 1px rgb(73,121,107),
@@ -48,8 +42,20 @@ export default function App() {
           
           6px 6px 1px rgb(73,121,107),
           6px 7px 1px rgb(73,121,107),
-          6px 8px 1px rgb(73,121,107)`,
-      }}
+          6px 8px 1px rgb(73,121,107),
+          
+          7px 7px 1px rgb(73,121,107),
+          7px 8px 1px rgb(73,121,107),
+          7px 9px 1px rgb(73,121,107)`,
+};
+
+export default function App() {
+  const cssClasses = styles();
+
+  return (
+    <Paper
+      className={cssClasses.paper}
+      style={boxShadow}
     >
       <Todos />
     </Paper>

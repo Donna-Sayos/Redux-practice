@@ -61,21 +61,20 @@ const styles = makeStyles((theme) => ({
     textTransform: "uppercase",
     "& .MuiButton-label": {
       color: "#ddfffc",
-      textDecoration: "underline",
-      textUnderlineOffset: "0.4em",
+      borderBottom: "4px solid #83adb5",
       fontSize: "2.5rem",
       textShadow: `
-        0px 0px 1px rgb(57,109,124),
-        0px 1px 1px rgb(57,109,124),
-        0px 2px 1px rgb(57,109,124),
+        0px 0px 1px rgb(118,182,196),
+        0px 1px 1px rgb(118,182,196),
+        0px 2px 1px rgb(118,182,196),
 
-        1px 1px 1px rgb(57,109,124),
-        1px 2px 1px rgb(57,109,124),
-        1px 3px 1px rgb(57,109,124),
+        1px 1px 1px rgb(118,182,196),
+        1px 2px 1px rgb(118,182,196),
+        1px 3px 1px rgb(118,182,196),
 
-        2px 2px 1px rgb(57,109,124),
-        2px 3px 1px rgb(57,109,124),
-        2px 4px 1px rgb(57,109,124)`,
+        2px 2px 1px rgb(118,182,196),
+        2px 3px 1px rgb(118,182,196),
+        2px 4px 1px rgb(118,182,196)`,
     },
   },
   divider: {

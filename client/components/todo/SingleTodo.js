@@ -22,6 +22,26 @@ const styles = makeStyles((theme) => ({
     backgroundColor: "#cdaa7d",
     position: "relative",
     cursor: "default",
+    boxShadow: `
+        0px 0px 1px rgb(179,139,103),
+        0px 1px 1px rgb(179,139,103),
+        0px 2px 1px rgb(179,139,103),
+
+        1px 1px 1px rgb(179,139,103),
+        1px 2px 1px rgb(179,139,103),
+        1px 3px 1px rgb(179,139,103),
+
+        2px 2px 1px rgb(179,139,103),
+        2px 3px 1px rgb(179,139,103),
+        2px 4px 1px rgb(179,139,103),
+
+        3px 3px 1px rgb(179,139,103),
+        3px 4px 1px rgb(179,139,103),
+        3px 5px 1px rgb(179,139,103),
+
+        4px 4px 1px rgb(179,139,103),
+        4px 5px 1px rgb(179,139,103),
+        4px 6px 1px rgb(179,139,103)`,
   },
   cardChecked: {
     padding: "0px",
@@ -53,6 +73,19 @@ const styles = makeStyles((theme) => ({
   },
   incompleteDesc: {
     textAlign: "left",
+    fontSize: "1.7rem",
+    textShadow: `
+      0px 0px 1px rgb(179,139,103),
+      0px 1px 1px rgb(179,139,103),
+      0px 2px 1px rgb(179,139,103),
+
+      1px 1px 1px rgb(179,139,103),
+      1px 2px 1px rgb(179,139,103),
+      1px 3px 1px rgb(179,139,103),
+
+      2px 2px 1px rgb(179,139,103),
+      2px 3px 1px rgb(179,139,103),
+      2px 4px 1px rgb(179,139,103)`,
   },
   completedDesc: {
     textAlign: "left",
@@ -63,6 +96,22 @@ const styles = makeStyles((theme) => ({
   checkbox: {
     "& .MuiSvgIcon-root": {
       fontSize: 30,
+      boxShadow: `
+        0px 0px 1px rgb(179,139,103),
+        0px 1px 1px rgb(179,139,103),
+        0px 2px 1px rgb(179,139,103),
+
+        1px 1px 1px rgb(179,139,103),
+        1px 2px 1px rgb(179,139,103),
+        1px 3px 1px rgb(179,139,103),
+
+        2px 2px 1px rgb(179,139,103),
+        2px 3px 1px rgb(179,139,103),
+        2px 4px 1px rgb(179,139,103),
+
+        3px 3px 1px rgb(179,139,103),
+        3px 4px 1px rgb(179,139,103),
+        3px 5px 1px rgb(179,139,103)`,
     },
     cursor: "pointer",
   },
@@ -155,7 +204,6 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
           className={
             todo.isCompleted ? cssClasses.cardChecked : cssClasses.card
           }
-          raised={todo.isCompleted ? false : true}
         >
           {isEditing ? (
             <div>

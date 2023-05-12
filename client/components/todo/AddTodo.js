@@ -11,6 +11,18 @@ const styles = makeStyles((theme) => ({
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
       color: "#8b6914",
+      boxShadow: `
+        0px 0px 1px rgb(140,171,168),
+        0px 1px 1px rgb(140,171,168),
+        0px 2px 1px rgb(140,171,168),
+
+        0px 1px 1px rgb(140,171,168),
+        0px 2px 1px rgb(140,171,168),
+        0px 3px 1px rgb(140,171,168),
+
+        0px 2px 1px rgb(140,171,168),
+        0px 3px 1px rgb(140,171,168),
+        0px 4px 1px rgb(140,171,168)`,
     },
     "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
       borderColor: "rgba(223, 227, 238, 0.5)",
@@ -29,6 +41,18 @@ const styles = makeStyles((theme) => ({
     borderBottomLeftRadius: 0,
     height: "4.4rem",
     background: "#f6e0b5",
+    boxShadow: `
+        0px 0px 1px rgb(219,193,172),
+        0px 1px 1px rgb(219,193,172),
+        0px 2px 1px rgb(219,193,172),
+
+        1px 1px 1px rgb(219,193,172),
+        1px 2px 1px rgb(219,193,172),
+        1px 3px 1px rgb(219,193,172),
+
+        2px 2px 1px rgb(219,193,172),
+        2px 3px 1px rgb(219,193,172),
+        2px 4px 1px rgb(219,193,172)`,
     "&:hover": {
       background: "#d2a56d",
     },
@@ -86,7 +110,6 @@ function AddTodo({ addTodo }) {
             className={cssClasses.addBtn}
             variant="contained"
             fullWidth
-            disableElevation
             type="submit"
           >
             <b className={cssClasses.plus}>+</b>

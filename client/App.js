@@ -16,12 +16,14 @@ const styles = makeStyles((theme) => ({
   hanger: {
     position: "absolute",
     top: "-0.94%",
-    left: "50%",
+    left: "32%", // TODO: adjust position and size of IMG
   },
 }));
 
-const boxShadow = {
-  boxShadow: `
+const styleProp = {
+  box: {
+    marginTop: "6rem",
+    boxShadow: `
           0px 0px 1px rgb(73,121,107),
           0px 1px 1px rgb(73,121,107),
           0px 2px 1px rgb(73,121,107),
@@ -53,13 +55,14 @@ const boxShadow = {
           7px 7px 1px rgb(73,121,107),
           7px 8px 1px rgb(73,121,107),
           7px 9px 1px rgb(73,121,107)`,
+  },
 };
 
 export default function App() {
   const cssClasses = styles();
 
   return (
-    <Paper className={cssClasses.paper} style={boxShadow}>
+    <Paper className={cssClasses.paper} style={styleProp.box}>
       <img src={CLIP} className={cssClasses.hanger} />
       <Todos />
     </Paper>

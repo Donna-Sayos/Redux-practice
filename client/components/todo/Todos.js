@@ -16,6 +16,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const styles = makeStyles((theme) => ({
   header: {
     fontSize: "4rem",
+    marginTop: "4rem",
     textShadow: `
       0px 0px 1px rgb(179,139,103),
       0px 1px 1px rgb(179,139,103),

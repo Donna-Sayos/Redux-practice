@@ -12,7 +12,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(logger);
-app.use(express.static(path.join(__dirname, "..", "dist", "bundle")));
+app.use(express.static(path.join(__dirname, "..", "dist")));
+app.use(
+  "/api/v1/assets",
+  express.static(path.join(__dirname, "..", "dist", "assets")) // serve static files from the assets folder
+);
 
 //routes
 app.use("/api/v1/todos", require("./routers/todoRoute"));

@@ -246,8 +246,8 @@ function Todos({ todos, fetchTodos, clearTodos }) {
           ))}
         </div>
       ) : (
-        <div>
-          <p>You have no tasks.</p>
+        <div style={{ marginTop: "4rem" }}>
+          <h1>You have no tasks.</h1>
         </div>
       )}
     </Container>

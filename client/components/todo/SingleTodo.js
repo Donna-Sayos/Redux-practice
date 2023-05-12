@@ -13,7 +13,6 @@ import {
 } from "@material-ui/core";
 import { Edit, DeleteForever, Assignment } from "@mui/icons-material";
 import { makeStyles } from "@material-ui/core/styles";
-import { transform } from "lodash";
 
 const styles = makeStyles((theme) => ({
   card: {
@@ -211,7 +210,13 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
                 className={cssClasses.text}
                 variant="outlined"
                 multiline={true}
-                autoFocus
+                inputRef={(input) => input && input.focus()}
+                onFocus={(e) => {
+                  e.currentTarget.setSelectionRange(
+                    e.currentTarget.value.length,
+                    e.currentTarget.value.length
+                  );
+                }}
                 value={newDescription}
                 onChange={(e) => setNewDescription(e.target.value)}
                 InputProps={{

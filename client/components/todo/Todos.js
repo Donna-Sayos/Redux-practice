@@ -80,11 +80,7 @@ const styles = makeStyles((theme) => ({
 
       2px 2px 1px rgb(73,121,107),
       2px 3px 1px rgb(73,121,107),
-      2px 4px 1px rgb(73,121,107),
-
-      3px 3px 1px rgb(73,121,107),
-      3px 4px 1px rgb(73,121,107),
-      3px 5px 1px rgb(73,121,107)`,
+      2px 4px 1px rgb(73,121,107)`,
     transition: "transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out",
     "&:hover": {
       transform: "translateY(-3px)",

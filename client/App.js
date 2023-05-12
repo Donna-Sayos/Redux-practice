@@ -6,7 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const styles = makeStyles((theme) => ({
   paper: {
-    padding: "5px",
     textAlign: "center",
     color: "#faf0e6 !important",
     backgroundColor: "#5f9ea0 !important",
@@ -27,6 +26,8 @@ const styles = makeStyles((theme) => ({
 const styleProp = {
   box: {
     marginTop: "4rem",
+    paddingBottom: "2rem",
+    border: "2px solid rgb(73,121,107)",
     boxShadow: `
           0px 0px 1px rgb(73,121,107),
           0px 1px 1px rgb(73,121,107),

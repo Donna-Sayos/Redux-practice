@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
 import AddTodo from "./AddTodo";
@@ -39,19 +39,42 @@ const styles = makeStyles((theme) => ({
       4px 6px 1px rgb(179,139,103)`,
   },
   options: {
-    color: "#dde6d5",
-    textShadow: `
-      0px 0px 1px rgb(73,121,107),
-      0px 1px 1px rgb(73,121,107),
-      0px 2px 1px rgb(73,121,107),
+    "& .MuiButton-label": {
+      fontSize: "1.5rem",
+      fontSize: "2rem",
+      color: "#dde6d5",
+      textShadow: `
+        0px 0px 1px rgb(73,121,107),
+        0px 1px 1px rgb(73,121,107),
+        0px 2px 1px rgb(73,121,107),
 
-      1px 1px 1px rgb(73,121,107),
-      1px 2px 1px rgb(73,121,107),
-      1px 3px 1px rgb(73,121,107),
+        1px 1px 1px rgb(73,121,107),
+        1px 2px 1px rgb(73,121,107),
+        1px 3px 1px rgb(73,121,107),
 
-      2px 2px 1px rgb(73,121,107),
-      2px 3px 1px rgb(73,121,107),
-      2px 4px 1px rgb(73,121,107)`,
+        2px 2px 1px rgb(73,121,107),
+        2px 3px 1px rgb(73,121,107),
+        2px 4px 1px rgb(73,121,107)`,
+    },
+  },
+  activeOptions: {
+    "& .MuiButton-label": {
+      color: "#f7cac9",
+      textDecoration: "underline",
+      textUnderlineOffset: "0.5em",
+      textShadow: `
+        0px 0px 1px rgb(193,75,75),
+        0px 1px 1px rgb(193,75,75),
+        0px 2px 1px rgb(193,75,75),
+
+        1px 1px 1px rgb(193,75,75),
+        1px 2px 1px rgb(193,75,75),
+        1px 3px 1px rgb(193,75,75),
+
+        2px 2px 1px rgb(193,75,75),
+        2px 3px 1px rgb(193,75,75),
+        2px 4px 1px rgb(193,75,75)`,
+    },
   },
   divider: {
     borderBottom: "2px solid #99aab5",
@@ -61,7 +84,7 @@ const styles = makeStyles((theme) => ({
     borderRadius: 5,
     border: "1px solid #008080",
     height: "3rem",
-    width: "5rem",
+    width: "7.5rem",
     textShadow: `
       0px 0px 1px rgb(102,123,104),
       0px 1px 1px rgb(102,123,104),
@@ -83,6 +106,9 @@ const styles = makeStyles((theme) => ({
       2px 3px 1px rgb(73,121,107),
       2px 4px 1px rgb(73,121,107)`,
     transition: "transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out",
+    "& .MuiButton-label": {
+      fontSize: "1.5rem",
+    },
     "&:hover": {
       transform: "translateY(-3px)",
       boxShadow: "0px 2px 0px #3e8e41, 0px 5px 5px rgba(0, 0, 0, 0.1)",
@@ -94,18 +120,56 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-function Todos({ todos, fetchTodos }) {
+function Todos({ todos, fetchTodos, clearTodos }) {
   const [todoList, setTodoList] = useState([]);
+  const [filterOptions, setFilterOptions] = useState("all");
   // const [isLoading, setIsLoading] = useState(false); // TODO: will add after todos filtering is done
   const cssClasses = styles();
 
   const sortedTodos = useMemo(() => {
-    if (todos) {
+    if (todos && todos.length > 0) {
       return [...todos].sort(
         (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
       );
     }
+
+    return [];
   }, [todos]);
+
+  const sortedIncompleteTodos = useMemo(() => {
+    if (todos && todos.length > 0) {
+      return [...todos]
+        .filter((todo) => !todo.isCompleted)
+        .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    }
+
+    return [];
+  }, [todos]);
+
+  const sortedCompletedTodos = useMemo(() => {
+    if (todos && todos.length > 0) {
+      return [...todos]
+        .filter((todo) => todo.isCompleted)
+        .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    }
+
+    return [];
+  }, [todos]);
+
+  const handleAll = useCallback(() => {
+    setFilterOptions("all");
+    setTodoList(sortedTodos);
+  }, [sortedTodos]);
+
+  const handleIncomplete = useCallback(() => {
+    setFilterOptions("incomplete");
+    setTodoList(sortedIncompleteTodos);
+  }, [sortedIncompleteTodos]);
+
+  const handleCompleted = useCallback(() => {
+    setFilterOptions("completed");
+    setTodoList(sortedCompletedTodos);
+  }, [sortedCompletedTodos]);
 
   useEffect(() => {
     fetchTodos();
@@ -115,25 +179,44 @@ function Todos({ todos, fetchTodos }) {
     if (todos) {
       setTodoList(sortedTodos);
     }
-  }, [todos]);
-
-  console.log("todoList", todoList); // TODO: remove later
+  }, [todos, sortedTodos]);
 
   return (
-    <Container maxWidth="lg">
+    <Container>
       <div>
         <h1 className={cssClasses.header}>TODO List</h1>
       </div>
       <AddTodo />
-      <Grid container justifyContent="center" alignItems="center">
+      <Grid container justifyContent="space-evenly" alignItems="center">
         <Grid item xs={8} sm={2}>
-          <h1 className={cssClasses.options}>All</h1>
+          <Button
+            className={`${cssClasses.options} ${
+              filterOptions === "all" && cssClasses.activeOptions
+            }`}
+            onClick={() => handleAll()}
+          >
+            All
+          </Button>
         </Grid>
         <Grid item xs={8} sm={2}>
-          <h1 className={cssClasses.options}>Incomplete</h1>
+          <Button
+            className={`${cssClasses.options} ${
+              filterOptions === "incomplete" && cssClasses.activeOptions
+            }`}
+            onClick={() => handleIncomplete()}
+          >
+            Incomplete
+          </Button>
         </Grid>
         <Grid item xs={8} sm={2}>
-          <h1 className={cssClasses.options}>Completed</h1>
+          <Button
+            className={`${cssClasses.options} ${
+              filterOptions === "completed" && cssClasses.activeOptions
+            }`}
+            onClick={() => handleCompleted()}
+          >
+            Completed
+          </Button>
         </Grid>
         <Grid item xs={8} sm={2}>
           <Button className={cssClasses.clear}>CLEAR</Button>

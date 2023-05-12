@@ -8,7 +8,7 @@ const styles = makeStyles((theme) => ({
   paper: {
     textAlign: "center",
     color: "#faf0e6 !important",
-    backgroundColor: "#5f9ea0 !important",
+    backgroundColor: "#aec8ce !important",
     minWidth: "90vw",
     minHeight: "90vh",
   },

@@ -6,3 +6,4 @@ package-lock.json
 server/config/.env
 server/db/sql/todo.sql
 server/db/queries/todoQueries.js
+dist

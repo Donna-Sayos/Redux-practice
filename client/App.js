@@ -1,4 +1,5 @@
 import React from "react";
+import CLIP from "./assets/clip.png";
 import Todos from "./components/todo/Todos";
 import { Paper } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,6 +12,11 @@ const styles = makeStyles((theme) => ({
     backgroundColor: "#5f9ea0 !important",
     minWidth: "90vw",
     minHeight: "90vh",
+  },
+  hanger: {
+    position: "absolute",
+    top: "-0.94%",
+    left: "50%",
   },
 }));
 
@@ -53,10 +59,8 @@ export default function App() {
   const cssClasses = styles();
 
   return (
-    <Paper
-      className={cssClasses.paper}
-      style={boxShadow}
-    >
+    <Paper className={cssClasses.paper} style={boxShadow}>
+      <div className={cssClasses.hanger} />
       <Todos />
     </Paper>
   );

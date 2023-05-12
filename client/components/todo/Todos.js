@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
 import AddTodo from "./AddTodo";
 import SingleTodo from "./SingleTodo";
-import { Button, Grid, Container, Divider } from "@material-ui/core";
+import { Button, Grid, Container, Divider, CircularProgress, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const styles = makeStyles((theme) => ({
@@ -14,6 +14,7 @@ const styles = makeStyles((theme) => ({
 
 function Todos({ todos, fetchTodos }) {
   const [todoList, setTodoList] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false); // TODO: will add after todos filtering is done
   const cssClasses = styles();
 
   const sortedTodos = useMemo(() => {
@@ -42,7 +43,7 @@ function Todos({ todos, fetchTodos }) {
         <h1>TODO List</h1>
       </div>
       <AddTodo />
-      <Grid container justifyContent="center">
+      <Grid container justifyContent="center" alignItems="center">
         <Grid item xs={8} sm={2}>
           All
         </Grid>
@@ -53,7 +54,9 @@ function Todos({ todos, fetchTodos }) {
           Completed
         </Grid>
         <Grid item xs={8} sm={2}>
-          CLEAR
+          <Button variant="contained" color="primary">
+            CLEAR
+          </Button>
         </Grid>
       </Grid>
       <Divider className={cssClasses.divider} variant="fullWidth" />

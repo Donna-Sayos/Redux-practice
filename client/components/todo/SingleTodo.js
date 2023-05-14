@@ -275,7 +275,7 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
             className={
               todo.isCompleted ? cssClasses.editChecked : cssClasses.edit
             }
-            style={todo.isCompleted ? { fill: "#cbbeb5" } : { fill: "#fdf5e2" }}
+            sx={todo.isCompleted ? { fill: "#cbbeb5" } : { fill: "#fdf5e2" }}
             onClick={() => {
               if (!todo.isCompleted) setIsEditing(true);
             }}
@@ -293,7 +293,7 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
         >
           <DeleteForever
             className={cssClasses.delete}
-            style={{
+            sx={{
               fill: hover ? "#b88c8c" : "#fceee9",
               height: hover ? "65px" : "55px",
               width: hover ? "65px" : "55px",

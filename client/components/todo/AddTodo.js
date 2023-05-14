@@ -105,7 +105,7 @@ function AddTodo({ addTodo }) {
               className: cssClasses.input,
               startAdornment: (
                 <InputAdornment position="start">
-                  <Assignment style={styleProp.hw} />{" "}
+                  <Assignment sx={styleProp.hw} />{" "}
                 </InputAdornment>
               ),
             }}

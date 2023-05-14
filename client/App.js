@@ -68,7 +68,7 @@ export default function App() {
   const cssClasses = styles();
 
   return (
-    <Paper className={cssClasses.paper} style={styleProp.box}>
+    <Paper className={cssClasses.paper} sx={styleProp.box}>
       <img src={CLIP} className={cssClasses.hanger} />
       <Todos />
     </Paper>

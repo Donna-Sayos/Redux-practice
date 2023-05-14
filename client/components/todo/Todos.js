@@ -9,7 +9,6 @@ import {
   Container,
   Divider,
   CircularProgress,
-  Typography,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -126,7 +125,8 @@ const styles = makeStyles((theme) => ({
 function Todos({ todos, fetchTodos, clearTodos }) {
   const [todoList, setTodoList] = useState([]);
   const [filterOptions, setFilterOptions] = useState("all");
-  const [isLoading, setIsLoading] = useState(false); // TODO: will add after todos filtering is done
+  const [isLoading, setIsLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
   const cssClasses = styles();
 
   const getSortedTodos = (todos, isCompleted = null) => {
@@ -189,6 +189,18 @@ function Todos({ todos, fetchTodos, clearTodos }) {
     }
   }, [todos, sortedTodos]);
 
+  useEffect(() => {
+    let unsubscribe;
+
+    unsubscribe = setInterval(() => {
+      setProgress((prevProgress) =>
+        prevProgress >= 100 ? 0 : prevProgress + 10
+      );
+    }, 500);
+
+    return () => unsubscribe;
+  }, []);
+
   return (
     <Container>
       <div>
@@ -238,7 +250,11 @@ function Todos({ todos, fetchTodos, clearTodos }) {
         </Grid>
       </Grid>
       <Divider className={cssClasses.divider} variant="fullWidth" />
-      {todoList && todoList.length > 0 ? (
+      {isLoading ? (
+        <div sx={{ marginTop: "2rem", textAlign: "center" }}>
+          <CircularProgress value={progress} />
+        </div>
+      ) : todoList && todoList.length > 0 ? (
         <div>
           {todoList.map((todo) => (
             <Grid

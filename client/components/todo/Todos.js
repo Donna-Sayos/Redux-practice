@@ -3,13 +3,8 @@ import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
 import AddTodo from "./AddTodo";
 import SingleTodo from "./SingleTodo";
-import {
-  Button,
-  Grid,
-  Container,
-  Divider,
-  CircularProgress,
-} from "@material-ui/core";
+import ProgressWithLabel from "../../utils/ProgressWithLabel";
+import { Button, Grid, Container, Divider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const styles = makeStyles((theme) => ({
@@ -126,6 +121,7 @@ function Todos({ todos, fetchTodos, clearTodos }) {
   const [todoList, setTodoList] = useState([]);
   const [filterOptions, setFilterOptions] = useState("all");
   const [isLoading, setIsLoading] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
   const [progress, setProgress] = useState(0);
   const cssClasses = styles();
 
@@ -190,15 +186,22 @@ function Todos({ todos, fetchTodos, clearTodos }) {
   }, [todos, sortedTodos]);
 
   useEffect(() => {
-    let unsubscribe;
+    setIsFinished(false);
 
-    unsubscribe = setInterval(() => {
-      setProgress((prevProgress) =>
-        prevProgress >= 100 ? 0 : prevProgress + 10
-      );
-    }, 500);
+    const timer = setInterval(() => {
+      setProgress((prev) => {
+        const nextProgress = (prev + 10) % 110;
 
-    return () => unsubscribe;
+        if (nextProgress === 0) {
+          clearInterval(timer);
+          setIsFinished(true);
+        }
+
+        return nextProgress;
+      });
+    }, 150);
+
+    return () => clearInterval(timer);
   }, []);
 
   return (
@@ -250,9 +253,9 @@ function Todos({ todos, fetchTodos, clearTodos }) {
         </Grid>
       </Grid>
       <Divider className={cssClasses.divider} variant="fullWidth" />
-      {isLoading ? (
+      {!isFinished && (todoList && todoList.length !== 0) ? (
         <div sx={{ marginTop: "2rem", textAlign: "center" }}>
-          <CircularProgress value={progress} />
+          <ProgressWithLabel value={progress} />
         </div>
       ) : todoList && todoList.length > 0 ? (
         <div>

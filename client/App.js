@@ -13,6 +13,7 @@ const styles = makeStyles((theme) => ({
     minHeight: "90vh",
   },
   hanger: {
+    filter: "contrast(70%)",
     position: "absolute",
     top: "4%",
     top: `calc(${35 * 2}px - 4.5rem)`,

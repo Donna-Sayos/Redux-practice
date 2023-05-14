@@ -126,38 +126,43 @@ const styles = makeStyles((theme) => ({
 function Todos({ todos, fetchTodos, clearTodos }) {
   const [todoList, setTodoList] = useState([]);
   const [filterOptions, setFilterOptions] = useState("all");
-  // const [isLoading, setIsLoading] = useState(false); // TODO: will add after todos filtering is done
+  const [isLoading, setIsLoading] = useState(false); // TODO: will add after todos filtering is done
   const cssClasses = styles();
 
-  const sortedTodos = useMemo(() => {
-    if (todos && todos.length > 0) {
-      return [...todos].sort(
+  const getSortedTodos = (todos, isCompleted = null) => {
+    setIsLoading(true);
+
+    try {
+      let filteredTodos = todos;
+
+      if (isCompleted !== null) {
+        filteredTodos = todos.filter(
+          (todo) => todo.isCompleted === isCompleted
+        );
+      }
+
+      const sortedTodos = [...filteredTodos].sort(
         (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
       );
+
+      return sortedTodos;
+    } catch (err) {
+      console.log(`Error at getSortedTodos: ${err}`);
+      return [];
+    } finally {
+      setIsLoading(false);
     }
+  };
 
-    return [];
-  }, [todos]);
-
-  const sortedIncompleteTodos = useMemo(() => {
-    if (todos && todos.length > 0) {
-      return [...todos]
-        .filter((todo) => !todo.isCompleted)
-        .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-    }
-
-    return [];
-  }, [todos]);
-
-  const sortedCompletedTodos = useMemo(() => {
-    if (todos && todos.length > 0) {
-      return [...todos]
-        .filter((todo) => todo.isCompleted)
-        .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-    }
-
-    return [];
-  }, [todos]);
+  const sortedTodos = useMemo(() => getSortedTodos(todos), [todos]);
+  const sortedIncompleteTodos = useMemo(
+    () => getSortedTodos(todos, false),
+    [todos]
+  );
+  const sortedCompletedTodos = useMemo(
+    () => getSortedTodos(todos, true),
+    [todos]
+  );
 
   const handleAll = useCallback(() => {
     setFilterOptions("all");

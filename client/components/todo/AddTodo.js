@@ -82,8 +82,10 @@ function AddTodo({ addTodo }) {
     e.preventDefault();
 
     if (todoText) {
+      const capitalizedTodoText = todoText.charAt(0).toUpperCase() + todoText.slice(1);
+
       addTodo({
-        description: todoText,
+        description: capitalizedTodoText,
       });
 
       setTodoText("");

@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, CircularProgress, Box } from "@material-ui/core";
 
-export default function ProgressWithLabel(props) {
+export default function ProgressWithLabel(props) { // FIXME: needs to fix STYLING
   const { value } = props;
 
   return (

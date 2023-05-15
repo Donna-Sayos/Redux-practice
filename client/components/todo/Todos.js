@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  useMemo,
-  useCallback,
-  useLayoutEffect,
-} from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
 import AddTodo from "./AddTodo";
@@ -183,7 +177,7 @@ function Todos({ todos, fetchTodos, clearTodos }) {
   useEffect(() => {
     if (todos && todos.length > 0) {
       setTodoList(sortedTodos);
-    } 
+    }
   }, [todos, sortedTodos]);
 
   useEffect(() => {

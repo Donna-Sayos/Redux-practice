@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useMemo, useCallback } from "react";
+import React, {
+  useEffect,
+  useState,
+  useMemo,
+  useCallback,
+  useLayoutEffect,
+} from "react";
 import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
 import AddTodo from "./AddTodo";
@@ -120,14 +126,11 @@ const styles = makeStyles((theme) => ({
 function Todos({ todos, fetchTodos, clearTodos }) {
   const [todoList, setTodoList] = useState([]);
   const [filterOptions, setFilterOptions] = useState("all");
-  const [isLoading, setIsLoading] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [progress, setProgress] = useState(0);
   const cssClasses = styles();
 
   const getSortedTodos = (todos, isCompleted = null) => {
-    setIsLoading(true);
-
     try {
       let filteredTodos = todos;
 
@@ -145,8 +148,6 @@ function Todos({ todos, fetchTodos, clearTodos }) {
     } catch (err) {
       console.log(`Error at getSortedTodos: ${err}`);
       return [];
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -180,14 +181,12 @@ function Todos({ todos, fetchTodos, clearTodos }) {
   }, []);
 
   useEffect(() => {
-    if (todos) {
+    if (todos && todos.length > 0) {
       setTodoList(sortedTodos);
-    }
+    } 
   }, [todos, sortedTodos]);
 
   useEffect(() => {
-    setIsFinished(false);
-
     const timer = setInterval(() => {
       setProgress((prev) => {
         const nextProgress = (prev + 10) % 110;
@@ -199,7 +198,7 @@ function Todos({ todos, fetchTodos, clearTodos }) {
 
         return nextProgress;
       });
-    }, 150);
+    }, 50);
 
     return () => clearInterval(timer);
   }, []);
@@ -253,11 +252,15 @@ function Todos({ todos, fetchTodos, clearTodos }) {
         </Grid>
       </Grid>
       <Divider className={cssClasses.divider} variant="fullWidth" />
-      {!isFinished && (todoList && todoList.length !== 0) ? (
-        <div sx={{ marginTop: "2rem", textAlign: "center" }}>
+      {todos.length === 0 && isFinished ? (
+        <div style={{ marginTop: "4rem" }}>
+          <h1>You have no tasks.</h1>
+        </div>
+      ) : !isFinished && todoList.length > 0 ? (
+        <div style={{ marginTop: "2rem", textAlign: "center" }}>
           <ProgressWithLabel value={progress} />
         </div>
-      ) : todoList && todoList.length > 0 ? (
+      ) : (
         <div>
           {todoList.map((todo) => (
             <Grid
@@ -269,10 +272,6 @@ function Todos({ todos, fetchTodos, clearTodos }) {
               <SingleTodo todo={todo} fetchTodos={fetchTodos} />
             </Grid>
           ))}
-        </div>
-      ) : (
-        <div style={{ marginTop: "4rem" }}>
-          <h1>You have no tasks.</h1>
         </div>
       )}
     </Container>

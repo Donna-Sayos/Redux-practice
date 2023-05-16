@@ -192,7 +192,7 @@ function Todos({ todos, fetchTodos, clearTodos }) {
 
         return nextProgress;
       });
-    }, 1500); // TODO: original time is 50 milliseconds
+    }, 2000); // TODO: original time is 50 milliseconds
 
     return () => clearInterval(timer);
   }, []);
@@ -246,14 +246,14 @@ function Todos({ todos, fetchTodos, clearTodos }) {
         </Grid>
       </Grid>
       <Divider className={cssClasses.divider} variant="fullWidth" />
-      {todos.length === 0 && isFinished ? (
+      {todoList.length === 0 && isFinished ? (
         <div style={{ marginTop: "4rem" }}>
           <h1>You have no tasks.</h1>
         </div>
       ) : !isFinished && todoList.length > 0 ? (
-        <div style={{ marginTop: "2rem", textAlign: "center" }}>
+        // <div style={{ marginTop: "4rem" }}> // TODO: remove later
           <ProgressWithLabel value={progress} />
-        </div>
+        // </div>  // TODO: remove later
       ) : (
         <div>
           {todoList.map((todo) => (

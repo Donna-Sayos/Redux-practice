@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
 import AddTodo from "./AddTodo";
 import SingleTodo from "./SingleTodo";
-import ProgressWithLabel from "../../utils/ProgressWithLabel";
+import ProgressWithLabel from "../common/ProgressWithLabel";
 import { Button, Grid, Container, Divider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 

@@ -3,17 +3,36 @@ import { CircularProgress, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const styles = makeStyles((theme) => ({
+  boxContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "20rem",
+    height: "20rem",
+    backgroundColor: "beige",
+  },
   circle: {
     "& .MuiCircularProgress-circle": {
       color: "#137a7f",
     },
     "& .MuiCircularProgress-svg": {
-      width: "6.5rem",
-      height: "6.5rem",
+      width: "10rem",
+      height: "10rem",
+      display: "block",
+      margin: "-0.2rem -3.8rem",
     },
+  },
+  boxPercent: {
+    position: "relative",
+    left: "-2.2rem",
+    top: "0.1rem",
+    width: "5rem",
+    height: "5rem",
+    backgroundColor: "pink",
   },
   percent: {
     color: "beige",
+    margin: "1.5rem auto",
   },
 }));
 
@@ -23,26 +42,16 @@ export default function ProgressWithLabel(props) {
   const cssClasses = styles();
 
   return (
-    <Box sx={{ position: "relative", display: "inline-flex" }}>
+    <Box className={cssClasses.boxContainer}>
       <CircularProgress
         className={cssClasses.circle}
         variant="determinate"
         value={value}
+        thickness={4.5}
       />
 
-      <Box
-        sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          bottom: 0,
-          right: 0,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <h3 className={cssClasses.percent}>{`${Math.round(value)}%`}</h3>
+      <Box className={cssClasses.boxPercent}>
+        <h2 className={cssClasses.percent}>{`${Math.round(value)}%`}</h2>
       </Box>
     </Box>
   );

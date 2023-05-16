@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import * as thunks from "../../store/actions/thunks";
 import { Button, TextField, Grid, InputAdornment } from "@material-ui/core";
 import { Assignment } from "@mui/icons-material/";
 import { makeStyles } from "@material-ui/core/styles";
@@ -74,7 +72,7 @@ const styleProp = {
   },
 };
 
-function AddTodo({ addTodo }) {
+export default function AddTodo({ addTodo }) {
   const [todoText, setTodoText] = useState("");
   const cssClasses = styles();
 
@@ -124,9 +122,3 @@ function AddTodo({ addTodo }) {
     </form>
   );
 }
-
-const mapDispatch = (dispatch) => ({
-  addTodo: (todo) => dispatch(thunks.addTodo_(todo)),
-});
-
-export default connect(null, mapDispatch)(AddTodo);

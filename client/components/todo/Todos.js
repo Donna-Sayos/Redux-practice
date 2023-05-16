@@ -123,7 +123,15 @@ stylesstyles
   },
 }));
 
-function Todos({ todos, fetchTodos, clearTodos }) {
+function Todos({
+  todos,
+  fetchTodos,
+  addTodo,
+  clearTodos,
+  updateTodo,
+  removeTodo,
+  toggleTodo,
+}) {
   const [todoList, setTodoList] = useState([]);
   const [filterOptions, setFilterOptions] = useState("all");
   const [isFinished, setIsFinished] = useState(false);
@@ -176,6 +184,11 @@ function Todos({ todos, fetchTodos, clearTodos }) {
     setTodoList(sortedCompletedTodos);
   }, [sortedCompletedTodos]);
 
+  const clearHandler = () => {
+    clearTodos();
+    setTodoList([]);
+  };
+
   useEffect(() => {
     fetchTodos();
   }, []);
@@ -208,7 +221,7 @@ function Todos({ todos, fetchTodos, clearTodos }) {
       <div>
         <h1 className={cssClasses.header}>TODO List</h1>
       </div>
-      <AddTodo />
+      <AddTodo addTodo={addTodo} />
       <Grid
         container
         spacing={2}
@@ -246,7 +259,7 @@ function Todos({ todos, fetchTodos, clearTodos }) {
           </Button>
         </Grid>
         <Grid item>
-          <Button className={cssClasses.clear} onClick={() => clearTodos()}>
+          <Button className={cssClasses.clear} onClick={() => clearHandler()}>
             CLEAR
           </Button>
         </Grid>
@@ -269,7 +282,13 @@ function Todos({ todos, fetchTodos, clearTodos }) {
               alignItems="center"
               key={todo.id}
             >
-              <SingleTodo todo={todo} fetchTodos={fetchTodos} />
+              <SingleTodo
+                todo={todo}
+                fetchTodos={fetchTodos}
+                removeTodo={removeTodo}
+                updateTodo={updateTodo}
+                toggleTodo={toggleTodo}
+              />
             </Grid>
           ))}
         </div>
@@ -284,7 +303,11 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => ({
   fetchTodos: () => dispatch(thunks.fetchTodos_()),
+  addTodo: (todo) => dispatch(thunks.addTodo_(todo)),
   clearTodos: () => dispatch(thunks.clearTodos_()),
+  removeTodo: (id) => dispatch(thunks.removeTodo_(id)),
+  updateTodo: (id, todo) => dispatch(thunks.updateTodo_(id, todo)),
+  toggleTodo: (id) => dispatch(thunks.toggleTodo_(id)),
 });
 
 export default connect(mapState, mapDispatch)(Todos);

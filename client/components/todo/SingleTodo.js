@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import * as thunks from "../../store/actions/thunks";
 import {
   Button,
   IconButton,
@@ -180,7 +178,7 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
+export default function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newDescription, setNewDescription] = useState(todo.description);
   const [hover, setHover] = useState(false);
@@ -304,11 +302,3 @@ function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
     </>
   );
 }
-
-const mapDispatch = (dispatch) => ({
-  toggleTodo: (id) => dispatch(thunks.toggleTodo_(id)),
-  removeTodo: (id) => dispatch(thunks.removeTodo_(id)),
-  updateTodo: (id, todo) => dispatch(thunks.updateTodo_(id, todo)),
-});
-
-export default connect(null, mapDispatch)(SingleTodo);

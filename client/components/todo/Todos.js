@@ -76,6 +76,12 @@ stylesstyles
   divider: {
     borderBottom: "2px solid #99aab5",
   },
+  progressContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "2rem",
+  },
   clear: {
     backgroundColor: "#b8d8be",
     borderRadius: 5,
@@ -192,7 +198,7 @@ function Todos({ todos, fetchTodos, clearTodos }) {
 
         return nextProgress;
       });
-    }, 2000); // TODO: original time is 50 milliseconds
+    }, 60);
 
     return () => clearInterval(timer);
   }, []);
@@ -251,9 +257,9 @@ function Todos({ todos, fetchTodos, clearTodos }) {
           <h1>You have no tasks.</h1>
         </div>
       ) : !isFinished && todoList.length > 0 ? (
-        // <div style={{ marginTop: "4rem" }}> // TODO: remove later
+        <div className={cssClasses.progressContainer}>
           <ProgressWithLabel value={progress} />
-        // </div>  // TODO: remove later
+        </div>
       ) : (
         <div>
           {todoList.map((todo) => (

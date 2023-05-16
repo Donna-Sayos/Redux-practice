@@ -1,7 +1,6 @@
 import React from "react";
 import CLIP from "./assets/clip.png";
 import Todos from "./components/todo/Todos";
-import ProgressWithLabel from "./components/common/ProgressWithLabel"; // TODO: remove later
 import { Paper } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -71,17 +70,7 @@ export default function App() {
   return (
     <Paper className={cssClasses.paper} sx={styleProp.box}>
       <img src={CLIP} className={cssClasses.hanger} />
-      {/* <Todos /> */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "10rem",
-        }}
-      >
-        <ProgressWithLabel value={100} />
-      </div>
+      <Todos />
     </Paper>
   );
 }

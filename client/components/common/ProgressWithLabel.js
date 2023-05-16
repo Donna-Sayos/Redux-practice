@@ -9,7 +9,6 @@ const styles = makeStyles((theme) => ({
     alignItems: "center",
     width: "20rem",
     height: "20rem",
-    backgroundColor: "beige",
   },
   circle: {
     "& .MuiCircularProgress-circle": {
@@ -28,7 +27,6 @@ const styles = makeStyles((theme) => ({
     top: "0.1rem",
     width: "5rem",
     height: "5rem",
-    backgroundColor: "pink",
   },
   percent: {
     color: "beige",

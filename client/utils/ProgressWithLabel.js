@@ -1,19 +1,30 @@
 import React from "react";
 import { Typography, CircularProgress, Box } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-export default function ProgressWithLabel(props) { // FIXME: needs to fix STYLING
+const styles = makeStyles((theme) => ({
+  circle: {
+    "& .MuiCircularProgress-circle": {
+      color: "red",
+    },
+  },
+}));
+
+export default function ProgressWithLabel(props) {
+  // FIXME: needs to fix STYLING
   const { value } = props;
+  const cssClasses = styles();
 
   return (
-    <Box sx={{ position: "relative", display: "inline-flex" }}>
-      <CircularProgress variant="determinate" value={value} />
+    <Box>
+      <CircularProgress
+        className={cssClasses.circle}
+        variant="determinate"stylesstyles
+        value={value}
+        color="primary"
+      />
       <div
         style={{
-          top: 0,
-          left: 0,
-          bottom: 0,
-          right: 0,
-          position: "absolute",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

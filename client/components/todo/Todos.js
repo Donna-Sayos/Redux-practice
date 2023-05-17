@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useCallback } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { connect } from "react-redux";
 import * as thunks from "../../store/actions/thunks";
 import AddTodo from "./AddTodo";
@@ -15,7 +15,7 @@ const styles = makeStyles((theme) => ({
       0px 0px 1px rgb(179,139,103),
       0px 1px 1px rgb(179,139,103),
       0px 2px 1px rgb(179,139,103),
-stylesstyles
+
       1px 1px 1px rgb(179,139,103),
       1px 2px 1px rgb(179,139,103),
       1px 3px 1px rgb(179,139,103),

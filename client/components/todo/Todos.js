@@ -169,24 +169,8 @@ function Todos({
     [todos]
   );
 
-  const handleAll = useCallback(() => {
-    setFilterOptions("all");
-    setTodoList(sortedTodos);
-  }, [sortedTodos]);
-
-  const handleIncomplete = useCallback(() => {
-    setFilterOptions("incomplete");
-    setTodoList(sortedIncompleteTodos);
-  }, [sortedIncompleteTodos]);
-
-  const handleCompleted = useCallback(() => {
-    setFilterOptions("completed");
-    setTodoList(sortedCompletedTodos);
-  }, [sortedCompletedTodos]);
-
-  const clearHandler = () => {
-    clearTodos();
-    // setTodoList([]);
+  const clearHandler = async () => {
+    await clearTodos();
   };
 
   useEffect(() => {
@@ -194,10 +178,28 @@ function Todos({
   }, []);
 
   useEffect(() => {
-    if (todos && todos.length > 0) {
-      setTodoList(sortedTodos);
+    if (todos) {
+      switch (filterOptions) {
+        case "all":
+          setTodoList(sortedTodos);
+          break;
+        case "incomplete":
+          setTodoList(sortedIncompleteTodos);
+          break;
+        case "completed":
+          setTodoList(sortedCompletedTodos);
+          break;
+        default:
+          setTodoList(sortedTodos);
+      }
     }
-  }, [todos, sortedTodos]);
+  }, [
+    todos,
+    filterOptions,
+    sortedTodos,
+    sortedIncompleteTodos,
+    sortedCompletedTodos,
+  ]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -233,7 +235,7 @@ function Todos({
             className={`${cssClasses.options} ${
               filterOptions === "all" && cssClasses.activeOptions
             }`}
-            onClick={() => handleAll()}
+            onClick={() => setFilterOptions("all")}
           >
             All
           </Button>
@@ -243,7 +245,7 @@ function Todos({
             className={`${cssClasses.options} ${
               filterOptions === "incomplete" && cssClasses.activeOptions
             }`}
-            onClick={() => handleIncomplete()}
+            onClick={() => setFilterOptions("incomplete")}
           >
             Incomplete
           </Button>
@@ -253,7 +255,7 @@ function Todos({
             className={`${cssClasses.options} ${
               filterOptions === "completed" && cssClasses.activeOptions
             }`}
-            onClick={() => handleCompleted()}
+            onClick={() => setFilterOptions("completed")}
           >
             Completed
           </Button>

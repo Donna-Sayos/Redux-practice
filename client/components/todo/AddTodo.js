@@ -76,13 +76,13 @@ export default function AddTodo({ addTodo }) {
   const [todoText, setTodoText] = useState("");
   const cssClasses = styles();
 
-  const handleAddTodo = (e) => {
+  const handleAddTodo = async (e) => {
     e.preventDefault();
 
     if (todoText) {
       const capitalizedTodoText = todoText.charAt(0).toUpperCase() + todoText.slice(1);
 
-      addTodo({
+      await addTodo({
         description: capitalizedTodoText,
       });
 

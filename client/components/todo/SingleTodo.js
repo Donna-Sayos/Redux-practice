@@ -178,21 +178,27 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-export default function SingleTodo({ todo, toggleTodo, removeTodo, fetchTodos, updateTodo }) {
+export default function SingleTodo({
+  todo,
+  toggleTodo,
+  removeTodo,
+  fetchTodos,
+  updateTodo,
+}) {
   const [isEditing, setIsEditing] = useState(false);
   const [newDescription, setNewDescription] = useState(todo.description);
   const [hover, setHover] = useState(false);
   const cssClasses = styles();
 
-  const saveHandler = () => {
-    updateTodo(todo.id, { ...todo, description: newDescription });
-    fetchTodos();
+  const saveHandler = async () => {
+    await updateTodo(todo.id, { ...todo, description: newDescription });
+    await fetchTodos();
     setIsEditing(false);
   };
 
-  const deleteHandler = (id) => {
-    removeTodo(id);
-    fetchTodos();
+  const deleteHandler = async (id) => {
+    await removeTodo(id);
+    await fetchTodos();
   };
 
   return (

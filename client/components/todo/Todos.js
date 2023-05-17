@@ -135,7 +135,8 @@ function Todos({
   const [todoList, setTodoList] = useState([]);
   const [filterOptions, setFilterOptions] = useState("all");
   const [isFinished, setIsFinished] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [value, setValue] = useState(0);
+  const [showProgress, setShowProgress] = useState(true);
   const cssClasses = styles();
 
   const getSortedTodos = (todos, isCompleted = null) => {
@@ -174,7 +175,25 @@ function Todos({
   };
 
   useEffect(() => {
-    fetchTodos();
+    let isMounted = true;
+
+    const fetchData = async () => {
+      try {
+        await fetchTodos();
+
+        if (isMounted) {
+          setIsFinished(true);
+        }
+      } catch (err) {
+        console.log(`Error at fetchData: ${err}`);
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   useEffect(() => {
@@ -202,21 +221,25 @@ function Todos({
   ]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        const nextProgress = (prev + 10) % 110;
+    let timer;
 
-        if (nextProgress === 0) {
-          clearInterval(timer);
-          setIsFinished(true);
-        }
+    if (isFinished) {
+      timer = setInterval(() => {
+        setValue((prev) => {
+          const nextProgress = (prev + 10) % 110;
 
-        return nextProgress;
-      });
-    }, 60);
+          if (nextProgress === 0) {
+            clearInterval(timer);
+            setShowProgress(false);
+          }
+
+          return nextProgress;
+        });
+      }, 80);
+    }
 
     return () => clearInterval(timer);
-  }, []);
+  }, [isFinished]);
 
   return (
     <Container>
@@ -271,9 +294,9 @@ function Todos({
         <div style={{ marginTop: "4rem" }}>
           <h1>You have no tasks.</h1>
         </div>
-      ) : !isFinished && todoList.length > 0 ? (
+      ) : todoList.length > 0 && showProgress ? (
         <div className={cssClasses.progressContainer}>
-          <ProgressWithLabel value={progress} />
+          <ProgressWithLabel value={value} />
         </div>
       ) : (
         <div>

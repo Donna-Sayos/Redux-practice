@@ -190,7 +190,7 @@ export default function SingleTodo({
   const [hover, setHover] = useState(false);
   const cssClasses = styles();
 
-  const saveHandler = async () => {
+  const saveHandler = async (todo) => {
     await updateTodo(todo.id, { ...todo, description: newDescription });
     await fetchTodos();
     setIsEditing(false);
@@ -236,7 +236,7 @@ export default function SingleTodo({
                 }}
               />
               <div>
-                <Button className={cssClasses.save} onClick={saveHandler}>
+                <Button className={cssClasses.save} onClick={() => saveHandler(todo)}>
                   Save
                 </Button>
                 <Button

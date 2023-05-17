@@ -35,10 +35,7 @@ const removeTodo = async (req, res, next) => {
     const todoId = req.params.todoId;
     await pgPool.query(QUERIES.removeTodo_, [todoId]);
 
-    return res.status(200).json({
-      success: `true`,
-      message: `TODO with id ${todoId} removed`,
-    });
+    res.sendStatus(200);
   } catch (err) {
     console.error(`Error in removeTodo: ${err}`);
     res.status(500).json({
@@ -86,10 +83,7 @@ const clearAllTodos = async (req, res, next) => {
   try {
     await pgPool.query(QUERIES.clearAllTodos_);
 
-    return res.status(200).json({
-      success: `true`,
-      message: `All todos cleared`,
-    });
+    res.sendStatus(200);
   } catch (err) {
     console.error(`Error in clearAllTodos: ${err}`);
     res.status(500).json({

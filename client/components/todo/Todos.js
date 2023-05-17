@@ -186,7 +186,7 @@ function Todos({
 
   const clearHandler = () => {
     clearTodos();
-    setTodoList([]);
+    // setTodoList([]);
   };
 
   useEffect(() => {

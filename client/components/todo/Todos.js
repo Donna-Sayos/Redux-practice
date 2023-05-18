@@ -32,43 +32,6 @@ const styleProps = {
       4px 5px 1px rgb(179,139,103),
       4px 6px 1px rgb(179,139,103)`,
   },
-  activeOptions: {
-    textTransform: "uppercase",
-    color: "#daffe7",
-    textDecoration: "underline",
-    textDecorationColor: "#5f9ea0",
-    textUnderlineOffset: "0.5em",
-    fontSize: "2.5rem",
-    textShadow: `
-        0px 0px 1px rgb(73,121,107),
-        0px 1px 1px rgb(73,121,107),
-        0px 2px 1px rgb(73,121,107),
-
-        1px 1px 1px rgb(73,121,107),
-        1px 2px 1px rgb(73,121,107),
-        1px 3px 1px rgb(73,121,107),
-
-        2px 2px 1px rgb(73,121,107),
-        2px 3px 1px rgb(73,121,107),
-        2px 4px 1px rgb(73,121,107)`,
-  },
-  options: {
-    textTransform: "none",
-    fontSize: "2.5rem",
-    color: "#ddfffc",
-    textShadow: `
-        0px 0px 1px rgb(140,171,168), 
-        0px 1px 1px rgb(140,171,168),
-        0px 2px 1px rgb(140,171,168),
-
-        1px 1px 1px rgb(140,171,168),
-        1px 2px 1px rgb(140,171,168),
-        1px 3px 1px rgb(140,171,168),
-
-        2px 2px 1px rgb(140,171,168),
-        2px 3px 1px rgb(140,171,168),
-        2px 4px 1px rgb(140,171,168)`,
-  },
   progressContainer: {
     display: "flex",
     justifyContent: "center",
@@ -139,7 +102,8 @@ const OptionButton = styled(Button)(({ filteroptions, option }) => ({
     // styles defined within "&&" will take precedence over the default styles of MUI components
     ...(filteroptions === option && {
       // custom attributes cannot be camelCased in styled components. Must be "lowercase"
-      // ... is used to merge the objects into the parent object when active is TRUE;
+      // "..." is used to merge the objects into the parent object when filteroptions === option;
+
       textTransform: "uppercase",
       color: "#daffe7",
       textDecoration: "underline",

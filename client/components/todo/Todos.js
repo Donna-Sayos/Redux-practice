@@ -7,7 +7,7 @@ import ProgressWithLabel from "../common/ProgressWithLabel";
 import { Button, Grid, Container, Divider } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-const styles = styled((theme) => ({
+const styleProps = {
   header: {
     fontSize: "4rem",
     marginTop: "3rem",
@@ -32,34 +32,14 @@ const styles = styled((theme) => ({
       4px 5px 1px rgb(179,139,103),
       4px 6px 1px rgb(179,139,103)`,
   },
-  options: {
-    textTransform: "none",
-    "& .MuiButton-label": {
-      fontSize: "2.5rem",
-      color: "#ddfffc",
-      textShadow: `
-        0px 0px 1px rgb(140,171,168), 
-        0px 1px 1px rgb(140,171,168),
-        0px 2px 1px rgb(140,171,168),
-
-        1px 1px 1px rgb(140,171,168),
-        1px 2px 1px rgb(140,171,168),
-        1px 3px 1px rgb(140,171,168),
-
-        2px 2px 1px rgb(140,171,168),
-        2px 3px 1px rgb(140,171,168),
-        2px 4px 1px rgb(140,171,168)`,
-    },
-  },
   activeOptions: {
     textTransform: "uppercase",
-    "& .MuiButton-label": {
-      color: "#daffe7",
-      textDecoration: "underline",
-      textDecorationColor: "#5f9ea0",
-      textUnderlineOffset: "0.5em",
-      fontSize: "2.5rem",
-      textShadow: `
+    color: "#daffe7",
+    textDecoration: "underline",
+    textDecorationColor: "#5f9ea0",
+    textUnderlineOffset: "0.5em",
+    fontSize: "2.5rem",
+    textShadow: `
         0px 0px 1px rgb(73,121,107),
         0px 1px 1px rgb(73,121,107),
         0px 2px 1px rgb(73,121,107),
@@ -71,10 +51,23 @@ const styles = styled((theme) => ({
         2px 2px 1px rgb(73,121,107),
         2px 3px 1px rgb(73,121,107),
         2px 4px 1px rgb(73,121,107)`,
-    },
   },
-  divider: {
-    borderBottom: "2px solid #99aab5",
+  options: {
+    textTransform: "none",
+    fontSize: "2.5rem",
+    color: "#ddfffc",
+    textShadow: `
+        0px 0px 1px rgb(140,171,168), 
+        0px 1px 1px rgb(140,171,168),
+        0px 2px 1px rgb(140,171,168),
+
+        1px 1px 1px rgb(140,171,168),
+        1px 2px 1px rgb(140,171,168),
+        1px 3px 1px rgb(140,171,168),
+
+        2px 2px 1px rgb(140,171,168),
+        2px 3px 1px rgb(140,171,168),
+        2px 4px 1px rgb(140,171,168)`,
   },
   progressContainer: {
     display: "flex",
@@ -82,13 +75,15 @@ const styles = styled((theme) => ({
     alignItems: "center",
     marginTop: "2rem",
   },
-  clear: {
-    backgroundColor: "#b8d8be",
-    borderRadius: 5,
-    border: "1px solid #008080",
-    height: "3rem",
-    width: "7.5rem",
-    textShadow: `
+};
+
+const ClearButton = styled(Button)(() => ({
+  backgroundColor: "#b8d8be",
+  borderRadius: 5,
+  border: "1px solid #008080",
+  height: "3rem",
+  width: "7.5rem",
+  textShadow: `
       0px 0px 1px rgb(102,123,104),
       0px 1px 1px rgb(102,123,104),
       0px 2px 1px rgb(102,123,104),
@@ -96,7 +91,7 @@ const styles = styled((theme) => ({
       1px 1px 1px rgb(102,123,104),
       1px 2px 1px rgb(102,123,104),
       1px 3px 1px rgb(102,123,104)`,
-    boxShadow: `
+  boxShadow: `
       0px 0px 1px rgb(57,133,100),
       0px 1px 1px rgb(57,133,100),
       0px 2px 1px rgb(57,133,100),
@@ -108,19 +103,22 @@ const styles = styled((theme) => ({
       2px 2px 1px rgb(57,133,100),
       2px 3px 1px rgb(57,133,100),
       2px 4px 1px rgb(57,133,100)`,
-    transition: "transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out",
+  transition: "transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out",
+  "& .MuiButton-label": {
+    fontSize: "1.6rem",
+  },
+  "&:hover": {
+    transform: "translateY(-3px)",
+    boxShadow: "0px 2px 0px #3e8e41, 0px 5px 5px rgba(0, 0, 0, 0.1)",
+    backgroundColor: "#e1f7d5",
     "& .MuiButton-label": {
-      fontSize: "1.6rem",
-    },
-    "&:hover": {
-      transform: "translateY(-3px)",
-      boxShadow: "0px 2px 0px #3e8e41, 0px 5px 5px rgba(0, 0, 0, 0.1)",
-      backgroundColor: "#e1f7d5",
-      "& .MuiButton-label": {
-        color: "#fff5ee",
-      },
+      color: "#fff5ee",
     },
   },
+}));
+
+const StyledDivider = styled(Divider)(() => ({
+  borderBottom: "2px solid #99aab5",
 }));
 
 function Todos({
@@ -137,7 +135,6 @@ function Todos({
   const [isFinished, setIsFinished] = useState(false);
   const [value, setValue] = useState(0);
   const [showProgress, setShowProgress] = useState(true);
-  const cssClasses = styles();
 
   const getSortedTodos = (todos, isCompleted = null) => {
     try {
@@ -244,7 +241,7 @@ function Todos({
   return (
     <Container>
       <div>
-        <h1 className={cssClasses.header}>TODO List</h1>
+        <h1 style={styleProps.header}>TODO List</h1>
       </div>
       <AddTodo addTodo={addTodo} />
       <Grid
@@ -255,9 +252,11 @@ function Todos({
       >
         <Grid item>
           <Button
-            className={`${cssClasses.options} ${
-              filterOptions === "all" && cssClasses.activeOptions
-            }`}
+            style={
+              filterOptions === "all"
+                ? styleProps.activeOptions
+                : styleProps.options
+            }
             onClick={() => setFilterOptions("all")}
           >
             All
@@ -265,9 +264,11 @@ function Todos({
         </Grid>
         <Grid item>
           <Button
-            className={`${cssClasses.options} ${
-              filterOptions === "incomplete" && cssClasses.activeOptions
-            }`}
+            style={
+              filterOptions === "incomplete"
+                ? styleProps.activeOptions
+                : styleProps.options
+            }
             onClick={() => setFilterOptions("incomplete")}
           >
             Incomplete
@@ -275,27 +276,27 @@ function Todos({
         </Grid>
         <Grid item>
           <Button
-            className={`${cssClasses.options} ${
-              filterOptions === "completed" && cssClasses.activeOptions
-            }`}
+            style={
+              filterOptions === "completed"
+                ? styleProps.activeOptions
+                : styleProps.options
+            }
             onClick={() => setFilterOptions("completed")}
           >
             Completed
           </Button>
         </Grid>
         <Grid item>
-          <Button className={cssClasses.clear} onClick={() => clearHandler()}>
-            CLEAR
-          </Button>
+          <ClearButton onClick={() => clearHandler()}>CLEAR</ClearButton>
         </Grid>
       </Grid>
-      <Divider className={cssClasses.divider} variant="fullWidth" />
+      <StyledDivider variant="fullWidth" />
       {todoList.length === 0 && isFinished ? (
         <div style={{ marginTop: "4rem" }}>
           <h1>You have no tasks.</h1>
         </div>
       ) : todoList.length > 0 && showProgress ? (
-        <div className={cssClasses.progressContainer}>
+        <div style={styleProps.progressContainer}>
           <ProgressWithLabel value={value} />
         </div>
       ) : (

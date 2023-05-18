@@ -12,7 +12,7 @@ const StyledPaper = styled(Paper)(() => ({
   minHeight: "90vh",
 }));
 
-const styleProp = {
+const styleProps = {
   box: {
     marginTop: "4rem",
     paddingBottom: "2rem",
@@ -65,8 +65,8 @@ const styleProp = {
 export default function App() {
 
   return (
-    <StyledPaper sx={styleProp.box}>
-      <img src={CLIP} style={styleProp.hanger} />
+    <StyledPaper sx={styleProps.box}>
+      <img src={CLIP} style={styleProps.hanger} />
       <Todos />
     </StyledPaper>
   );

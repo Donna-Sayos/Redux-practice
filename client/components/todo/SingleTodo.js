@@ -12,7 +12,7 @@ import {
 import { Edit, DeleteForever, Assignment } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 
-const styles = styled((theme) => ({
+const styleProps = {
   card: {
     padding: "0px",
     textAlign: "center",
@@ -47,48 +47,12 @@ const styles = styled((theme) => ({
     position: "relative",
     cursor: "default",
   },
-  text: {
-    "& .MuiOutlinedInput-root": {
-      color: "#8b6914",
-      marginTop: "40px",
-    },
-    "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: "rgba(223, 227, 238, 0.5)",
-      borderWidth: "3px",
-    },
-    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: "rgba(223, 227, 238, 0.5)",
-      borderWidth: "3px",
-    },
-  },
   input: {
     background: "rgba(223, 227, 238, 0.5)",
   },
   label: {
     display: "flex",
     justifyContent: "start",
-  },
-  incompleteDesc: {
-    textAlign: "left",
-    fontSize: "2rem",
-    textShadow: `
-      0px 0px 1px rgb(179,139,103),
-      0px 1px 1px rgb(179,139,103),
-      0px 2px 1px rgb(179,139,103),
-
-      1px 1px 1px rgb(179,139,103),
-      1px 2px 1px rgb(179,139,103),
-      1px 3px 1px rgb(179,139,103),
-
-      2px 2px 1px rgb(179,139,103),
-      2px 3px 1px rgb(179,139,103),
-      2px 4px 1px rgb(179,139,103)`,
-  },
-  completedDesc: {
-    textAlign: "left",
-    textDecoration: "line-through",
-    color: "#d9b380",
-    fontStyle: "italic",
   },
   checkbox: {
     "& .MuiSvgIcon-root": {
@@ -120,6 +84,28 @@ const styles = styled((theme) => ({
     },
     cursor: "pointer",
   },
+  incompleteDesc: {
+    textAlign: "left",
+    fontSize: "2rem",
+    textShadow: `
+      0px 0px 1px rgb(179,139,103),
+      0px 1px 1px rgb(179,139,103),
+      0px 2px 1px rgb(179,139,103),
+
+      1px 1px 1px rgb(179,139,103),
+      1px 2px 1px rgb(179,139,103),
+      1px 3px 1px rgb(179,139,103),
+
+      2px 2px 1px rgb(179,139,103),
+      2px 3px 1px rgb(179,139,103),
+      2px 4px 1px rgb(179,139,103)`,
+  },
+  completedDesc: {
+    textAlign: "left",
+    textDecoration: "line-through",
+    color: "#d9b380",
+    fontStyle: "italic",
+  },
   edit: {
     position: "absolute",
     top: "-10px",
@@ -132,6 +118,7 @@ const styles = styled((theme) => ({
     padding: "2px",
     backgroundColor: "#a3b899",
     cursor: "pointer",
+    fill: "#fdf5e2",
   },
   editChecked: {
     position: "absolute",
@@ -145,28 +132,18 @@ const styles = styled((theme) => ({
     padding: "2px",
     backgroundColor: "#667b68",
     cursor: "default",
+    fill: "#cbbeb5",
   },
   delete: {
     marginLeft: "-20px",
-  },
-  save: {
-    border: "1px solid white",
-    backgroundColor: "#bd8966",
-    marginRight: "10px",
+    fill: "#fceee9",
+    height: "55px",
+    width: "55px",
+
     "&:hover": {
-      fontSize: "1rem",
-      border: "4px solid #d39972",
-      backgroundColor: "#eea990",
-    },
-  },
-  cancel: {
-    border: "1px solid white",
-    backgroundColor: "#bd8966",
-    marginLeft: "10px",
-    "&:hover": {
-      fontSize: "1rem",
-      border: "4px solid #d39972",
-      backgroundColor: "#eea990",
+      fill: "#b88c8c",
+      height: "65px",
+      width: "65px",
     },
   },
   iconButton: {
@@ -175,6 +152,45 @@ const styles = styled((theme) => ({
       backgroundColor: "transparent",
       transform: "rotate(15deg)",
     },
+  },
+};
+
+const StyledTextField = styled(TextField)(() => ({
+  "& .MuiOutlinedInput-root": {
+    color: "#8b6914",
+    marginTop: "40px",
+  },
+
+  "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
+    borderColor: "rgba(223, 227, 238, 0.5)",
+    borderWidth: "3px",
+  },
+
+  "& .MuiOutlinedInput-root .Mui-focused .MuiOutlinedInput-notchedOutline": {
+    borderColor: "rgba(223, 227, 238, 0.5)",
+    borderWidth: "3px",
+  },
+}));
+
+const SaveButton = styled(Button)(() => ({
+  border: "1px solid white",
+  backgroundColor: "#bd8966",
+  marginRight: "10px",
+  "&:hover": {
+    fontSize: "1rem",
+    border: "4px solid #d39972",
+    backgroundColor: "#eea990",
+  },
+}));
+
+const CancelButton = styled(Button)(() => ({
+  border: "1px solid white",
+  backgroundColor: "#bd8966",
+  marginLeft: "10px",
+  "&:hover": {
+    fontSize: "1rem",
+    border: "4px solid #d39972",
+    backgroundColor: "#eea990",
   },
 }));
 
@@ -187,8 +203,6 @@ export default function SingleTodo({
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newDescription, setNewDescription] = useState(todo.description);
-  const [hover, setHover] = useState(false);
-  const cssClasses = styles();
 
   const saveHandler = async (todo) => {
     await updateTodo(todo.id, { ...todo, description: newDescription });
@@ -204,16 +218,11 @@ export default function SingleTodo({
   return (
     <>
       <Grid item xs={8} sm={6}>
-        <Card
-          className={
-            todo.isCompleted ? cssClasses.cardChecked : cssClasses.card
-          }
-        >
+        <Card sx={todo.isCompleted ? styleProps.cardChecked : styleProps.card}>
           {isEditing ? (
             <div>
-              <TextField
-                className={cssClasses.text}
-                variant="outlined"
+              <StyledTextField
+                variant="filled"
                 multiline={true}
                 inputRef={(input) => input && input.focus()}
                 onFocus={(e) => {
@@ -225,7 +234,7 @@ export default function SingleTodo({
                 value={newDescription}
                 onChange={(e) => setNewDescription(e.target.value)}
                 InputProps={{
-                  className: cssClasses.input,
+                  className: styleProps.input,
                   startAdornment: (
                     <InputAdornment position="start">
                       <Assignment
@@ -236,26 +245,21 @@ export default function SingleTodo({
                 }}
               />
               <div>
-                <Button className={cssClasses.save} onClick={() => saveHandler(todo)}>
-                  Save
-                </Button>
-                <Button
-                  className={cssClasses.cancel}
-                  onClick={() => setIsEditing(false)}
-                >
+                <SaveButton onClick={() => saveHandler(todo)}>Save</SaveButton>
+                <CancelButton onClick={() => setIsEditing(false)}>
                   Cancel
-                </Button>
+                </CancelButton>
               </div>
             </div>
           ) : (
             <FormControlLabel
-              className={cssClasses.label}
+              sx={styleProps.label}
               control={
                 <Checkbox
-                  className={
+                  sx={
                     todo.isCompleted
-                      ? cssClasses.checkboxChecked
-                      : cssClasses.checkbox
+                      ? styleProps.checkboxChecked
+                      : styleProps.checkbox
                   }
                   color="primary"
                   onChange={() => toggleTodo(todo.id)}
@@ -264,10 +268,10 @@ export default function SingleTodo({
               }
               label={
                 <h2
-                  className={
+                  style={
                     todo.isCompleted
-                      ? cssClasses.completedDesc
-                      : cssClasses.incompleteDesc
+                      ? styleProps.completedDesc
+                      : styleProps.incompleteDesc
                   }
                 >
                   {todo.description}
@@ -276,10 +280,7 @@ export default function SingleTodo({
             />
           )}
           <Edit
-            className={
-              todo.isCompleted ? cssClasses.editChecked : cssClasses.edit
-            }
-            sx={todo.isCompleted ? { fill: "#cbbeb5" } : { fill: "#fdf5e2" }}
+            sx={todo.isCompleted ? styleProps.editChecked : styleProps.edit}
             onClick={() => {
               if (!todo.isCompleted) setIsEditing(true);
             }}
@@ -288,21 +289,10 @@ export default function SingleTodo({
       </Grid>
       <Grid item xs={8} sm={1}>
         <IconButton
-          className={cssClasses.iconButton}
+          sx={styleProps.iconButton}
           onClick={() => deleteHandler(todo.id)}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => {
-            setHover(false);
-          }}
         >
-          <DeleteForever
-            className={cssClasses.delete}
-            sx={{
-              fill: hover ? "#b88c8c" : "#fceee9",
-              height: hover ? "65px" : "55px",
-              width: hover ? "65px" : "55px",
-            }}
-          />
+          <DeleteForever sx={styleProps.delete} />
         </IconButton>
       </Grid>
     </>

@@ -4,14 +4,6 @@ import Todos from "./components/todo/Todos";
 import { Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-const StyledPaper = styled(Paper)(() => ({
-  textAlign: "center",
-  color: "#faf0e6 !important",
-  backgroundColor: "#aec8ce !important",
-  minWidth: "90vw",
-  minHeight: "90vh",
-}));
-
 const styleProps = {
   box: {
     marginTop: "4rem",
@@ -61,6 +53,14 @@ const styleProps = {
     imageRendering: "pixelated",
   },
 };
+
+const StyledPaper = styled(Paper)(() => ({
+  textAlign: "center",
+  color: "#faf0e6 !important",
+  backgroundColor: "#aec8ce !important",
+  minWidth: "90vw",
+  minHeight: "90vh",
+}));
 
 export default function App() {
 

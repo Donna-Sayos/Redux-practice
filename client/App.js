@@ -19,8 +19,8 @@ const styleProps = {
 
 const StyledPaper = styled(Paper)({
   textAlign: "center",
-  color: "#faf0e6 !important",
-  backgroundColor: "#aec8ce !important",
+  color: "#faf0e6",
+  backgroundColor: "#aec8ce",
   minWidth: "90vw",
   minHeight: "90vh",
 

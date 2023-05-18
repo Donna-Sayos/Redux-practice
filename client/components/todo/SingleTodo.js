@@ -153,6 +153,10 @@ const styleProps = {
       transform: "rotate(15deg)",
     },
   },
+  hw: {
+    height: "2.3rem", 
+    width: "2.3rem",
+  },
 };
 
 const StyledTextField = styled(TextField)(() => ({
@@ -234,11 +238,11 @@ export default function SingleTodo({
                 value={newDescription}
                 onChange={(e) => setNewDescription(e.target.value)}
                 InputProps={{
-                  className: styleProps.input,
+                  className: `${styleProps.input}`,
                   startAdornment: (
                     <InputAdornment position="start">
                       <Assignment
-                        style={{ height: "2.3rem", width: "2.3rem" }}
+                        sx={styleProps.hw}
                       />{" "}
                     </InputAdornment>
                   ),

@@ -1,8 +1,7 @@
 import React from "react";
 import { CircularProgress, Box } from "@mui/material";
-import { styled } from "@mui/material/styles";
 
-const styles = styled((theme) => ({
+const styleProps = {
   boxContainer: {
     display: "flex",
     justifyContent: "center",
@@ -32,24 +31,22 @@ const styles = styled((theme) => ({
     color: "beige",
     margin: "1.5rem auto",
   },
-}));
+};
 
 export default function ProgressWithLabel(props) {
-  // FIXME: needs to fix STYLING
   const { value } = props;
-  const cssClasses = styles();
 
   return (
-    <Box className={cssClasses.boxContainer}>
+    <Box sx={styleProps.boxContainer}>
       <CircularProgress
-        className={cssClasses.circle}
+        sx={styleProps.circle}
         variant="determinate"
         value={value}
         thickness={4.5}
       />
 
-      <Box className={cssClasses.boxPercent}>
-        <h2 className={cssClasses.percent}>{`${Math.round(value)}%`}</h2>
+      <Box sx={styleProps.boxPercent}>
+        <h2 style={styleProps.percent}>{`${Math.round(value)}%`}</h2>
       </Box>
     </Box>
   );

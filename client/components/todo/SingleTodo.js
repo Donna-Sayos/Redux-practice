@@ -8,9 +8,9 @@ import {
   FormControlLabel,
   Grid,
   Card,
-} from "@material-ui/core";
+} from "@mui/material";
 import { Edit, DeleteForever, Assignment } from "@mui/icons-material";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/material";
 
 const styles = makeStyles((theme) => ({
   card: {

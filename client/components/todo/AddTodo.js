@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Button, TextField, Grid, InputAdornment } from "@material-ui/core";
+import { Button, TextField, Grid, InputAdornment } from "@mui/material";
 import { Assignment } from "@mui/icons-material/";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/material";
 
 const styles = makeStyles((theme) => ({
   addText: {

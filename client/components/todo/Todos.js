@@ -4,8 +4,8 @@ import * as thunks from "../../store/actions/thunks";
 import AddTodo from "./AddTodo";
 import SingleTodo from "./SingleTodo";
 import ProgressWithLabel from "../common/ProgressWithLabel";
-import { Button, Grid, Container, Divider } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Button, Grid, Container, Divider } from "@mui/material";
+import { makeStyles } from "@mui/material";
 
 const styles = makeStyles((theme) => ({
   header: {

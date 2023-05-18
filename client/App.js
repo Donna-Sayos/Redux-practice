@@ -2,7 +2,7 @@ import React from "react";
 import CLIP from "./assets/clip.png";
 import Todos from "./components/todo/Todos";
 import { Paper } from "@mui/material";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/material";
 
 const styles = makeStyles((theme) => ({
   paper: {

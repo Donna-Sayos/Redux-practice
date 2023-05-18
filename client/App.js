@@ -2,26 +2,14 @@ import React from "react";
 import CLIP from "./assets/clip.png";
 import Todos from "./components/todo/Todos";
 import { Paper } from "@mui/material";
-import { makeStyles } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-const styles = makeStyles((theme) => ({
-  paper: {
-    textAlign: "center",
-    color: "#faf0e6 !important",
-    backgroundColor: "#aec8ce !important",
-    minWidth: "90vw",
-    minHeight: "90vh",
-  },
-  hanger: {
-    filter: "contrast(70%)",
-    position: "absolute",
-    top: "4%",
-    top: `calc(${35 * 2}px - 4.5rem)`,
-    transform: "translateX(-50%)",
-    width: "65%",
-    height: "35rem",
-    imageRendering: "pixelated",
-  },
+const StyledPaper = styled(Paper)(() => ({
+  textAlign: "center",
+  color: "#faf0e6 !important",
+  backgroundColor: "#aec8ce !important",
+  minWidth: "90vw",
+  minHeight: "90vh",
 }));
 
 const styleProp = {
@@ -62,15 +50,24 @@ const styleProp = {
           7px 8px 1px rgb(73,121,107),
           7px 9px 1px rgb(73,121,107)`,
   },
+  hanger: {
+    filter: "contrast(70%)",
+    position: "absolute",
+    top: "4%",
+    top: `calc(${35 * 2}px - 4.5rem)`,
+    transform: "translateX(-50%)",
+    width: "65%",
+    height: "35rem",
+    imageRendering: "pixelated",
+  },
 };
 
 export default function App() {
-  const cssClasses = styles();
 
   return (
-    <Paper className={cssClasses.paper} sx={styleProp.box}>
-      <img src={CLIP} className={cssClasses.hanger} />
+    <StyledPaper sx={styleProp.box}>
+      <img src={CLIP} style={styleProp.hanger} />
       <Todos />
-    </Paper>
+    </StyledPaper>
   );
 }

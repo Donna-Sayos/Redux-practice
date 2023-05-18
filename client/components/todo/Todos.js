@@ -5,9 +5,9 @@ import AddTodo from "./AddTodo";
 import SingleTodo from "./SingleTodo";
 import ProgressWithLabel from "../common/ProgressWithLabel";
 import { Button, Grid, Container, Divider } from "@mui/material";
-import { makeStyles } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-const styles = makeStyles((theme) => ({
+const styles = styled((theme) => ({
   header: {
     fontSize: "4rem",
     marginTop: "3rem",

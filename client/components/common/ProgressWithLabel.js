@@ -1,8 +1,8 @@
 import React from "react";
 import { CircularProgress, Box } from "@mui/material";
-import { makeStyles } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-const styles = makeStyles((theme) => ({
+const styles = styled((theme) => ({
   boxContainer: {
     display: "flex",
     justifyContent: "center",

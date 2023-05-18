@@ -10,9 +10,9 @@ import {
   Card,
 } from "@mui/material";
 import { Edit, DeleteForever, Assignment } from "@mui/icons-material";
-import { makeStyles } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-const styles = makeStyles((theme) => ({
+const styles = styled((theme) => ({
   card: {
     padding: "0px",
     textAlign: "center",

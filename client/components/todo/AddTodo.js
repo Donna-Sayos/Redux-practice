@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Button, TextField, Grid, InputAdornment } from "@mui/material";
 import { Assignment } from "@mui/icons-material/";
-import { makeStyles } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-const styles = makeStyles((theme) => ({
+const styles = styled((theme) => ({
   addText: {
     "& .MuiOutlinedInput-root": {
       borderTopRightRadius: 0,

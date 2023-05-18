@@ -5,11 +5,29 @@ import { Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const styleProps = {
-  box: {
-    marginTop: "4rem",
-    paddingBottom: "2rem",
-    border: "1px solid rgb(73,121,107)",
-    boxShadow: `
+  hanger: {
+    filter: "contrast(70%)",
+    position: "absolute",
+    top: "4%",
+    top: `calc(${35 * 2}px - 4.5rem)`,
+    transform: "translateX(-50%)",
+    width: "65%",
+    height: "35rem",
+    imageRendering: "pixelated",
+  },
+};
+
+const StyledPaper = styled(Paper)({
+  textAlign: "center",
+  color: "#faf0e6 !important",
+  backgroundColor: "#aec8ce !important",
+  minWidth: "90vw",
+  minHeight: "90vh",
+
+  marginTop: "4rem",
+  paddingBottom: "2rem",
+  border: "1px solid rgb(73,121,107)",
+  boxShadow: `
           0px 0px 1px rgb(73,121,107),
           0px 1px 1px rgb(73,121,107),
           0px 2px 1px rgb(73,121,107),
@@ -41,31 +59,11 @@ const styleProps = {
           7px 7px 1px rgb(73,121,107),
           7px 8px 1px rgb(73,121,107),
           7px 9px 1px rgb(73,121,107)`,
-  },
-  hanger: {
-    filter: "contrast(70%)",
-    position: "absolute",
-    top: "4%",
-    top: `calc(${35 * 2}px - 4.5rem)`,
-    transform: "translateX(-50%)",
-    width: "65%",
-    height: "35rem",
-    imageRendering: "pixelated",
-  },
-};
-
-const StyledPaper = styled(Paper)(() => ({
-  textAlign: "center",
-  color: "#faf0e6 !important",
-  backgroundColor: "#aec8ce !important",
-  minWidth: "90vw",
-  minHeight: "90vh",
-}));
+});
 
 export default function App() {
-
   return (
-    <StyledPaper sx={styleProps.box}>
+    <StyledPaper>
       <img src={CLIP} style={styleProps.hanger} />
       <Todos />
     </StyledPaper>

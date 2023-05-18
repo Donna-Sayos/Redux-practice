@@ -121,6 +121,49 @@ const StyledDivider = styled(Divider)(() => ({
   borderBottom: "2px solid #99aab5",
 }));
 
+const OptionButton = styled(Button)(({ filteroptions, option }) => ({
+  textTransform: "none",
+  fontSize: "2.5rem",
+  color: "#ddfffc",
+  textShadow: `
+        0px 0px 1px rgb(140,171,168), 
+        0px 1px 1px rgb(140,171,168),
+        0px 2px 1px rgb(140,171,168),
+
+        1px 1px 1px rgb(140,171,168),
+        1px 2px 1px rgb(140,171,168),
+        1px 3px 1px rgb(140,171,168),
+
+        2px 2px 1px rgb(140,171,168),
+        2px 3px 1px rgb(140,171,168),
+        2px 4px 1px rgb(140,171,168)`,
+
+  "&&": { // styles defined within "&&" will take precedence over the default styles of MUI components
+    ...(filteroptions === option && {
+      // custom attributes cannot be camelCased in styled components. Must be "lowercase"
+      // ... is used to merge the objects into the parent object when active is TRUE;
+      textTransform: "uppercase",
+      color: "#daffe7",
+      textDecoration: "underline",
+      textDecorationColor: "#5f9ea0",
+      textUnderlineOffset: "0.5em",
+      fontSize: "2.5rem",
+      textShadow: `
+          0px 0px 1px rgb(73,121,107),
+          0px 1px 1px rgb(73,121,107),
+          0px 2px 1px rgb(73,121,107),
+  
+          1px 1px 1px rgb(73,121,107),
+          1px 2px 1px rgb(73,121,107),
+          1px 3px 1px rgb(73,121,107),
+  
+          2px 2px 1px rgb(73,121,107),
+          2px 3px 1px rgb(73,121,107),
+          2px 4px 1px rgb(73,121,107)`,
+    }),
+  },
+}));
+
 function Todos({
   todos,
   fetchTodos,
@@ -251,40 +294,31 @@ function Todos({
         alignItems="center"
       >
         <Grid item>
-          <Button
-            style={
-              filterOptions === "all"
-                ? styleProps.activeOptions
-                : styleProps.options
-            }
+          <OptionButton
+            filteroptions={filterOptions}
+            option="all"
             onClick={() => setFilterOptions("all")}
           >
             All
-          </Button>
+          </OptionButton>
         </Grid>
         <Grid item>
-          <Button
-            style={
-              filterOptions === "incomplete"
-                ? styleProps.activeOptions
-                : styleProps.options
-            }
+          <OptionButton
+            filteroptions={filterOptions}
+            option="incomplete"
             onClick={() => setFilterOptions("incomplete")}
           >
             Incomplete
-          </Button>
+          </OptionButton>
         </Grid>
         <Grid item>
-          <Button
-            style={
-              filterOptions === "completed"
-                ? styleProps.activeOptions
-                : styleProps.options
-            }
+          <OptionButton
+            filteroptions={filterOptions}
+            option="completed"
             onClick={() => setFilterOptions("completed")}
           >
             Completed
-          </Button>
+          </OptionButton>
         </Grid>
         <Grid item>
           <ClearButton onClick={() => clearHandler()}>CLEAR</ClearButton>

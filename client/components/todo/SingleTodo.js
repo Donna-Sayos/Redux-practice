@@ -154,27 +154,40 @@ const styleProps = {
     },
   },
   hw: {
-    height: "2.3rem", 
+    height: "2.3rem",
     width: "2.3rem",
   },
 };
 
-const StyledTextField = styled(TextField)(() => ({
+const StyledTextField = styled(TextField)({
   "& .MuiOutlinedInput-root": {
     color: "#8b6914",
     marginTop: "40px",
-  },
+    boxShadow: `
+      0px 0px 1px rgb(140,171,168),
+      0px 1px 1px rgb(140,171,168),
+      0px 2px 1px rgb(140,171,168),
 
+      0px 1px 1px rgb(140,171,168),
+      0px 2px 1px rgb(140,171,168),
+      0px 3px 1px rgb(140,171,168),
+
+      0px 2px 1px rgb(140,171,168),
+      0px 3px 1px rgb(140,171,168),
+      0px 4px 1px rgb(140,171,168)`,
+  },
+  "& .css-ihdtdm span": {
+    display: "none",
+  },
   "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
     borderColor: "rgba(223, 227, 238, 0.5)",
     borderWidth: "3px",
   },
-
   "& .MuiOutlinedInput-root .Mui-focused .MuiOutlinedInput-notchedOutline": {
     borderColor: "rgba(223, 227, 238, 0.5)",
     borderWidth: "3px",
   },
-}));
+});
 
 const SaveButton = styled(Button)(() => ({
   border: "1px solid white",
@@ -226,7 +239,7 @@ export default function SingleTodo({
           {isEditing ? (
             <div>
               <StyledTextField
-                variant="filled"
+                variant="outlined"
                 multiline={true}
                 inputRef={(input) => input && input.focus()}
                 onFocus={(e) => {
@@ -241,9 +254,7 @@ export default function SingleTodo({
                   className: `${styleProps.input}`,
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Assignment
-                        sx={styleProps.hw}
-                      />{" "}
+                      <Assignment sx={styleProps.hw} />{" "}
                     </InputAdornment>
                   ),
                 }}

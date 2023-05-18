@@ -77,10 +77,11 @@ const styleProps = {
   },
 };
 
-const ClearButton = styled(Button)(() => ({
+const ClearButton = styled(Button)({
   backgroundColor: "#b8d8be",
   borderRadius: 5,
   border: "1px solid #008080",
+  fontSize: "1.6rem",
   height: "3rem",
   width: "7.5rem",
   textShadow: `
@@ -104,22 +105,18 @@ const ClearButton = styled(Button)(() => ({
       2px 3px 1px rgb(57,133,100),
       2px 4px 1px rgb(57,133,100)`,
   transition: "transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out",
-  "& .MuiButton-label": {
-    fontSize: "1.6rem",
-  },
+
   "&:hover": {
     transform: "translateY(-3px)",
     boxShadow: "0px 2px 0px #3e8e41, 0px 5px 5px rgba(0, 0, 0, 0.1)",
     backgroundColor: "#e1f7d5",
-    "& .MuiButton-label": {
-      color: "#fff5ee",
-    },
+    color: "#fff5ee",
   },
-}));
+});
 
-const StyledDivider = styled(Divider)(() => ({
+const StyledDivider = styled(Divider)({
   borderBottom: "2px solid #99aab5",
-}));
+});
 
 const OptionButton = styled(Button)(({ filteroptions, option }) => ({
   textTransform: "none",
@@ -138,7 +135,8 @@ const OptionButton = styled(Button)(({ filteroptions, option }) => ({
         2px 3px 1px rgb(140,171,168),
         2px 4px 1px rgb(140,171,168)`,
 
-  "&&": { // styles defined within "&&" will take precedence over the default styles of MUI components
+  "&&": {
+    // styles defined within "&&" will take precedence over the default styles of MUI components
     ...(filteroptions === option && {
       // custom attributes cannot be camelCased in styled components. Must be "lowercase"
       // ... is used to merge the objects into the parent object when active is TRUE;

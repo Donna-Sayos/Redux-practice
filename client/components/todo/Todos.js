@@ -291,10 +291,10 @@ function Todos({
         <div style={{ marginTop: "4rem" }}>
           <h1>You have no tasks.</h1>
         </div>
-      ) : todoList.length > 0 && showProgress ? (
-        <div style={styleProps.progressContainer}>
-          <ProgressWithLabel value={value} />
-        </div>
+      // ) : todoList.length > 0 && showProgress ? (
+      //   <div style={styleProps.progressContainer}>
+      //     <ProgressWithLabel value={value} />
+      //   </div>
       ) : (
         <div>
           {todoList.map((todo) => (

@@ -161,55 +161,46 @@ const styleProps = {
 
 const StyledTextField = styled(TextField)({
   "& .MuiOutlinedInput-root": {
-    color: "#8b6914",
     marginTop: "40px",
+    color: "#8b6914",
+    borderColor: "#dfc4a8",
     boxShadow: `
-      0px 0px 1px rgb(140,171,168),
-      0px 1px 1px rgb(140,171,168),
-      0px 2px 1px rgb(140,171,168),
+      0px 0px 1px rgb(154,130,98),
+      0px 1px 1px rgb(154,130,98),
+      0px 2px 1px rgb(154,130,98),
 
-      0px 1px 1px rgb(140,171,168),
-      0px 2px 1px rgb(140,171,168),
-      0px 3px 1px rgb(140,171,168),
+      1px 1px 1px rgb(154,130,98),
+      1px 2px 1px rgb(154,130,98),
+      1px 3px 1px rgb(154,130,98),
 
-      0px 2px 1px rgb(140,171,168),
-      0px 3px 1px rgb(140,171,168),
-      0px 4px 1px rgb(140,171,168)`,
+      2px 2px 1px rgb(154,130,98),
+      2px 3px 1px rgb(154,130,98),
+      2px 4px 1px rgb(154,130,98)`,
   },
   "& .css-ihdtdm span": {
     display: "none",
   },
   "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-    borderColor: "rgba(223, 227, 238, 0.5)",
+    borderColor: "#be9b7b",
     borderWidth: "3px",
   },
-  "& .MuiOutlinedInput-root .Mui-focused .MuiOutlinedInput-notchedOutline": {
-    borderColor: "rgba(223, 227, 238, 0.5)",
+  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#be9b7b",
     borderWidth: "3px",
   },
 });
 
-const SaveButton = styled(Button)(() => ({
-  border: "1px solid white",
-  backgroundColor: "#bd8966",
-  marginRight: "10px",
+const StyledButton = styled(Button)({
+  color: "#c98276",
+  border: "1px solid #a39193",
+  padding: "10px",
+  backgroundColor: "#e0a899",
   "&:hover": {
     fontSize: "1rem",
-    border: "4px solid #d39972",
-    backgroundColor: "#eea990",
+    border: "3px solid #a39193",
+    backgroundColor: "#e0a899",
   },
-}));
-
-const CancelButton = styled(Button)(() => ({
-  border: "1px solid white",
-  backgroundColor: "#bd8966",
-  marginLeft: "10px",
-  "&:hover": {
-    fontSize: "1rem",
-    border: "4px solid #d39972",
-    backgroundColor: "#eea990",
-  },
-}));
+});
 
 export default function SingleTodo({
   todo,
@@ -260,10 +251,16 @@ export default function SingleTodo({
                 }}
               />
               <div>
-                <SaveButton onClick={() => saveHandler(todo)}>Save</SaveButton>
-                <CancelButton onClick={() => setIsEditing(false)}>
+                <StyledButton
+                  sx={{ marginRight: "3rem" }}
+                  onClick={() => saveHandler(todo)}
+                >
+                  Save
+                </StyledButton>
+
+                <StyledButton onClick={() => setIsEditing(false)}>
                   Cancel
-                </CancelButton>
+                </StyledButton>
               </div>
             </div>
           ) : (

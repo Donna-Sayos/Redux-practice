@@ -13,98 +13,16 @@ import { Edit, DeleteForever, Assignment } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 
 const styleProps = {
-  card: {
-    padding: "0px",
-    textAlign: "center",
-    backgroundColor: "#e7c6a4",
-    position: "relative",
-    cursor: "default",
-    boxShadow: `
-        0px 0px 1px rgb(154,130,98),
-        0px 1px 1px rgb(154,130,98),
-        0px 2px 1px rgb(154,130,98),
-
-        1px 1px 1px rgb(154,130,98),
-        1px 2px 1px rgb(154,130,98),
-        1px 3px 1px rgb(154,130,98),
-
-        2px 2px 1px rgb(154,130,98),
-        2px 3px 1px rgb(154,130,98),
-        2px 4px 1px rgb(154,130,98),
-
-        3px 3px 1px rgb(154,130,98),
-        3px 4px 1px rgb(154,130,98),
-        3px 5px 1px rgb(154,130,98),
-
-        4px 4px 1px rgb(154,130,98),
-        4px 5px 1px rgb(154,130,98),
-        4px 6px 1px rgb(154,130,98)`,
-  },
-  cardChecked: {
-    padding: "0px",
-    textAlign: "center",
-    backgroundColor: "#b38b67",
-    position: "relative",
-    cursor: "default",
-  },
   input: {
     background: "rgba(223, 227, 238, 0.5)",
   },
-  label: {
+  hw: {
+    height: "2.3rem",
+    width: "2.3rem",
+  },
+  formLabel: {
     display: "flex",
     justifyContent: "start",
-  },
-  checkbox: {
-    "& .MuiSvgIcon-root": {
-      fontSize: 30,
-      fill: "#b38b67",
-      boxShadow: `
-        0px 0px 1px rgb(179,139,103),
-        0px 1px 1px rgb(179,139,103),
-        0px 2px 1px rgb(179,139,103),
-
-        1px 1px 1px rgb(179,139,103),
-        1px 2px 1px rgb(179,139,103),
-        1px 3px 1px rgb(179,139,103),
-
-        2px 2px 1px rgb(179,139,103),
-        2px 3px 1px rgb(179,139,103),
-        2px 4px 1px rgb(179,139,103),
-
-        3px 3px 1px rgb(179,139,103),
-        3px 4px 1px rgb(179,139,103),
-        3px 5px 1px rgb(179,139,103)`,
-    },
-    cursor: "pointer",
-  },
-  checkboxChecked: {
-    "& .MuiSvgIcon-root": {
-      fontSize: 30,
-      fill: "#d9b380",
-    },
-    cursor: "pointer",
-  },
-  incompleteDesc: {
-    textAlign: "left",
-    fontSize: "2rem",
-    textShadow: `
-      0px 0px 1px rgb(179,139,103),
-      0px 1px 1px rgb(179,139,103),
-      0px 2px 1px rgb(179,139,103),
-
-      1px 1px 1px rgb(179,139,103),
-      1px 2px 1px rgb(179,139,103),
-      1px 3px 1px rgb(179,139,103),
-
-      2px 2px 1px rgb(179,139,103),
-      2px 3px 1px rgb(179,139,103),
-      2px 4px 1px rgb(179,139,103)`,
-  },
-  completedDesc: {
-    textAlign: "left",
-    textDecoration: "line-through",
-    color: "#d9b380",
-    fontStyle: "italic",
   },
   edit: {
     position: "absolute",
@@ -153,13 +71,9 @@ const styleProps = {
       transform: "rotate(15deg)",
     },
   },
-  hw: {
-    height: "2.3rem",
-    width: "2.3rem",
-  },
 };
 
-const StyledCard = styled(Card)(({ completed }) => ({
+const StyledCard = styled(Card)(({ iscompleted }) => ({
   paddingLeft: "10px",
   textAlign: "center",
   backgroundColor: "#e7c6a4",
@@ -187,12 +101,55 @@ const StyledCard = styled(Card)(({ completed }) => ({
         4px 6px 1px rgb(154,130,98)`,
 
   "&&": {
-    ...(completed === "true" && {
+    ...(iscompleted === "true" && {
       textAlign: "center",
       backgroundColor: "#b38b67",
     }),
   },
 }));
+
+const StyledTextField = styled(TextField)({
+  "& .MuiOutlinedInput-root": {
+    marginTop: "40px",
+    color: "#8b6914",
+    borderColor: "#dfc4a8",
+    boxShadow: `
+    0px 0px 1px rgb(154,130,98),
+    0px 1px 1px rgb(154,130,98),
+    0px 2px 1px rgb(154,130,98),
+    
+    1px 1px 1px rgb(154,130,98),
+    1px 2px 1px rgb(154,130,98),
+    1px 3px 1px rgb(154,130,98),
+    
+    2px 2px 1px rgb(154,130,98),
+    2px 3px 1px rgb(154,130,98),
+    2px 4px 1px rgb(154,130,98)`,
+  },
+  "& .css-ihdtdm span": {
+    display: "none",
+  },
+  "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#be9b7b",
+    borderWidth: "3px",
+  },
+  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#be9b7b",
+    borderWidth: "3px",
+  },
+});
+
+const StyledButton = styled(Button)({
+  color: "#c98276",
+  border: "1px solid #a39193",
+  padding: "10px",
+  backgroundColor: "#e0a899",
+  "&:hover": {
+    fontSize: "1rem",
+    border: "3px solid #a39193",
+    backgroundColor: "#e0a899",
+  },
+});
 
 const StyledCheckbox = styled(Checkbox)(({ ischecked }) => ({
   "& .MuiSvgIcon-root": {
@@ -226,48 +183,31 @@ const StyledCheckbox = styled(Checkbox)(({ ischecked }) => ({
   },
 }));
 
-const StyledTextField = styled(TextField)({
-  "& .MuiOutlinedInput-root": {
-    marginTop: "40px",
-    color: "#8b6914",
-    borderColor: "#dfc4a8",
-    boxShadow: `
-      0px 0px 1px rgb(154,130,98),
-      0px 1px 1px rgb(154,130,98),
-      0px 2px 1px rgb(154,130,98),
+const StyledH2 = styled("h2")(({ iscompleted }) => ({
+  textAlign: "left",
+  fontSize: "2rem",
+  textShadow: `
+      0px 0px 1px rgb(179,139,103),
+      0px 1px 1px rgb(179,139,103),
+      0px 2px 1px rgb(179,139,103),
 
-      1px 1px 1px rgb(154,130,98),
-      1px 2px 1px rgb(154,130,98),
-      1px 3px 1px rgb(154,130,98),
+      1px 1px 1px rgb(179,139,103),
+      1px 2px 1px rgb(179,139,103),
+      1px 3px 1px rgb(179,139,103),
 
-      2px 2px 1px rgb(154,130,98),
-      2px 3px 1px rgb(154,130,98),
-      2px 4px 1px rgb(154,130,98)`,
-  },
-  "& .css-ihdtdm span": {
-    display: "none",
-  },
-  "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-    borderColor: "#be9b7b",
-    borderWidth: "3px",
-  },
-  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    borderColor: "#be9b7b",
-    borderWidth: "3px",
-  },
-});
+      2px 2px 1px rgb(179,139,103),
+      2px 3px 1px rgb(179,139,103),
+      2px 4px 1px rgb(179,139,103)`,
 
-const StyledButton = styled(Button)({
-  color: "#c98276",
-  border: "1px solid #a39193",
-  padding: "10px",
-  backgroundColor: "#e0a899",
-  "&:hover": {
-    fontSize: "1rem",
-    border: "3px solid #a39193",
-    backgroundColor: "#e0a899",
+  "&&": {
+    ...(iscompleted === "true" && {
+      textDecoration: "line-through",
+      textShadow: "none",
+      color: "#d9b380",
+      fontStyle: "italic",
+    }),
   },
-});
+}));
 
 export default function SingleTodo({
   todo,
@@ -293,7 +233,7 @@ export default function SingleTodo({
   return (
     <>
       <Grid item xs={8} sm={6}>
-        <StyledCard completed={`${todo.isCompleted}`}>
+        <StyledCard iscompleted={`${todo.isCompleted}`}>
           {isEditing ? (
             <>
               <StyledTextField
@@ -332,7 +272,7 @@ export default function SingleTodo({
             </>
           ) : (
             <FormControlLabel
-              sx={styleProps.label}
+              sx={styleProps.formLabel}
               control={
                 <StyledCheckbox
                   ischecked={`${todo.isCompleted}`}
@@ -341,15 +281,9 @@ export default function SingleTodo({
                 />
               }
               label={
-                <h2
-                  style={
-                    todo.isCompleted
-                      ? styleProps.completedDesc
-                      : styleProps.incompleteDesc
-                  }
-                >
+                <StyledH2 iscompleted={`${todo.isCompleted}`}>
                   {todo.description}
-                </h2>
+                </StyledH2>
               }
             />
           )}

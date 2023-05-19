@@ -4,19 +4,6 @@ import Todos from "./components/todo/Todos";
 import { Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-const styleProps = {
-  hanger: {
-    filter: "contrast(70%)",
-    position: "absolute",
-    top: "4%",
-    top: `calc(${35 * 2}px - 4.5rem)`,
-    transform: "translateX(-50%)",
-    width: "65%",
-    height: "35rem",
-    imageRendering: "pixelated",
-  },
-};
-
 const StyledPaper = styled(Paper)({
   textAlign: "center",
   color: "#faf0e6",
@@ -61,10 +48,21 @@ const StyledPaper = styled(Paper)({
           7px 9px 1px rgb(73,121,107)`,
 });
 
+const StyledImg = styled("img")({
+  filter: "contrast(70%)",
+  position: "absolute",
+  top: "4%",
+  top: `calc(${35 * 2}px - 4.5rem)`,
+  transform: "translateX(-50%)",
+  width: "65%",
+  height: "35rem",
+  imageRendering: "pixelated",
+});
+
 export default function App() {
   return (
     <StyledPaper>
-      <img src={CLIP} style={styleProps.hanger} />
+      <StyledImg src={CLIP} />
       <Todos />
     </StyledPaper>
   );

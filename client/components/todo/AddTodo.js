@@ -4,12 +4,12 @@ import { Assignment } from "@mui/icons-material/";
 import { styled } from "@mui/material/styles";
 
 const styleProps = {
+  input: {
+    background: "rgba(223, 227, 238, 0.5)",
+  },
   hw: {
     height: "2.3rem",
     width: "2.3rem",
-  },
-  input: {
-    background: "rgba(223, 227, 238, 0.5)",
   },
 };
 

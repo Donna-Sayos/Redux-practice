@@ -36,18 +36,19 @@ const styleProps = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "2rem",
   },
 };
 
-const ClearButton = styled(Button)({
-  backgroundColor: "#b8d8be",
-  borderRadius: 5,
-  border: "1px solid #008080",
-  fontSize: "1.6rem",
-  height: "3rem",
-  width: "7.5rem",
-  textShadow: `
+const StyledButton = styled(Button)(({ buttonfor, filteroptions, option }) => ({
+  ///
+  ...(buttonfor === "clear" && {
+    backgroundColor: "#b8d8be",
+    borderRadius: 5,
+    border: "1px solid #008080",
+    fontSize: "1.6rem",
+    height: "3rem",
+    width: "7.5rem",
+    textShadow: `
       0px 0px 1px rgb(102,123,104),
       0px 1px 1px rgb(102,123,104),
       0px 2px 1px rgb(102,123,104),
@@ -55,7 +56,7 @@ const ClearButton = styled(Button)({
       1px 1px 1px rgb(102,123,104),
       1px 2px 1px rgb(102,123,104),
       1px 3px 1px rgb(102,123,104)`,
-  boxShadow: `
+    boxShadow: `
       0px 0px 1px rgb(57,133,100),
       0px 1px 1px rgb(57,133,100),
       0px 2px 1px rgb(57,133,100),
@@ -67,25 +68,20 @@ const ClearButton = styled(Button)({
       2px 2px 1px rgb(57,133,100),
       2px 3px 1px rgb(57,133,100),
       2px 4px 1px rgb(57,133,100)`,
-  transition: "transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out",
+    transition: "transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out",
 
-  "&:hover": {
-    transform: "translateY(-3px)",
-    boxShadow: "0px 2px 0px #3e8e41, 0px 5px 5px rgba(0, 0, 0, 0.1)",
-    backgroundColor: "#e1f7d5",
-    color: "#fff5ee",
-  },
-});
-
-const StyledDivider = styled(Divider)({
-  borderBottom: "2px solid #99aab5",
-});
-
-const OptionButton = styled(Button)(({ filteroptions, option }) => ({
-  textTransform: "none",
-  fontSize: "2.5rem",
-  color: "#ddfffc",
-  textShadow: `
+    "&:hover": {
+      transform: "translateY(-3px)",
+      boxShadow: "0px 2px 0px #3e8e41, 0px 5px 5px rgba(0, 0, 0, 0.1)",
+      backgroundColor: "#e1f7d5",
+      color: "#fff5ee",
+    },
+  }),
+  ...(buttonfor === "options" && {
+    textTransform: "none",
+    fontSize: "2.5rem",
+    color: "#ddfffc",
+    textShadow: `
         0px 0px 1px rgb(140,171,168), 
         0px 1px 1px rgb(140,171,168),
         0px 2px 1px rgb(140,171,168),
@@ -98,19 +94,18 @@ const OptionButton = styled(Button)(({ filteroptions, option }) => ({
         2px 3px 1px rgb(140,171,168),
         2px 4px 1px rgb(140,171,168)`,
 
-  "&&": {
-    // styles defined within "&&" will take precedence over the default styles of MUI components
-    ...(filteroptions === option && {
-      // custom attributes cannot be camelCased in styled components. Must be "lowercase"
-      // "..." is used to merge the objects into the parent object when filteroptions === option;
+    "&&": {
+      // styles defined within "&&" will take precedence over the default styles of MUI components
+      ...(filteroptions === option && {
+        // custom attributes cannot be camelCased in styled components. Must be "lowercase"
+        // "..." is used to merge the objects into the parent object when filteroptions === option;
 
-      textTransform: "uppercase",
-      color: "#daffe7",
-      textDecoration: "underline",
-      textDecorationColor: "#5f9ea0",
-      textUnderlineOffset: "0.5em",
-      fontSize: "2.5rem",
-      textShadow: `
+        textTransform: "uppercase",
+        color: "#daffe7",
+        textDecoration: "underline",
+        textDecorationColor: "#5f9ea0",
+        textUnderlineOffset: "0.5em",
+        textShadow: `
           0px 0px 1px rgb(73,121,107),
           0px 1px 1px rgb(73,121,107),
           0px 2px 1px rgb(73,121,107),
@@ -122,9 +117,14 @@ const OptionButton = styled(Button)(({ filteroptions, option }) => ({
           2px 2px 1px rgb(73,121,107),
           2px 3px 1px rgb(73,121,107),
           2px 4px 1px rgb(73,121,107)`,
-    }),
-  },
+      }),
+    },
+  }),
 }));
+
+const StyledDivider = styled(Divider)({
+  borderBottom: "2px solid #99aab5",
+});
 
 function Todos({
   todos,
@@ -256,34 +256,39 @@ function Todos({
         alignItems="center"
       >
         <Grid item>
-          <OptionButton
+          <StyledButton
+            buttonfor="options"
             filteroptions={filterOptions}
             option="all"
             onClick={() => setFilterOptions("all")}
           >
             All
-          </OptionButton>
+          </StyledButton>
         </Grid>
         <Grid item>
-          <OptionButton
+          <StyledButton
+            buttonfor="options"
             filteroptions={filterOptions}
             option="incomplete"
             onClick={() => setFilterOptions("incomplete")}
           >
             Incomplete
-          </OptionButton>
+          </StyledButton>
         </Grid>
         <Grid item>
-          <OptionButton
+          <StyledButton
+            buttonfor="options"
             filteroptions={filterOptions}
             option="completed"
             onClick={() => setFilterOptions("completed")}
           >
             Completed
-          </OptionButton>
+          </StyledButton>
         </Grid>
         <Grid item>
-          <ClearButton onClick={() => clearHandler()}>CLEAR</ClearButton>
+          <StyledButton buttonfor="clear" onClick={() => clearHandler()}>
+            CLEAR
+          </StyledButton>
         </Grid>
       </Grid>
       <StyledDivider variant="fullWidth" />
@@ -291,10 +296,10 @@ function Todos({
         <div style={{ marginTop: "4rem" }}>
           <h1>You have no tasks.</h1>
         </div>
-      // ) : todoList.length > 0 && showProgress ? (
-      //   <div style={styleProps.progressContainer}>
-      //     <ProgressWithLabel value={value} />
-      //   </div>
+      ) : todoList.length > 0 && showProgress ? (
+        <div style={styleProps.progressContainer}>
+          <ProgressWithLabel value={value} />
+        </div>
       ) : (
         <div>
           {todoList.map((todo) => (

@@ -55,11 +55,3 @@ export const clearTodos_ = () => async (dispatch) => {
     console.log(`Error in clearTodos thunk: ${err}`);
   }
 };
-
-export const undo_ = () => (dispatch) => {
-  dispatch(actionCreators.undo());
-};
-
-export const redo_ = () => (dispatch) => {
-  dispatch(actionCreators.redo());
-};

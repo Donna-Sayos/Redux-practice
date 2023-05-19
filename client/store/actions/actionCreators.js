@@ -40,11 +40,3 @@ export const updateTodo = (id, todo) => ({
 export const clearTodos = () => ({
   type: actions.CLEAR_TODOS,
 });
-
-export const undo = () => ({
-  type: actions.UNDO,
-});
-
-export const redo = () => ({
-  type: actions.REDO,
-});

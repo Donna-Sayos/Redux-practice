@@ -335,8 +335,6 @@ const mapDispatch = (dispatch) => ({
   removeTodo: (id) => dispatch(thunks.removeTodo_(id)),
   updateTodo: (id, todo) => dispatch(thunks.updateTodo_(id, todo)),
   toggleTodo: (id) => dispatch(thunks.toggleTodo_(id)),
-  undo: () => dispatch(thunks.undo_()),
-  redo: () => dispatch(thunks.redo_()),
 });
 
 export default connect(mapState, mapDispatch)(Todos);

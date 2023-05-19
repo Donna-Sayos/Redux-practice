@@ -159,6 +159,73 @@ const styleProps = {
   },
 };
 
+const StyledCard = styled(Card)(({ completed }) => ({
+  paddingLeft: "10px",
+  textAlign: "center",
+  backgroundColor: "#e7c6a4",
+  position: "relative",
+  cursor: "default",
+  boxShadow: `
+        0px 0px 1px rgb(154,130,98),
+        0px 1px 1px rgb(154,130,98),
+        0px 2px 1px rgb(154,130,98),
+
+        1px 1px 1px rgb(154,130,98),
+        1px 2px 1px rgb(154,130,98),
+        1px 3px 1px rgb(154,130,98),
+
+        2px 2px 1px rgb(154,130,98),
+        2px 3px 1px rgb(154,130,98),
+        2px 4px 1px rgb(154,130,98),
+
+        3px 3px 1px rgb(154,130,98),
+        3px 4px 1px rgb(154,130,98),
+        3px 5px 1px rgb(154,130,98),
+
+        4px 4px 1px rgb(154,130,98),
+        4px 5px 1px rgb(154,130,98),
+        4px 6px 1px rgb(154,130,98)`,
+
+  "&&": {
+    ...(completed === "true" && {
+      textAlign: "center",
+      backgroundColor: "#b38b67",
+    }),
+  },
+}));
+
+const StyledCheckbox = styled(Checkbox)(({ ischecked }) => ({
+  "& .MuiSvgIcon-root": {
+    fontSize: 30,
+    fill: "#b38b67",
+    cursor: "pointer",
+    boxShadow: `
+      0px 0px 1px rgb(179,139,103),
+      0px 1px 1px rgb(179,139,103),
+      0px 2px 1px rgb(179,139,103),
+
+      1px 1px 1px rgb(179,139,103),
+      1px 2px 1px rgb(179,139,103),
+      1px 3px 1px rgb(179,139,103),
+
+      2px 2px 1px rgb(179,139,103),
+      2px 3px 1px rgb(179,139,103),
+      2px 4px 1px rgb(179,139,103),
+
+      3px 3px 1px rgb(179,139,103),
+      3px 4px 1px rgb(179,139,103),
+      3px 5px 1px rgb(179,139,103)`,
+  },
+
+  "&&": {
+    ...(ischecked === "true" && {
+      "& .MuiSvgIcon-root": {
+        fill: "#d9b380",
+      },
+    }),
+  },
+}));
+
 const StyledTextField = styled(TextField)({
   "& .MuiOutlinedInput-root": {
     marginTop: "40px",
@@ -226,9 +293,9 @@ export default function SingleTodo({
   return (
     <>
       <Grid item xs={8} sm={6}>
-        <Card sx={todo.isCompleted ? styleProps.cardChecked : styleProps.card}>
+        <StyledCard completed={`${todo.isCompleted}`}>
           {isEditing ? (
-            <div>
+            <>
               <StyledTextField
                 variant="outlined"
                 multiline={true}
@@ -262,18 +329,13 @@ export default function SingleTodo({
                   Cancel
                 </StyledButton>
               </div>
-            </div>
+            </>
           ) : (
             <FormControlLabel
               sx={styleProps.label}
               control={
-                <Checkbox
-                  sx={
-                    todo.isCompleted
-                      ? styleProps.checkboxChecked
-                      : styleProps.checkbox
-                  }
-                  color="primary"
+                <StyledCheckbox
+                  ischecked={`${todo.isCompleted}`}
                   onChange={() => toggleTodo(todo.id)}
                   checked={todo.isCompleted}
                 />
@@ -297,7 +359,7 @@ export default function SingleTodo({
               if (!todo.isCompleted) setIsEditing(true);
             }}
           />
-        </Card>
+        </StyledCard>
       </Grid>
       <Grid item xs={8} sm={1}>
         <IconButton

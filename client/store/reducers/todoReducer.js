@@ -1,6 +1,9 @@
 import * as actions from "../actions/actionTypes";
+import { ActionCreators as UndoRedoActionCreators } from "redux-undo";
 
-export const todoReducer = (state = [], action) => {
+const initialState = [];
+
+export const todoReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.SET_TODOS:
       return action.payload.todos;
@@ -27,6 +30,12 @@ export const todoReducer = (state = [], action) => {
 
     case actions.CLEAR_TODOS:
       return [];
+
+    case actions.UNDO:
+      return UndoRedoActionCreators.undo(state);
+
+    case actions.REDO:
+      return UndoRedoActionCreators.redo(state);
 
     default:
       return state;

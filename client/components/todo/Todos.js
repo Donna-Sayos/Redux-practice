@@ -4,8 +4,9 @@ import * as thunks from "../../store/actions/thunks";
 import AddTodo from "./AddTodo";
 import SingleTodo from "./SingleTodo";
 import ProgressWithLabel from "../common/ProgressWithLabel";
-import { Button, Grid, Container, Divider } from "@mui/material";
+import { Button, Grid, Container, Divider, IconButton } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { Redo, Undo } from "@mui/icons-material";
 
 const styleProps = {
   header: {
@@ -36,6 +37,21 @@ const styleProps = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  icon: {
+    fill: "#aa6f73",
+    height: "50px",
+    width: "50px",
+
+    "&:hover": {
+      fill: "#ffb3ba",
+      transform: "scale(1.5)",
+    },
+  },
+  iconButton: {
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
   },
 };
 
@@ -134,6 +150,8 @@ function Todos({
   updateTodo,
   removeTodo,
   toggleTodo,
+  undo,
+  redo,
 }) {
   const [todoList, setTodoList] = useState([]);
   const [filterOptions, setFilterOptions] = useState("all");
@@ -237,7 +255,7 @@ function Todos({
 
           return nextProgress;
         });
-      }, 80);
+      }, 60);
     }
 
     return () => clearInterval(timer);
@@ -292,6 +310,14 @@ function Todos({
         </Grid>
       </Grid>
       <StyledDivider variant="fullWidth" />
+      <div style={{ margin: 0 }}>
+        <IconButton sx={styleProps.iconButton} onClick={() => undo()}>
+          <Undo sx={styleProps.icon} />
+        </IconButton>
+        <IconButton sx={styleProps.iconButton} onClick={() => redo()}>
+          <Redo sx={styleProps.icon} />
+        </IconButton>
+      </div>
       {todoList.length === 0 && isFinished ? (
         <div style={{ marginTop: "4rem" }}>
           <h1>You have no tasks.</h1>
@@ -325,7 +351,7 @@ function Todos({
 }
 
 const mapState = (state) => ({
-  todos: state.todos,
+  todos: state.todos.present,
 });
 
 const mapDispatch = (dispatch) => ({
@@ -335,6 +361,9 @@ const mapDispatch = (dispatch) => ({
   removeTodo: (id) => dispatch(thunks.removeTodo_(id)),
   updateTodo: (id, todo) => dispatch(thunks.updateTodo_(id, todo)),
   toggleTodo: (id) => dispatch(thunks.toggleTodo_(id)),
+
+  undo: () => dispatch(thunks.undo_()),
+  redo: () => dispatch(thunks.redo_()),
 });
 
 export default connect(mapState, mapDispatch)(Todos);

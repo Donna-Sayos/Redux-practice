@@ -2,7 +2,7 @@ import * as actions from "../actions/actionTypes";
 
 const initialState = {
   past: [],
-  present: [],
+  present: [], // current state
   future: [],
 };
 
@@ -15,7 +15,6 @@ export const todoReducer = (state = initialState, action) => {
       };
 
     case actions.ADD_TODO:
-      // return [...state, action.payload.todo];
       return {
         past: [...state.past, state.present],
         present: [...state.present, action.payload.todo],
@@ -23,7 +22,6 @@ export const todoReducer = (state = initialState, action) => {
       };
 
     case actions.REMOVE_TODO:
-      // return state.filter((todo) => todo.id !== action.payload.id);
       return {
         past: [...state.past, state.present],
         present: state.present.filter((todo) => todo.id !== action.payload.id),
@@ -31,11 +29,6 @@ export const todoReducer = (state = initialState, action) => {
       };
 
     case actions.TOGGLE_TODO:
-      // return state.map((todo) =>
-      //   todo.id === action.payload.id
-      //     ? { ...todo, isCompleted: !todo.isCompleted }
-      //     : todo
-      // );
       return {
         past: [...state.past, state.present],
         present: state.present.map((todo) =>
@@ -47,11 +40,6 @@ export const todoReducer = (state = initialState, action) => {
       };
 
     case actions.UPDATE_TODO:
-      // return state.map((todo) =>
-      //   todo.id === action.payload.id
-      //     ? { ...todo, description: action.payload.description }
-      //     : todo
-      // );
       return {
         past: [...state.past, state.present],
         present: state.present.map((todo) =>
@@ -63,7 +51,6 @@ export const todoReducer = (state = initialState, action) => {
       };
 
     case actions.CLEAR_TODOS:
-      // return [];
       return {
         past: [...state.past, state.present],
         present: [],
@@ -73,22 +60,22 @@ export const todoReducer = (state = initialState, action) => {
     case actions.UNDO:
       if (state.past.length === 0) return state;
 
-      const prevState = state.past[state.past.length - 1];
-      const newPast = state.past.slice(0, state.past.length - 1);
+      const prevState = state.past[state.past.length - 1]; // grab last item in past array
+      const newPast = state.past.slice(0, state.past.length - 1); // return all the items in the past array except the last item
       return {
         past: newPast,
         present: prevState,
-        future: [state.present, ...state.future],
+        future: [state.present, ...state.future], // add the current state to the beginning of the future array
       };
 
     case actions.REDO:
       if (state.future.length === 0) return state;
 
-      const nextState = state.future[0];
+      const nextState = state.future[0]; 
       const newFuture = state.future.slice(1);
-      return {
-        past: [...state.past, state.present],
-        present: nextState,
+      return {                                 //         PAST   /   PRESENT   /   FUTURE
+        past: [...state.past, state.present],  //              <---          <---
+        present: nextState,                    //     PRESENT   /   FUTURE[0]   /   the rest of the future array
         future: newFuture,
       };
 

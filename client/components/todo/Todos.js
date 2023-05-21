@@ -311,16 +311,12 @@ function Todos({
       </Grid>
       <StyledDivider variant="fullWidth" />
       <div style={{ margin: 0 }}>
-        {todoList.length > 0 && !showProgress && (
-          <>
-            <IconButton sx={styleProps.iconButton} onClick={() => undo()}>
-              <Undo sx={styleProps.icon} />
-            </IconButton>
-            <IconButton sx={styleProps.iconButton} onClick={() => redo()}>
-              <Redo sx={styleProps.icon} />
-            </IconButton>
-          </>
-        )}
+        <IconButton sx={styleProps.iconButton} onClick={() => undo()}>
+          <Undo sx={styleProps.icon} />
+        </IconButton>
+        <IconButton sx={styleProps.iconButton} onClick={() => redo()}>
+          <Redo sx={styleProps.icon} />
+        </IconButton>
       </div>
       {todoList.length === 0 && isFinished ? (
         <div style={{ marginTop: "4rem" }}>

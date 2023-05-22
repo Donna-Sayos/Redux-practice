@@ -64,7 +64,7 @@ export const clearTodos_ = () => async (dispatch) => {
   }
 };
 
-export const undo_ = () => async (dispatch, getState) => {
+export const undo_ = () => async (dispatch, getState) => { // FIXME: fix bugs
   const { todos } = getState();
 
   if (todos.past.length === 0) return;
@@ -78,7 +78,7 @@ export const undo_ = () => async (dispatch, getState) => {
     const removedTodos = prevState.filter(
       (todo) => !todos.present.some((t) => t.id === todo.id)
     );
-    if (removedTodos.length > 0) {
+    if (removedTodos.length > 1) {
       try {
         for (const removedTodo of removedTodos) {
           await dispatch(removeTodo_(removedTodo.id));
@@ -86,11 +86,24 @@ export const undo_ = () => async (dispatch, getState) => {
       } catch (err) {
         console.log(`Error re-adding todos: ${err}`);
       }
+    } else if (removedTodos.length === 1) {
+      try {
+        await dispatch(removeTodo_(removedTodos.id));
+      } catch (err) {
+        console.log(`Error re-adding todo: ${err}`);
+      }
     }
   } else if (prevState.length > todos.present.length) {
     try {
-      for (const todo of prevState) {
-        await dispatch(addTodo_(todo, todo.createdAt));
+      const addTodos = prevState.filter((todo) => {
+        return !todos.present.some((t) => t.id === todo.id);
+      });
+      if (addTodos.length > 1) {
+        for (const todo of addTodos) {
+          await dispatch(addTodo_(todo, todo.createdAt));
+        }
+      } else if (addTodos.length === 1) {
+        await dispatch(addTodo_(addTodos[0], addTodos[0].createdAt));
       }
     } catch (err) {
       console.log(`Error removing todo: ${err}`);
@@ -104,7 +117,7 @@ export const undo_ = () => async (dispatch, getState) => {
   }
 };
 
-export const redo_ = () => async (dispatch, getState) => {
+export const redo_ = () => async (dispatch, getState) => { // FIXME: fix bugs
   const { todos } = getState();
 
   if (todos.future.length === 0) return;
@@ -120,7 +133,8 @@ export const redo_ = () => async (dispatch, getState) => {
     const removedTodos = nextState.filter(
       (todo) => !todos.present.some((t) => t.id === todo.id)
     );
-    if (removedTodos.length > 0) {
+    console.log("removedTodos: ", removedTodos);
+    if (removedTodos.length > 1) {
       try {
         for (const removedTodo of removedTodos) {
           await dispatch(removeTodo_(removedTodo.id));
@@ -128,11 +142,24 @@ export const redo_ = () => async (dispatch, getState) => {
       } catch (err) {
         console.log(`Error re-adding todo: ${err}`);
       }
+    } else if (removedTodos.length === 1) {
+      try {
+        await dispatch(removeTodo_(removedTodos[0].id));
+      } catch (err) {
+        console.log(`Error re-adding todo: ${err}`);
+      }
     }
   } else if (nextState.length > todos.present.length) {
     try {
-      for (const todo of nextState) {
-        await dispatch(addTodo_(todo, todo.createdAt));
+      const addTodos = nextState.filter(
+        (todo) => !todos.present.some((t) => t.id === todo.id)
+      );
+      if (addTodos.length > 1) {
+        for (const todo of addTodos) {
+          await dispatch(addTodo_(todo, todo.createdAt));
+        }
+      } else if (addTodos.length === 1) {
+        await dispatch(addTodo_(addTodos[0], addTodos[0].createdAt));
       }
     } catch (err) {
       console.log(`Error adding todos: ${err}`);

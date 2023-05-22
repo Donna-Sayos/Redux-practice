@@ -12,19 +12,21 @@ export const fetchTodos_ = () => async (dispatch) => {
   }
 };
 
-export const addTodo_ = (todo, timeStamp = null) => async (dispatch) => {
-  const todoData = {
-    ...todo,
-    createdAt: timeStamp || null,
-  };
+export const addTodo_ =
+  (todo, timeStamp = null) =>
+  async (dispatch) => {
+    const todoData = {
+      ...todo,
+      createdAt: timeStamp || null,
+    };
 
-  try {
-    const { data } = await Axios.post(`/api/v1/todos`, todoData);
-    dispatch(actionCreators.addTodo(data));
-  } catch (err) {
-    console.log(`Error in addTodo thunk: ${err}`);
-  }
-};
+    try {
+      const { data } = await Axios.post(`/api/v1/todos`, todoData);
+      dispatch(actionCreators.addTodo(data));
+    } catch (err) {
+      console.log(`Error in addTodo thunk: ${err}`);
+    }
+  };
 
 export const removeTodo_ = (id) => async (dispatch) => {
   try {
@@ -88,7 +90,10 @@ export const undo_ = () => async (dispatch, getState) => {
         console.log(`Error re-adding todo: ${err}`);
       }
     }
-  } else if (prevState.length > todos.present.length && todos.present.length > 0) {
+  } else if (
+    prevState.length > todos.present.length &&
+    todos.present.length > 0
+  ) {
     const addedTodo = prevState.find(
       (todo) => !todos.present.some((t) => t.id === todo.id)
     );
@@ -119,8 +124,6 @@ export const undo_ = () => async (dispatch, getState) => {
       console.log(`Error adding todos: ${err}`);
     }
   }
-
-  dispatch(actionCreators.undo());
 };
 
 export const redo_ = () => (dispatch) => {

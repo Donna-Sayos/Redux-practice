@@ -6,7 +6,7 @@ const initialState = {
   future: [],
 };
 
-const MAX_HISTORY = 10;
+const MAX_HISTORY = 5;
 
 export const todoReducer = (state = initialState, action) => {
   switch (action.type) {

@@ -18,14 +18,21 @@ const getAllTodos = async (req, res, next) => {
 const addTodo = async (req, res, next) => {
   try {
     const description = req.body.description;
-    const newTodo = await pgPool.query(QUERIES.addTodo_, [description]);
+    let createdAt = req.body.createdAt ? req.body.createdAt : "NOW()"; // Use the provided createdAt value or 'NOW()' for the current timestamp
+    if (createdAt !== "NOW()") {
+      createdAt = `'${createdAt}'`; // Wrap the createdAt value in single quotes for proper SQL formatting
+    }
+    const newTodo = await pgPool.query(
+      QUERIES.addTodo_.replace("NOW()", createdAt), // in case a createdAt is provided, replace the 'NOW()' in the query with the createdAt value
+      [description]
+    );
 
     res.status(201).json(newTodo.rows[0]);
   } catch (err) {
     console.error(`Error in addTodo: ${err}`);
     res.status(500).json({
-      success: `false`,
-      message: `Internal Server Error at "addTodo"`,
+      success: false,
+      message: "Internal Server Error at 'addTodo'",
     });
   }
 };

@@ -6,7 +6,7 @@ const initialState = {
   future: [],
 };
 
-const MAX_HISTORY = 5;
+export const MAX_HISTORY = 5;
 
 export const todoReducer = (state = initialState, action, dispatch) => {
   switch (action.type) {
@@ -18,17 +18,23 @@ export const todoReducer = (state = initialState, action, dispatch) => {
 
     case actions.ADD_TODO:
       let newAddPast = [...state.past, state.present];
-      if (newAddPast.length > MAX_HISTORY) newAddPast = newAddPast.shift(); // remove the first item in the array
+      if (newAddPast.length > MAX_HISTORY) newAddPast.shift(); // remove the first item in the array
+
+      const newTodo = {
+        ...action.payload.todo,
+        createdAt: action.payload.todo.createdAt || null,
+      };
+
       return {
         past: newAddPast,
-        present: [...state.present, action.payload.todo],
+        present: [...state.present, newTodo],
         future: [],
       };
 
     case actions.REMOVE_TODO:
       let newRemovedPast = [...state.past, state.present];
       if (newRemovedPast.length > MAX_HISTORY)
-        newRemovedPast = newRemovedPast.shift();
+        newRemovedPast.shift();
 
       return {
         past: newRemovedPast,
@@ -39,7 +45,7 @@ export const todoReducer = (state = initialState, action, dispatch) => {
     case actions.TOGGLE_TODO:
       let newToggledPast = [...state.past, state.present];
       if (newToggledPast.length > MAX_HISTORY)
-        newToggledPast = newToggledPast.shift();
+        newToggledPast.shift();
 
       return {
         past: newToggledPast,
@@ -54,7 +60,7 @@ export const todoReducer = (state = initialState, action, dispatch) => {
     case actions.UPDATE_TODO:
       let newUpdatedPast = [...state.past, state.present];
       if (newUpdatedPast.length > MAX_HISTORY)
-        newUpdatedPast = newUpdatedPast.shift();
+        newUpdatedPast.shift();
 
       return {
         past: newUpdatedPast,
@@ -69,7 +75,7 @@ export const todoReducer = (state = initialState, action, dispatch) => {
     case actions.CLEAR_TODOS:
       let newClearedPast = [...state.past, state.present];
       if (newClearedPast.length > MAX_HISTORY)
-        newClearedPast = newClearedPast.shift();
+        newClearedPast.shift();
 
       return {
         past: newClearedPast,
@@ -77,36 +83,36 @@ export const todoReducer = (state = initialState, action, dispatch) => {
         future: [],
       };
 
-    case actions.UNDO:
-      if (state.past.length === 0) return state;
+    // case actions.UNDO:
+    //   if (state.past.length === 0) return state;
 
-      const prevState = state.past[state.past.length - 1]; // grab last item in past array
-      const newUndoPast = state.past.slice(0, state.past.length - 1); // return all the items in the past array except the last item
-      const newUndoFuture = [state.present, ...state.future]; // add the current state to the beginning of the future array
+    //   const prevState = state.past[state.past.length - 1]; // grab last item in past array
+    //   const newUndoPast = state.past.slice(0, state.past.length - 1); // return all the items in the past array except the last item
+    //   const newUndoFuture = [state.present, ...state.future]; // add the current state to the beginning of the future array
 
-      if (newUndoFuture.length > MAX_HISTORY) newUndoFuture.pop(); // remove the last item in the future array
+    //   if (newUndoFuture.length > MAX_HISTORY) newUndoFuture.pop(); // remove the last item in the future array
 
-      return {
-        past: newUndoPast,
-        present: prevState,
-        future: newUndoFuture,
-      };
+    //   return {
+    //     past: newUndoPast,
+    //     present: prevState,
+    //     future: newUndoFuture,
+    //   };
 
-    case actions.REDO:
-      if (state.future.length === 0) return state;
+    // case actions.REDO:
+    //   if (state.future.length === 0) return state;
 
-      const nextState = state.future[0]; // grab the first item in the future array
-      const newFuture = state.future.slice(1); // return all the items in the future array except the first item
-      const newRedoPast = [...state.past, state.present]; // add the current state to the end of the past array
+    //   const nextState = state.future[0]; // grab the first item in the future array
+    //   const newFuture = state.future.slice(1); // return all the items in the future array except the first item
+    //   const newRedoPast = [...state.past, state.present]; // add the current state to the end of the past array
 
-      if (newRedoPast.length > MAX_HISTORY) newRedoPast.shift(); // if the past array is longer than the max history, remove the first item in the array
+    //   if (newRedoPast.length > MAX_HISTORY) newRedoPast.shift(); // if the past array is longer than the max history, remove the first item in the array
 
-      return {
-        //         PAST   /   PRESENT   /   FUTURE
-        past: newRedoPast, //              <---          <---
-        present: nextState, //     PRESENT   /   FUTURE[0]   /   the rest of the future array
-        future: newFuture,
-      };
+    //   return {
+    //     //         PAST   /   PRESENT   /   FUTURE
+    //     past: newRedoPast, //              <---          <---
+    //     present: nextState, //     PRESENT   /   FUTURE[0]   /   the rest of the future array
+    //     future: newFuture,
+    //   };
 
     default:
       return state;

@@ -11,7 +11,10 @@ export const setTodos = (todos) => ({
 export const addTodo = (todo) => ({
   type: actions.ADD_TODO,
   payload: {
-    todo,
+    todo: {
+      ...todo,
+      createdAt: todo.createdAt ? todo.createdAt : null, // in case a timeStamp is passed in
+    },
   },
 });
 

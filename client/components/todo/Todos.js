@@ -194,6 +194,16 @@ function Todos({
     await clearTodos();
   };
 
+  const undoHandler = async () => {
+    await undo();
+    await fetchTodos();
+  };
+
+  const redoHandler = async () => {
+    await redo();
+    await fetchTodos();
+  };
+
   useEffect(() => {
     let isMounted = true;
 
@@ -311,10 +321,10 @@ function Todos({
       </Grid>
       <StyledDivider variant="fullWidth" />
       <div style={{ margin: 0 }}>
-        <IconButton sx={styleProps.iconButton} onClick={() => undo()}>
+        <IconButton sx={styleProps.iconButton} onClick={() => undoHandler()}>
           <Undo sx={styleProps.icon} />
         </IconButton>
-        <IconButton sx={styleProps.iconButton} onClick={() => redo()}>
+        <IconButton sx={styleProps.iconButton} onClick={() => redoHandler()}>
           <Redo sx={styleProps.icon} />
         </IconButton>
       </div>

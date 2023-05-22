@@ -67,46 +67,33 @@ export const clearTodos_ = () => async (dispatch) => {
 export const undo_ = () => async (dispatch, getState) => {
   const { todos } = getState();
 
-  console.log("todos", todos);
-
   if (todos.past.length === 0) return;
 
   const prevState = todos.past[todos.past.length - 1];
-  console.log("prevState", ...prevState);
-  console.log("todos.present", todos.present);
   const newUndoFuture = [todos.present, ...todos.future];
 
   if (newUndoFuture.length > MAX_HISTORY) newUndoFuture.pop();
 
   if (prevState.length !== 0 && prevState.length < todos.present.length) {
-    const removedTodo = prevState.find(
+    const removedTodos = prevState.filter(
       (todo) => !todos.present.some((t) => t.id === todo.id)
     );
-
-    if (removedTodo) {
+    if (removedTodos.length > 0) {
       try {
-        await dispatch(removeTodo_(removedTodo.id));
+        for (const removedTodo of removedTodos) {
+          await dispatch(removeTodo_(removedTodo.id));
+        }
       } catch (err) {
-        console.log(`Error re-adding todo: ${err}`);
+        console.log(`Error re-adding todos: ${err}`);
       }
     }
-  } else if (
-    prevState.length > todos.present.length &&
-    todos.present.length > 0
-  ) {
-    const addedTodo = prevState.find(
-      (todo) => !todos.present.some((t) => t.id === todo.id)
-    );
-    7;
-    console.log("addedTodo", addedTodo);
-
-    if (addedTodo) {
-      try {
-        console.log("addTodo.createdAt", addedTodo.createdAt);
-        await dispatch(addTodo_(addedTodo, addedTodo.createdAt));
-      } catch (err) {
-        console.log(`Error removing todo: ${err}`);
+  } else if (prevState.length > todos.present.length) {
+    try {
+      for (const todo of prevState) {
+        await dispatch(addTodo_(todo, todo.createdAt));
       }
+    } catch (err) {
+      console.log(`Error removing todo: ${err}`);
     }
   } else if (prevState.length === 0 && todos.present.length > 0) {
     try {
@@ -114,18 +101,47 @@ export const undo_ = () => async (dispatch, getState) => {
     } catch (err) {
       console.log(`Error clearing todos: ${err}`);
     }
-  } else if (prevState.length > 0 && todos.present.length === 0) {
+  }
+};
+
+export const redo_ = () => async (dispatch, getState) => {
+  const { todos } = getState();
+
+  if (todos.future.length === 0) return;
+
+  const nextState = todos.future[0];
+  const newRedoFuture = todos.future.slice(1);
+  console.log("newRedoFuture: ", newRedoFuture);
+  console.log("nextState: ", nextState);
+
+  if (newRedoFuture.length > MAX_HISTORY) newRedoFuture.pop(); // removes the last item in the array
+
+  if (nextState.length !== 0 && nextState.length < todos.present.length) {
+    const removedTodos = nextState.filter(
+      (todo) => !todos.present.some((t) => t.id === todo.id)
+    );
+    if (removedTodos.length > 0) {
+      try {
+        for (const removedTodo of removedTodos) {
+          await dispatch(removeTodo_(removedTodo.id));
+        }
+      } catch (err) {
+        console.log(`Error re-adding todo: ${err}`);
+      }
+    }
+  } else if (nextState.length > todos.present.length) {
     try {
-      for (const todo of prevState) {
-        console.log("todo", todo);
+      for (const todo of nextState) {
         await dispatch(addTodo_(todo, todo.createdAt));
       }
     } catch (err) {
       console.log(`Error adding todos: ${err}`);
     }
+  } else if (nextState.length === 0 && todos.present.length > 0) {
+    try {
+      await dispatch(clearTodos_());
+    } catch (err) {
+      console.log(`Error clearing todos: ${err}`);
+    }
   }
-};
-
-export const redo_ = () => (dispatch) => {
-  dispatch(actionCreators.redo());
 };

@@ -33,8 +33,7 @@ export const todoReducer = (state = initialState, action, dispatch) => {
 
     case actions.REMOVE_TODO:
       let newRemovedPast = [...state.past, state.present];
-      if (newRemovedPast.length > MAX_HISTORY)
-        newRemovedPast.shift();
+      if (newRemovedPast.length > MAX_HISTORY) newRemovedPast.shift();
 
       return {
         past: newRemovedPast,
@@ -44,8 +43,7 @@ export const todoReducer = (state = initialState, action, dispatch) => {
 
     case actions.TOGGLE_TODO:
       let newToggledPast = [...state.past, state.present];
-      if (newToggledPast.length > MAX_HISTORY)
-        newToggledPast.shift();
+      if (newToggledPast.length > MAX_HISTORY) newToggledPast.shift();
 
       return {
         past: newToggledPast,
@@ -59,8 +57,7 @@ export const todoReducer = (state = initialState, action, dispatch) => {
 
     case actions.UPDATE_TODO:
       let newUpdatedPast = [...state.past, state.present];
-      if (newUpdatedPast.length > MAX_HISTORY)
-        newUpdatedPast.shift();
+      if (newUpdatedPast.length > MAX_HISTORY) newUpdatedPast.shift();
 
       return {
         past: newUpdatedPast,
@@ -74,13 +71,34 @@ export const todoReducer = (state = initialState, action, dispatch) => {
 
     case actions.CLEAR_TODOS:
       let newClearedPast = [...state.past, state.present];
-      if (newClearedPast.length > MAX_HISTORY)
-        newClearedPast.shift();
+      if (newClearedPast.length > MAX_HISTORY) newClearedPast.shift();
 
       return {
         past: newClearedPast,
         present: [],
         future: [],
+      };
+
+    case actions.UNDO:
+      const previous = state.past[state.past.length - 1];
+      const newPast = state.past.slice(0, state.past.length - 1);
+      const newFuture = [state.present, ...state.future];
+
+      return {
+        past: newPast,
+        present: previous,
+        future: newFuture,
+      };
+
+    case actions.REDO:
+      const next = state.future[0];
+      const newFuture2 = state.future.slice(1);
+      const newPast2 = [...state.past, state.present];
+
+      return {
+        past: newPast2,
+        present: next,
+        future: newFuture2,
       };
 
     default:

@@ -1,5 +1,4 @@
 import * as actionCreators from "./actionCreators";
-import { MAX_HISTORY } from "../reducers/todoReducer";
 import Axios from "axios";
 
 // THUNKS
@@ -64,12 +63,11 @@ export const clearTodos_ = () => async (dispatch) => {
   }
 };
 
+// FIXME: testing feature
 export const undo_ = () => async (dispatch) => {
-  // FIXME: fix bugs
-  
+  await dispatch(actionCreators.undo());
 };
 
 export const redo_ = () => async (dispatch) => {
-  // FIXME: fix bugs
-  
+  await dispatch(actionCreators.redo());
 };

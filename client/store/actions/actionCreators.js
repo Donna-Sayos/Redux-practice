@@ -43,3 +43,12 @@ export const updateTodo = (id, todo) => ({
 export const clearTodos = () => ({
   type: actions.CLEAR_TODOS,
 });
+
+// FIXME: testing feature
+export const undo = () => ({
+  type: actions.UNDO,
+});
+
+export const redo = () => ({
+  type: actions.REDO,
+});

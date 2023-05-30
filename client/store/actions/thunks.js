@@ -63,11 +63,10 @@ export const clearTodos_ = () => async (dispatch) => {
   }
 };
 
-// FIXME: testing feature
-export const undo_ = () => async (dispatch) => {
+export const undo_ = () => async (dispatch) => { // FIXME: testing feature
   await dispatch(actionCreators.undo());
 };
 
-export const redo_ = () => async (dispatch) => {
+export const redo_ = () => async (dispatch) => { // FIXME: testing feature
   await dispatch(actionCreators.redo());
 };

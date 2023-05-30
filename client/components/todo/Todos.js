@@ -194,12 +194,12 @@ function Todos({
     await clearTodos();
   };
 
-  const undoHandler = async () => {
+  const undoHandler = async () => { // FIXME: testing feature
     await undo();
     await fetchTodos();
   };
 
-  const redoHandler = async () => {
+  const redoHandler = async () => { // FIXME: testing feature
     await redo();
     await fetchTodos();
   };
@@ -372,8 +372,8 @@ const mapDispatch = (dispatch) => ({
   updateTodo: (id, todo) => dispatch(thunks.updateTodo_(id, todo)),
   toggleTodo: (id) => dispatch(thunks.toggleTodo_(id)),
 
-  undo: () => dispatch(thunks.undo_()),
-  redo: () => dispatch(thunks.redo_()),
+  undo: () => dispatch(thunks.undo_()), // FIXME: testing feature
+  redo: () => dispatch(thunks.redo_()), // FIXME: testing feature
 });
 
 export default connect(mapState, mapDispatch)(Todos);

@@ -44,11 +44,10 @@ export const clearTodos = () => ({
   type: actions.CLEAR_TODOS,
 });
 
-// FIXME: testing feature
-export const undo = () => ({
+export const undo = () => ({ // FIXME: testing feature
   type: actions.UNDO,
 });
 
-export const redo = () => ({
+export const redo = () => ({ // FIXME: testing feature
   type: actions.REDO,
 });

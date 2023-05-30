@@ -79,7 +79,7 @@ export const todoReducer = (state = initialState, action, dispatch) => {
         future: [],
       };
 
-    case actions.UNDO:
+    case actions.UNDO: // FIXME: testing feature
       const previous = state.past[state.past.length - 1];
       const newPast = state.past.slice(0, state.past.length - 1);
       const newFuture = [state.present, ...state.future];
@@ -90,7 +90,7 @@ export const todoReducer = (state = initialState, action, dispatch) => {
         future: newFuture,
       };
 
-    case actions.REDO:
+    case actions.REDO: // FIXME: testing feature
       const next = state.future[0];
       const newFuture2 = state.future.slice(1);
       const newPast2 = [...state.past, state.present];

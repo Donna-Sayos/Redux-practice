@@ -152,7 +152,7 @@ const StyledButton = styled(Button)({
 });
 
 const StyledCheckbox = styled(Checkbox)(({ ischecked }) => ({
-  "& .MuiSvgIcon-root": {
+  "& .MuiSvgIcon-root": { // selecting this class allows to add styling to the checkbox icon
     fontSize: 30,
     fill: "#b38b67",
     cursor: "pointer",

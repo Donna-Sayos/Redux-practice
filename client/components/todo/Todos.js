@@ -196,12 +196,12 @@ function Todos({
 
   const undoHandler = async () => { // FIXME: testing feature
     await undo();
-    await fetchTodos();
+    // await fetchTodos();
   };
 
   const redoHandler = async () => { // FIXME: testing feature
     await redo();
-    await fetchTodos();
+    // await fetchTodos();
   };
 
   useEffect(() => {
@@ -265,7 +265,7 @@ function Todos({
 
           return nextProgress;
         });
-      }, 60);
+      }, 40);
     }
 
     return () => clearInterval(timer);

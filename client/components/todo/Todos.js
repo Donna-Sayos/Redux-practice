@@ -196,12 +196,10 @@ function Todos({
 
   const undoHandler = async () => { // FIXME: testing feature
     await undo();
-    // await fetchTodos();
   };
 
   const redoHandler = async () => { // FIXME: testing feature
     await redo();
-    // await fetchTodos();
   };
 
   useEffect(() => {

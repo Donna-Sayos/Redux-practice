@@ -222,6 +222,7 @@ export default function SingleTodo({
   const saveHandler = async (todo) => {
     await updateTodo(todo.id, { ...todo, description: newDescription });
     await fetchTodos();
+    
     setIsEditing(false);
   };
 

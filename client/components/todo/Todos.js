@@ -5,8 +5,8 @@ import AddTodo from "./AddTodo";
 import SingleTodo from "./SingleTodo";
 import ProgressWithLabel from "../common/ProgressWithLabel";
 import { Button, Grid, Container, Divider, IconButton } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import { Redo, Undo } from "@mui/icons-material";
+import { styled } from "@mui/material/styles";
 
 const styleProps = {
   header: {
@@ -263,7 +263,7 @@ function Todos({
 
           return nextProgress;
         });
-      }, 40);
+      }, 35);
     }
 
     return () => clearInterval(timer);

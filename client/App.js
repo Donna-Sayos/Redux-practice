@@ -62,7 +62,7 @@ const StyledImg = styled("img")({
 export default function App() {
   return (
     <StyledPaper>
-      <StyledImg src={CLIP} />
+      <StyledImg src={CLIP} alt="clipboard clip" />
       <Todos />
     </StyledPaper>
   );
